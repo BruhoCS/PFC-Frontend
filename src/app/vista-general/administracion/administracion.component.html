@@ -1,0 +1,56 @@
+<div class="contenido">
+    <h1>Añadir un usuario nuevo</h1>
+    <div class="formulario">
+        <div id="imagenLogin">
+            <img src="/imagenes/imagenesAcceder/loginFithub.png" alt="Imagen de login">
+        </div>
+
+        <!--Formulario que nos permitirá añadir y modificar usuarios-->
+        <form [formGroup]="formulario">
+
+            <!--CAMPO DE NOMBRE DEL USUARIO-->
+            <label for="nombre">Nombre:</label>
+            <input type="text" formControlName="nombre">
+            <div *ngIf="campoNombre.errors && campoNombre.touched">
+                <p class="errores">El campo Nombre es obligatorio</p>
+            </div>
+
+
+            <!--CAMPO DE ROL DEL USUARIO-->
+            <label for="rol">Rol</label>
+            <select formControlName="rol">
+                <option value=""></option>
+                <option value="Usuario">Usuario</option>
+                <option value="Administrador">Administrador</option>
+            </select>
+            <div *ngIf="campoRol.errors && campoRol.touched">
+                <p class="errores">El campo contraseña es obligatorio</p>
+            </div>
+
+
+            <!--CAMPO DE CONTRASEÑA-->
+            <label for="contrasenha">Contraseña:</label>
+            <!--Mensja de validación para el campo contraseña-->
+            <div *ngIf="campoContrasenha.errors && campoContrasenha.touched">
+                <p class="errores">El campo contraseña es obligatorio</p>
+            </div>
+            <input type="password" formControlName="contrasenha">
+            <!--Botones para crear o modificar-->
+            <button (click)="crearUsuario($event)">Crear</button>
+            <button (click)="modificarUsuario($event)">Modificar Usuario</button>
+            <button>Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<!--Div donde mostraremos a todos los usuarios registrados con la opción de borrado-->
+<div class="mostrarUsuarios">
+    <h2>Usuarios</h2>
+    <div class="usuarios">
+        <div class="tarjeta" *ngFor="let usuario of usuarios">
+            <p>Nombre: {{usuario.nombre}}</p>
+            <p>Rol: {{usuario.rol}}</p>
+            <a (click)="borrarUsuario(usuario)" class="button">Borrar Usuario</a>
+        </div>
+    </div>
+</div>

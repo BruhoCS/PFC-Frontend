@@ -1,0 +1,32 @@
+<div class="contenido">
+    <h1>BIENVENIDO A FITHUB</h1>
+    <h3>Inicia sesión para poder acceder a las ventajas como miembro</h3>
+    <div class="formulario">
+        <div id="imagenLogin">
+            <img src="/imagenes/imagenesAcceder/loginFithub.png" alt="Imagen de login">
+        </div>
+        <div *ngIf="errorSesion" class="errores">
+            <p>El usuario o la contraseña no son válidos</p>
+        </div>
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit($event)">
+
+            <!--CAMPO DE NOMBRE DEL USUARIO-->
+            <label for="nombre">Nombre:</label>
+            <input type="text" formControlName="nombre">
+            <div *ngIf="campoNombre.errors && campoNombre.touched">
+                <p class="errores">El campo Nombre es obligatorio</p>
+            </div>
+
+            <!--CAMPO DE CONTRASEÑA-->
+            <label for="contrasenha">Contraseña:</label>
+            <!--Mensja de validación para el campo contraseña-->
+            <div *ngIf="campoContrasenha.errors && campoContrasenha.touched">
+                <p class="errores">El campo contraseña es obligatorio</p>
+            </div>
+            <input type="password" formControlName="contrasenha">
+
+            <button type="submit">Iniciar Sesion</button>
+            <button [routerLink]="['/inicio']" routerLinkActive="router-link-active">Cancelar</button>
+        </form>
+    </div>
+</div>

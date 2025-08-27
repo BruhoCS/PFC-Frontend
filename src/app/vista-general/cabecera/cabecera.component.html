@@ -1,0 +1,40 @@
+<!--Cabecera-->
+<header>
+    <div class="cabecera">
+      <!--Caja logo y acceso a las otras funcionalidades de la web-->
+      <div class="apartadosCabecera">
+        <!--Opciones de la cabecera-->
+        <ul>
+          <!--Logo de la web-->
+          <img [routerLink]="['/']" class="cabeceraOpt imgLogo" src="/imagenes/imagenesInicio/logoFithub.jpg" alt="Logo de la pagina" />
+
+          <!--Link que redirige a la pagina de entrenos-->
+          <li class="cabeceraOpt">
+            <button [routerLink]="['/entreno']" class="cabeceraA">Entrenos</button>
+          </li>
+          <!--Link que redirige a la pagina de tarifas-->
+          <li class="cabeceraOpt">
+            <button [routerLink]="['/tarifa']" class="cabeceraA">Tarifas</button>
+          </li>
+          <!--Link que redirige a la página de administración-->
+          <li>
+            <button [routerLink]="['/administracion']">Administracion</button>
+          </li>
+        </ul>
+      </div>
+      <!--Caja de inicio y cerrar sesion-->
+      <div class="iconosCabecera">
+        <select name="idoma" id="idoma">
+          <option value="espanol">Español</option>
+          <option value="ingles">Ingles</option>
+        </select>
+        <!--Link que redirige para iniciar sesion o registrarse-->
+        <a class="cabeceraA" [routerLink]="['/login']">
+          <img id="login" src="/imagenes/imagenesInicio/loginFithub.png" alt="login" />
+        </a>
+        <!--Boton para cerrar la sesion-->
+        <a class="cabeceraA" (click)="cerrarSesion()">
+          <img id="exit" src="/imagenes/imagenesInicio/exitFithub.png" alt="cerrar Sesion" />
+        </a>
+      </div>
+    </div>

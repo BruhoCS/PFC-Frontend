@@ -1,0 +1,259 @@
+/* Estilos generales */
+h1 {
+  font-size: 45px;
+  border-bottom: 5px solid black;
+  margin: 10px;
+  text-align: center;
+  color: white;
+}
+h2{
+  font-size: 40px;
+  border-bottom: 2px solid black;
+  margin: 5px;
+  text-align: center;
+  color: rgb(221, 218, 218);
+}
+
+/* Contenedor principal */
+.contenido {
+  display: flex;
+  flex-direction: column;
+  background-color: #260202;
+  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+  margin: 10px;
+  margin-top: 100px;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+/* Sección de ejercicios */
+.seccion-ejercicios {
+  padding: 20px;
+  background-color: #1a1a1a; /* Más neutro que el negro puro */
+  border-radius: 10px;
+  border: 2px solid #3d0f0f; /* Rojo oscuro menos chillón */
+  color: white;
+  text-align: center;
+}
+
+.seccion-ejercicios h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #f5f5f5; /* Blanco más suave */
+}
+
+/* Formulario de sugerencias */
+form {
+  background-color: #2a1b1b;
+  border: 2px solid #5e1a1a;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(120, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: white;
+}
+
+/* Etiquetas del formulario */
+form label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f0f0f0;
+  text-align: left;
+}
+
+/* Inputs del formulario */
+form input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #5e1a1a;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type="text"]:focus {
+  border-color: rgb(146, 6, 6);
+  box-shadow: 0 0 5px rgb(146, 6, 6);
+  outline: none;
+}
+
+form select {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #5e1a1a;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  color: white;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7H0z%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Al enfocar el select */
+form select:focus {
+  border-color: rgb(146, 6, 6);
+  box-shadow: 0 0 5px rgb(146, 6, 6);
+  outline: none;
+}
+
+.oculto{
+  display: none;
+}
+/* Grid de grupos (Pecho, Pierna, Core) */
+.ejercicios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  padding: 10px;
+}
+
+/* Contenedor individual por tipo de ejercicio */
+.grupo-ejercicios {
+  background-color: #2a1b1b; /* Rojo quemado suave */
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 0 15px rgba(120, 0, 0, 0.2); /* Sombra roja suave */
+}
+
+/* Título de cada grupo */
+.grupo-ejercicios h2 {
+  color: #f0f0f0;
+  margin-bottom: 10px;
+}
+
+/* Estilo de cada ejercicio */
+.ejercicio {
+  border: 2px solid #5e1a1a; /* Rojo oscuro pero no fosforito */
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  background: linear-gradient(to bottom right, #1b1010, #3b1c1c); /* Gradiente cálido y suave */
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s;
+}
+
+.ejercicio:hover {
+  background-color: #802020; /* Rojo vino más elegante */
+  box-shadow: 0 0 12px rgba(255, 80, 80, 0.3);
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+/* Estilo de los textos */
+.ejercicio p {
+  margin: 6px 0;
+  font-size: 16px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+
+/* Ajustes para la sección de videos */
+.videos {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+iframe {
+  margin: 5px;
+  max-width: 100%;
+}
+
+/* Botones */
+button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  background: #000;
+  border: 2px solid rgb(146, 6, 6);
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgb(146, 6, 6);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+button:hover {
+  color: #000;
+  background: rgb(146, 6, 6);
+  box-shadow: 0 0 10px rgb(146, 6, 6);
+}
+
+/* RESPONSIVIDAD */
+@media (max-width: 1024px) {
+  .contenido {
+    width: 95%;
+    padding: 15px;
+    margin-top: 150px;
+  }
+
+  .ejercicios {
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+  .ejercicio {
+    font-size: 16px;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}
+
+/* Móviles */
+@media (max-width: 480px) {
+  .contenido {
+    width: 95%;
+    padding: 15px;
+    margin-top: 150px;
+  }
+
+  .ejercicios {
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .ejercicio {
+    font-size: 16px;
+    width: auto;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+}

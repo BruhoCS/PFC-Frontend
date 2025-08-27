@@ -1,0 +1,73 @@
+   [ {
+      "nombre": "Batido Vainilla",
+      "imagen": "/imagenes/imagenesTienda/comida/batido.jpg",
+      "categoria": "Batido",
+      "precio": 15
+    },
+    {
+      "nombre": "Batido Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoFresa.jpg",
+      "categoria": "Batido",
+      "precio": 15
+    },
+    {
+      "nombre": "Batido Coco",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoCoco.jpg",
+      "categoria": "Batido",
+      "precio": 15
+    },
+    {
+      "nombre": "Batido Platano",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoPlatano.jpg",
+      "categoria": "Batido",
+      "precio": 15
+    },
+    {
+      "nombre": "Barritas de Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasFresa.jpg",
+      "categoria": "Barritas",
+      "precio": 5
+    },
+    {
+      "nombre": "Avena-Choco",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasAvenaChoco.jpg",
+      "categoria": "Barritas",
+      "precio": 5
+    },
+    {
+      "nombre": "Coco Y Nueces",
+      "imagen": "/imagenes/imagenesTienda/comida/barritaCocoYNueces.jpg",
+      "categoria": "Barritas",
+      "precio": 5
+    },
+    {
+      "nombre": "Cereales y Fruta",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasCerealesYFrutas.jpg",
+      "categoria": "Yogures",
+      "precio":5
+    },
+    {
+      "nombre": "Yogures Choco",
+      "imagen": "/imagenes/imagenesTienda/comida/youguresChoco.jpg",
+      "categoria": "Yogures",
+      "precio": 5
+    },
+    {
+      "nombre": "Yogures Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/youguresFresa.jpg",
+      "categoria": "Yogures",
+      "precio": 5
+    },
+    {
+      "nombre": "Yogures Arandanos",
+      "imagen": "/imagenes/imagenesTienda/comida/YoguresArandanos.jpg",
+      "categoria": "Yogures",
+      "precio": 5
+    },
+    {
+      "nombre": "Yogur",
+      "imagen": "/imagenes/imagenesTienda/comida/yogur.jpg",
+      "categoria": "Yogures",
+      "precio": 8
+    }
+   ]

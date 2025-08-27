@@ -1,0 +1,62 @@
+[
+        {
+            "nombre": "Creatina",
+            "imagen": "/imagenes/imagenesTienda/suplementos/creatina.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Colágeno",
+            "imagen": "/imagenes/imagenesTienda/suplementos/colageno.jpg",
+            "categoria": "Suplementos",
+            "precio": 25
+        },
+        {
+            "nombre": "Proteína Milk-Chocolate",
+            "imagen": "/imagenes/imagenesTienda/suplementos/MilkChocolate.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Cookie and Cream",
+            "imagen": "/imagenes/imagenesTienda/suplementos/cookie_and_cream.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Proteína Vegana",
+            "imagen": "/imagenes/imagenesTienda/suplementos/proteinaVegana.jpg",
+            "categoria": "Suplementos",
+            "precio": 40
+        },
+        {
+            "nombre": "Pre-entreno C4",
+            "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoC4.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Pre-entreno Venom",
+            "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoVenom.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Pre-entreno Boom",
+            "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoBoom.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Pre-entreno Supernova",
+            "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoSupernova.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        },
+        {
+            "nombre": "Pre-entreno CBUM",
+            "imagen": "/imagenes/imagenesTienda/suplementos/pre-EntrenoCbum.jpg",
+            "categoria": "Suplementos",
+            "precio": 30
+        }
+    ]

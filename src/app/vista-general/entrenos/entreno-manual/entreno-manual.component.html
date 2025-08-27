@@ -1,0 +1,203 @@
+<!--Formulario para escribir el entreno-->
+<div id="entrenoManual">
+  <div id="formularioEntreno">
+
+    <form [formGroup]="formulario" id="formulario">
+
+      <!--INDICAR DIA DE LA SEMANA-->
+      <label for="diaSemana">Dia de la semana</label>
+      <select name="diaSemana" id="escribirDia" formControlName="dia">
+        <option value="">Selecciona el dia de la semana</option>
+        <option value="lunes">Lunes</option>
+        <option value="martes">Martes</option>
+        <option value="miercoles">Miercoles</option>
+        <option value="jueves">Jueves</option>
+        <option value="viernes">Viernes</option>
+        <option value="sabado">Sabado</option>
+        <option value="domingo">Domingo</option>
+      </select>
+
+      <!--INDICAR EL GRUPO MUSCULAR-->
+      <label for="grupo_muscular">Grupo muscular</label>
+      <select name="grupo_muscular" id="grupo_muscular" formControlName="grupo_muscular">
+        <option value="">Indica el grupo muscular</option>
+        <option value="tren_superior">Tren superior</option>
+        <option value="tren_inferio">Tren inferior</option>
+        <option value="core">Core</option>
+      </select>
+
+      <!--INDICAR EJERCICIO-->
+      <label for="escribirEjercicios">Ejercicio</label>
+      <input type="text" name="escribirEjercicios" id="escribirEjercicios" placeholder="Escribe aqui los ejercicios"
+        formControlName="ejercicio">
+
+      <!--INDICAR LAS REPETICIONES POR EJERCICIO-->
+      <label for="repeticiones">Repeticiones</label>
+      <select name="repeticiones" id="repeticiones" formControlName="repeticiones">
+        <option value="">Selecciona el nº de repeticiones</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+        <option value="10">10</option>
+        <option value="12">12</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+
+      <!--INDICAR LA DURACION DEL ENTRENO-->
+      <label for="duracion">Duracion del entreno</label>
+      <input type="text" name="duracion" id="duracion" placeholder="Indica el tiempo que durará el ejercicio"
+        formControlName="duracion">
+
+      <!--INDICAR EL TIPO DE ENTRENO-->
+      <label for="tipo">Tipo de entreno</label>
+      <select name="tipo" id="tipo" formControlName="tipo">
+        <option value="">Indica que tipo de entreno vas a hacer</option>
+        <option value="fuerza">Fuerza</option>
+        <option value="resistencia">Resistencia</option>
+        <option value="velocidad">Velocidad</option>
+        <option value="potencia">Potencia</option>
+        <option value="cardiovascular">Cardiovascular</option>
+      </select>
+
+      <!--INDICA EL TIEMPO DE DESCANSO-->
+      <label for="descanso">Descanso</label>
+      <select name="descanso" id="descanso" formControlName="descanso">
+        <option value=""></option>
+        <option value="uno">1 min</option>
+        <option value="dos">2 min</option>
+        <option value="tres">3 min</option>
+        <option value="cuatro">4 min</option>
+        <option value="cinco">5 min</option>
+      </select>
+
+      <!--BOTONES-->
+      <div class="botonesEntreno">
+        <!--botón para mostrar por pantalla el entreno-->
+        <button id="enviar" (click)="cargarEntreno()">Enviar</button>
+        <!--botón para descargar el entreno-->
+        <button id="guardar" (click)="descargarEntreno()">Guardar</button>
+        <!--Eliminar el entreno escrito-->
+        <button id="eliminar" (click)="eliminarEntreno()">Eliminar</button>
+      </div>
+    </form>
+
+  </div>
+
+
+  <!--Area donde el usuario escribira su entreno-->
+  <div id="entrenoPersona">
+    <div id="nota">
+      <table>
+        <tr>
+          <th>Dia</th>
+          <th>Grupo Muscular</th>
+          <th>Ejercicio</th>
+          <th>Repeticiones</th>
+          <th>Duracion</th>
+          <th>Tipo</th>
+          <th>Descanso</th>
+        </tr>
+        <tbody *ngFor="let entreno of listaEntrenos">
+          <tr>
+            <td>{{ entreno.dia }}</td>
+            <td>{{ entreno.grupo_muscular }}</td>
+            <td>{{ entreno.ejercicio }}</td>
+            <td>{{ entreno.repeticiones }}</td>
+            <td>{{ entreno.duracion}}</td>
+            <td>{{ entreno.tipo }}</td>
+            <td>{{ entreno.descanso }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--Mostrar el entreno por dias-->
+<h1>Ejercicios por días de la semana</h1>
+<div class="listaDias">
+  <!--LUNES-->
+  <div class="dia">
+    <h2>Lunes</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'lunes'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--MARTES-->
+  <div class="dia">
+    <h2>Martes</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'martes'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--MIERCOLES-->
+  <div class="dia">
+    <h2>Miércoles</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'miercoles'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--JUEVES-->
+  <div class="dia">
+    <h2>Jueves</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'jueves'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--VIERNES-->
+  <div class="dia">
+    <h2>Viernes</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'viernes'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--SABADO-->
+  <div class="dia">
+    <h2>Sábado</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'sabado'">
+        <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+
+  <!--DOMINGO-->
+  <div class="dia">
+    <h2>Domingo</h2>
+    <ng-container *ngFor="let entreno of listaEntrenos">
+      <ul *ngIf="entreno.dia == 'domingo'">
+        <li><strong>Ejercicio:</strong> {{entreno.ejercicio}} </li>
+        <li>Repeticiones: {{ entreno.repeticiones }}</li>
+        <li>Descanso entre series:{{ entreno.descanso }} </li>
+      </ul>
+    </ng-container>
+  </div>
+</div>

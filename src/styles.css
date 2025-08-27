@@ -1,0 +1,24 @@
+/*Estilo del cuerpo*/
+body {
+  background-color: rgb(26, 25, 25);
+  font-family: 'Poppins', sans-serif;
+  color: aliceblue;
+
+}
+
+h2 {
+  text-align: center;
+}
+
+p {
+  font-size: 15px;
+}
+
+/* Refuerzo en títulos por si acaso */
+h1,
+h2,
+h3,
+button {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}

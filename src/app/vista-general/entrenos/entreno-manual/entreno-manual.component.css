@@ -1,0 +1,192 @@
+h1 {
+  font-size: 40px;
+  border-bottom: 4px solid black;
+  margin: 5px;
+  text-align: center;
+  color: rgb(221, 218, 218);
+}
+
+/*Posición de tabla y fomrulario*/
+#entrenoManual {
+  display: flex;
+  flex-direction: row;
+  margin: 10vh;
+}
+
+/*Estilo rectangulo que contiene la tabla donde se mostrará el entreno*/
+#entrenoPersona {
+  padding: 10px;
+  margin: 20px;
+}
+
+/*Estilo donde aparecera impreso lo que escribió el usuario*/
+#nota {
+  margin: 5px;
+}
+
+
+/*Estilo del contenedor del formulario*/
+#formularioEntreno {
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  gap: 10px;
+  background: #000 url("../../../../../public/imagenes/imagenesInicio/fondo_formulario.png");
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/*Estilo del div de los botones*/
+#botonesEntreno {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+
+}
+
+/*margen para los botones del div*/
+#botonesEntreno>button {
+  margin: 5px;
+}
+
+/*Estilo de los botones*/
+button {
+  background-color: rgb(2, 2, 2);
+  border-radius: 10px;
+  border-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+  font-size: 18px;
+}
+
+button:hover {
+  background-color: rgb(61, 2, 2);
+}
+
+
+
+/*Tabla de ejercicios*/
+table {
+  border-collapse: separate;
+  border-spacing: 5px;
+  background: #000 url("../../../../../public/imagenes/imagenesInicio/Captura\ desde\ 2025-02-27\ 19-01-00.png") bottom left repeat-x;
+  color: #ffffff;
+}
+
+td,
+th {
+  background: #000000;
+  color: #ffffff;
+}
+
+.listaDias {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.dia {
+  background: linear-gradient(135deg, #111, #1c1c1c);
+  border: 2px solid #8b0000;
+  /* Rojo oscuro para destacar */
+  border-radius: 15px;
+  padding: 15px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dia ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.dia li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dia li:last-child {
+  border-bottom: none;
+}
+
+@media(max-width: 480px) {
+
+  /* Contenedor principal */
+  #entrenoManual {
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 2vw;
+  }
+
+  /* Tabla responsive */
+  table {
+    width: 100%;
+    /* Que se ajuste al contenedor */
+    font-size: 14px;
+    /* Texto más pequeño */
+    overflow-x: auto;
+    display: block;
+    /* Importante para que el scroll funcione */
+    border-collapse: separate;
+    border-spacing: 3px;
+    background: #000 url("../../../../../public/imagenes/imagenesInicio/Captura\ desde\ 2025-02-27\ 19-01-00.png") bottom left repeat-x;
+    color: #ffffff;
+  }
+
+  /* Celdas */
+  td,
+  th {
+    background: #000000;
+    color: #ffffff;
+    padding: 4px 6px;
+    /* Espaciado más ajustado */
+    word-break: break-word;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  /* Contenedor principal */
+  #entrenoManual {
+    display: flex;
+    flex-direction: column;
+    margin: 5vh 2vw;
+  }
+
+  /* Tabla responsive */
+  table {
+    width: 100%;
+    /* Que se ajuste al contenedor */
+    font-size: 14px;
+    /* Texto más pequeño */
+    overflow-x: auto;
+    display: block;
+    /* Importante para que el scroll funcione */
+    border-collapse: separate;
+    border-spacing: 3px;
+    background: #000 url("../../../../../public/imagenes/imagenesInicio/Captura\ desde\ 2025-02-27\ 19-01-00.png") bottom left repeat-x;
+    color: #ffffff;
+  }
+
+  /* Celdas */
+  td,
+  th {
+    background: #000000;
+    color: #ffffff;
+    padding: 4px 6px;
+    /* Espaciado más ajustado */
+    word-break: break-word;
+  }
+
+  .listaDias {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

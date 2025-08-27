@@ -1,0 +1,192 @@
+{
+  "comida": [
+    {
+      "nombre": "Batido Vainilla",
+      "imagen": "/imagenes/imagenesTienda/comida/batido.jpg",
+      "categoria": "Batido",
+      "precio": "15€"
+    },
+    {
+      "nombre": "Batido Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoFresa.jpg",
+      "categoria": "Batido",
+      "precio": "15€"
+    },
+    {
+      "nombre": "Batido Coco",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoCoco.jpg",
+      "categoria": "Batido",
+      "precio": "15€"
+    },
+    {
+      "nombre": "Batido Platano",
+      "imagen": "/imagenes/imagenesTienda/comida/batidoPlatano.jpg",
+      "categoria": "Batido",
+      "precio": "15€"
+    },
+    {
+      "nombre": "Barritas de Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasFresa.jpg",
+      "categoria": "Barritas",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Avena-Choco",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasAvenaChoco.jpg",
+      "categoria": "Barritas",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Coco Y Nueces",
+      "imagen": "/imagenes/imagenesTienda/comida/barritaCocoYNueces.jpg",
+      "categoria": "Barritas",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Cereales y Fruta",
+      "imagen": "/imagenes/imagenesTienda/comida/barritasCerealesYFrutas.jpg",
+      "categoria": "Yogures",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Yogures Choco",
+      "imagen": "/imagenes/imagenesTienda/comida/youguresChoco.jpg",
+      "categoria": "Yogures",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Yogures Fresa",
+      "imagen": "/imagenes/imagenesTienda/comida/youguresFresa.jpg",
+      "categoria": "Yogures",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Yogures Arandanos",
+      "imagen": "/imagenes/imagenesTienda/comida/YoguresArandanos.jpg",
+      "categoria": "Yogures",
+      "precio": "5€"
+    },
+    {
+      "nombre": "Yogur",
+      "imagen": "/imagenes/imagenesTienda/comida/yogur.jpg",
+      "categoria": "Yogures",
+      "precio": "8€"
+    }
+  ],
+
+
+  "accesorios": [
+    {
+      "nombre": "Cinturon",
+      "imagen": "/imagenes/imagenesTienda/accesorios/cinturon.jpg",
+      "categoria": "Accesorios",
+      "precio": 40
+    },
+    {
+      "nombre": "Toalla",
+      "imagen": "/imagenes/imagenesTienda/accesorios/toalla.jpg",
+      "categoria": "Accesorios",
+      "precio": 10
+    },
+    {
+      "nombre": "Candado",
+      "imagen": "/imagenes/imagenesTienda/accesorios/candado.jpg",
+      "categoria": "Accesorios",
+      "precio": 6
+    },
+    {
+      "nombre": "Botellin 500ml",
+      "imagen": "/imagenes/imagenesTienda/accesorios/botellin500.jpg",
+      "categoria": "Accesorios",
+      "precio": 15
+    },
+    {
+      "nombre": "Garrafa 2.3L",
+      "imagen": "/imagenes/imagenesTienda/accesorios/garrafa2L.jpg",
+      "categoria": "Accesorios",
+      "precio": 20
+    },
+    {
+      "nombre": "Botellin 250ml",
+      "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+      "categoria": "Accesorios",
+      "precio": null
+    },
+    {
+      "nombre": "Garrafa 1.5L",
+      "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+      "categoria": "Accesorios",
+      "precio": null
+    },
+    {
+      "nombre": "Proximamente",
+      "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+      "categoria": "Accesorios",
+      "precio": null
+    }
+  ],
+
+  
+  "suplementos": [
+    {
+      "nombre": "Creatina",
+      "imagen": "/imagenes/imagenesTienda/suplementos/creatina.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Colágeno",
+      "imagen": "/imagenes/imagenesTienda/suplementos/colageno.jpg",
+      "categoria": "Suplementos",
+      "precio": 25
+    },
+    {
+      "nombre": "Proteína Milk-Chocolate",
+      "imagen": "/imagenes/imagenesTienda/suplementos/MilkChocolate.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Cookie and Cream",
+      "imagen": "/imagenes/imagenesTienda/suplementos/cookie_and_cream.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Proteína Vegana",
+      "imagen": "/imagenes/imagenesTienda/suplementos/proteinaVegana.jpg",
+      "categoria": "Suplementos",
+      "precio": 40
+    },
+    {
+      "nombre": "Pre-entreno C4",
+      "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoC4.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Pre-entreno Venom",
+      "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoVenom.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Pre-entreno Boom",
+      "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoBoom.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Pre-entreno Supernova",
+      "imagen": "/imagenes/imagenesTienda/suplementos/preEntrenoSupernova.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    },
+    {
+      "nombre": "Pre-entreno CBUM",
+      "imagen": "/imagenes/imagenesTienda/suplementos/pre-EntrenoCbum.jpg",
+      "categoria": "Suplementos",
+      "precio": 30
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+/* Estilos para listas sin estilo */
+ol {
+  list-style-type: none;
+}
+
+li {
+  display: inline-block;
+}
+
+h2{
+  font-size: 45px;
+}
+/* Estilo de la sección de planes */
+.planesFithub {
+  margin: 20px;
+  margin-top: 180px;
+}
+
+/* Estilo de las tarjetas de tarifas */
+.tarjetasTarifas {
+  display: flex;
+  justify-content: space-around;
+  background-color: #260202;
+  box-shadow: 0 0 5px rgba(249, 0, 0, 0.7);
+  height: 650px;
+  width: 100%;
+  flex-wrap: wrap;
+  /* Asegura que las tarjetas se ajusten en pantallas pequeñas */
+}
+
+.tarjeta {
+  margin: 20px;
+  border: solid 8px rgba(56, 2, 2, 0.585);
+  background-color: rgba(0, 0, 0, 0.49);
+  border-radius: 20%;
+  width: 500px;
+  height: 600px;
+  text-align: center;
+  box-shadow: inset 0 0 15px rgba(246, 1, 1, 0.5);
+  transition: box-shadow 0.8s ease;
+  padding: 2vh;
+}
+
+.tarjeta>* {
+  margin-bottom: 1rem;
+}
+
+.tarjeta:hover {
+  box-shadow: inset 0 0 50px rgb(255, 0, 0);
+  /* luz blanca */
+}
+
+/* Estilo de la imagen de la tarifa */
+.imagenTarifa {
+  width: 200px;
+  height: 150px;
+  border-radius: 10%;
+}
+
+.imagenTarifa:hover {
+  box-shadow: 0 0 100px rgba(249, 0, 0, 0.7);
+}
+
+/* Estilo para el botón en el primer plan */
+#primerPlan>button {
+  margin-top: 52px;
+}
+
+/* Estilo para todos los botones */
+button {
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;
+  border-color: rgb(0, 0, 0);
+  color: white;
+  height: 50px;
+  width: 150px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(51, 5, 2, 0.603);
+}
+
+/* Responsividad para pantallas medianas (menor a 768px) */
+@media (max-width: 768px) {
+  .tarjetasTarifas {
+    flex-direction: column;
+    /* Coloca las tarjetas en columna en pantallas medianas */
+    justify-content: center;
+    align-items: center;
+    height: auto;
+  }
+
+  .tarjeta {
+    width: 80%;
+    /* Ajusta el ancho de las tarjetas */
+    height: auto;
+    /* Ajusta la altura de las tarjetas */
+    margin: 10px 0;
+  }
+
+  .imagenTarifa {
+    width: 150px;
+    /* Reduce el tamaño de la imagen */
+    height: 100px;
+  }
+
+  button {
+    width: 130px;
+    /* Ajusta el tamaño del botón */
+    height: 45px;
+  }
+}
+
+/* Responsividad para pantallas pequeñas (menor a 480px) */
+@media (max-width: 1040px) {
+  .tarjetasTarifas {
+    flex-direction: column;
+    /* Coloca las tarjetas en columna */
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .tarjeta {
+    width: 90%;
+    /* Ajusta el ancho de las tarjetas */
+    margin: 10px 0;
+    height: auto;
+    padding: 2vh;
+  }
+
+  .imagenTarifa {
+    width: 120px;
+    /* Reduce más el tamaño de la imagen */
+    height: 90px;
+  }
+
+  button {
+    width: 120px;
+    /* Ajusta el tamaño del botón */
+    height: 40px;
+  }
+}

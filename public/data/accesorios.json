@@ -1,0 +1,51 @@
+
+ [
+        {
+            "nombre": "Cinturon",
+            "imagen": "/imagenes/imagenesTienda/accesorios/cinturon.jpg",
+            "categoria": "Accesorios",
+            "precio": 40
+        },
+        {
+            "nombre": "Toalla",
+            "imagen": "/imagenes/imagenesTienda/accesorios/toalla.jpg",
+            "categoria": "Accesorios",
+            "precio": 10
+        },
+        {
+            "nombre": "Candado",
+            "imagen": "/imagenes/imagenesTienda/accesorios/candado.jpg",
+            "categoria": "Accesorios",
+            "precio": 6
+        },
+        {
+            "nombre": "Botellin 500ml",
+            "imagen": "/imagenes/imagenesTienda/accesorios/botellin500.jpg",
+            "categoria": "Accesorios",
+            "precio": 15
+        },
+        {
+            "nombre": "Garrafa 2.3L",
+            "imagen": "/imagenes/imagenesTienda/accesorios/garrafa2L.jpg",
+            "categoria": "Accesorios",
+            "precio": 20
+        },
+        {
+            "nombre": "Botellin 250ml",
+            "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+            "categoria": "Accesorios",
+            "precio": null
+        },
+        {
+            "nombre": "Garrafa 1.5L",
+            "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+            "categoria": "Accesorios",
+            "precio": null
+        },
+        {
+            "nombre": "Proximamente",
+            "imagen": "/imagenes/imagenesTienda/accesorios/proximamente.jpg",
+            "categoria": "Accesorios",
+            "precio": null
+        }
+    ]

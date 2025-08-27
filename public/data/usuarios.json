@@ -1,0 +1,52 @@
+[
+  {
+    "nombre": "usuario",
+    "rol": "Usuario",
+    "contrasenha": "abc123.."
+  },
+  {
+    "nombre": "administrador",
+    "rol": "Administrador",
+    "contrasenha": "abc123.."
+  },
+  {
+    "nombre": "Carlos Rodríguez",
+    "rol": "Usuario",
+    "contrasenha": "carlos789"
+  },
+  {
+    "nombre": "Ana Martínez",
+    "rol": "Usuario",
+    "contrasenha": "ana321"
+  },
+  {
+    "nombre": "Luis Fernández",
+    "rol": "Administrador",
+    "contrasenha": "luis654"
+  },
+  {
+    "nombre": "Elena Torres",
+    "rol": "Usuario",
+    "contrasenha": "elena987"
+  },
+  {
+    "nombre": "Ricardo Morales",
+    "rol": "Usuario",
+    "contrasenha": "ricardo111"
+  },
+  {
+    "nombre": "Sofía",
+    "rol": "Administrador",
+    "contrasenha": "sofia222"
+  },
+  {
+    "nombre": "Diego Herrera",
+    "rol": "Usuario",
+    "contrasenha": "diego333"
+  },
+  {
+    "nombre": "Paula Méndez",
+    "rol": "Usuario",
+    "contrasenha": "paula444"
+  }
+]

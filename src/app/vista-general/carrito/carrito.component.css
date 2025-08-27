@@ -1,0 +1,13 @@
+.productosCarrito{
+    margin: 20px;
+    margin-top: 180px;
+}
+
+.contenido{
+    text-align: center;
+    padding: 20px;
+    background-color: #260202;
+    box-shadow: 0 0 5px rgba(249, 0, 0, 0.7); /* Gran desenfoque */
+    height: 650px;
+    width: 100%;
+}

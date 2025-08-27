@@ -1,0 +1,402 @@
+/*Contenido*/
+.contenido {
+  background-color: #260202;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+  /* Gran desenfoque */
+  margin-top: 100px;
+}
+
+
+h2{
+  font-size: 45px;
+}
+
+/*Tarjetas*/
+.tarjetas {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  margin: 80px;
+
+}
+
+.textoTarjeta {
+  color: aliceblue;
+}
+
+h2.textoTarjeta {
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+button {
+  background-color: rgb(0, 0, 0);
+  width: 350px;
+  height: 50px;
+  border-color: rgb(0, 0, 0);
+  border-style: groove;
+  color: white;
+  font-size: 20px;
+}
+
+button:hover {
+  box-shadow: inset 0 0 35px rgba(246, 1, 1, 0.5);
+  /* Interna */
+  transition: 1s;
+}
+
+.mapa,
+.tarjeta {
+  border: solid 8px rgba(56, 2, 2, 0.823);
+  background-color: rgba(0, 0, 0, 0.49);
+}
+
+/*Estilos comunes de las tarjetas*/
+.tarjeta {
+  border-radius: 20%;
+  width: 450px;
+  height: 400px;
+  /* Luz Interna */
+  box-shadow: inset 0 0 15px rgba(246, 1, 1, 0.5);
+  padding: 2vh;
+  
+}
+.tarjeta>*{
+  margin-bottom: 2rem;
+}
+
+.tarjeta:hover {
+  box-shadow: 0 0 30px rgba(235, 2, 2, 0.7);
+  /* Gran desenfoque */
+  -webkit-transform: scale(1.5);
+  transform: scale(1.2);
+  transition: 1.2s;
+}
+
+/*Estilos individuales*/
+.tarjetaComunidad {
+  grid-area: 1 / 1 / 6 / 2;
+}
+
+.tarjetaNoticias {
+  grid-area: 1 / 2 / 6 / 3;
+}
+
+.tarjetaProductos {
+  grid-area: 1 / 3 / 6 / 4;
+}
+
+/*Imagen de las targetas*/
+.imagenTarjeta {
+  width: 200px;
+  border-radius: 10px;
+}
+
+
+
+/*Estilo de la caja de ubicación del gimnasio*/
+.buscarGym {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #260202;
+  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+  /* Gran desenfoque */
+  padding: 20px;
+  margin: 20px;
+}
+
+.mapa {
+  margin: 50px;
+  padding: 40px;
+  
+}
+
+iframe#mapa {
+  border-radius: 5%;
+  /* Gran desenfoque */
+  box-shadow: 0 0 30px rgba(249, 0, 0, 0.7);
+}
+
+/* Estilos del mapa */
+.mapa {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.mapa>h1 {
+  font-size: 50px;
+  margin: 20px;
+}
+
+.iframe-container {
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  background: #000;
+  margin: 0 auto; /* centrar horizontalmente */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(249, 0, 0, 0.7);
+}
+
+.iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+
+
+
+/*Estilos de la seccion sobre deportes*/
+.deportes {
+  text-align: center;
+  background-color: #260202;
+  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+  /* Gran desenfoque */
+  padding: 20px;
+  margin: 20px;
+}
+
+.contendoresDeportes >*{
+  margin-bottom: 2rem;
+}
+.contendoresDeportes {
+  display: flex;
+  flex-wrap: wrap; /* Permite que bajen si no caben */
+  justify-content: center; /* Centra horizontalmente las tarjetas */
+  gap: 20px; /* Espacio entre tarjetas */
+}
+
+
+.tarjetaDeporte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 250px; /* ❗️ Ajusta este valor según lo que te guste */
+  border-radius: 40px;
+  border: solid 8px rgba(56, 2, 2, 0.823);
+  background-color: rgba(0, 0, 0, 0.49);
+  margin: 10px;
+  color: aliceblue;
+  padding: 20px;
+  text-align: center;
+  box-sizing: border-box; /* Evita que padding y borde agranden el ancho */
+}
+
+
+.tarjetaDeporte > img {
+  border-radius: 10px;
+  margin-bottom: 20px; /* Espacio debajo de la imagen */
+  max-width: 100%;     /* Asegura que no se salga del contenedor */
+  height: auto;
+}
+
+.tarjetaDeporte > p {
+  margin-bottom: 15px;
+  padding: 0 10px; /* Opcional: margen horizontal para el texto */
+}
+
+.imagen {
+  overflow: hidden;
+}
+
+.botonDeporte{
+  width: 70%;
+  font-size: 14px;
+}
+
+
+/*Estilos seccion sobre la informacion del gimnasio*/
+.infoFithub {
+  text-align: center;
+  background-color: #260202;
+  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+  /* Gran desenfoque */
+  padding: 20px;
+  margin: 20px;
+}
+
+.infoFithub>h2 {
+  border-bottom: 1px;
+}
+
+/*Estilo de la imagen y la informacion*/
+.textoInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#imagenInfo {
+  width: 500px;
+}
+
+.textoInfo>img {
+  margin: 10px;
+  border: solid 5px rgba(90, 3, 3, 0.458);
+  border-radius: 10px;
+}
+
+#texto.texto {
+  max-width: 700px;
+  margin: 100px;
+}
+
+/*RESPONSIVIDAD PARA MOVILES*/
+@media (max-width: 480px) {
+  .contenido {
+    /* Gran desenfoque */
+    margin-top: 180px;
+  }
+
+  /* Contenedor de tarjetas */
+  .tarjetas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 20px;
+    /* Reducimos el margen */
+    gap: 20px;
+    /* Espacio entre tarjetas */
+  }
+
+  /* Tarjeta individual */
+  .tarjeta {
+    width: 90%;
+    /* Ocupa la mayor parte del ancho del móvil */
+    height: auto;
+    /* Altura automática según contenido */
+    border-radius: 12px;
+    /* Menos redondeado en móviles */
+    padding: 15px;
+    box-shadow: inset 0 0 10px rgba(246, 1, 1, 0.4);
+  }
+
+  .imagenTarjeta {
+    width: 100%;
+    /* Imagen ocupa todo el ancho de la tarjeta */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .textoTarjeta {
+    font-size: 14px;
+    /* Texto más pequeño */
+    line-height: 1.4;
+  }
+
+  .tarjeta h2.textoTarjeta {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  /*Seccion del mapa ¿donde puedes encontrarnos?*/
+  .mapa>h1 {
+    text-align: center;
+    font-size: 18px;
+    margin: 20px;
+  }
+
+  /*Tarjetas para apuntarse a un deporte*/
+  .tarjetaDeporte {
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    border: solid 8px rgba(56, 2, 2, 0.823);
+    background-color: rgba(0, 0, 0, 0.49);
+    margin: 20px;
+    color: aliceblue;
+
+  }
+  /*Botones de los deportes a los que apuntarse*/
+  .contendoresDeportes>button{
+    width: 10px;
+  }
+  /*Conoce FITHUB*/
+  /*Estilo de la imagen y la informacion*/
+  .textoInfo {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*RESPONSIVIDAD PARA TABLETS*/
+@media (max-width: 1024px) {
+  .contenido {
+    margin-top: 100px; /* Reducido el margen superior para dispositivos medianos */
+  }
+
+  /* Contenedor de tarjetas */
+  .tarjetas {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    margin: 20px;
+    gap: 15px; /* Reducimos el espacio entre las tarjetas */
+  }
+
+  /* Tarjeta individual */
+  .tarjeta {
+    width: 80%; /* Ocupa un 80% del ancho de la pantalla */
+    height: auto;
+    border-radius: 15px; /* Radio de borde un poco más redondeado */
+    padding: 15px;
+    box-shadow: inset 0 0 12px rgba(246, 1, 1, 0.5); /* Sombra más pronunciada */
+  }
+
+  .imagenTarjeta {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px; /* Ajustamos el margen inferior */
+  }
+
+  .textoTarjeta {
+    font-size: 16px; /* Texto un poco más grande */
+    line-height: 1.5;
+  }
+
+  .tarjeta h2.textoTarjeta {
+    font-size: 20px; /* Título un poco más grande */
+    margin-bottom: 10px;
+  }
+
+  /* Sección del mapa ¿donde puedes encontrarnos? */
+  .mapa > h1 {
+    text-align: center;
+    font-size: 20px; /* Aumentamos el tamaño de la fuente */
+    margin: 25px;
+  }
+
+  /* Tarjetas para apuntarse a un deporte */
+  .tarjetaDeporte {
+    display: flex;
+    flex-direction: column;
+    border-radius: 40px;
+    border: solid 8px rgba(56, 2, 2, 0.823);
+    background-color: rgba(0, 0, 0, 0.49);
+    margin: 25px;
+    color: aliceblue;
+  }
+
+  /* Botones de los deportes a los que apuntarse */
+  .contendoresDeportes > button {
+    width: 15em; /* Aumentamos un poco el tamaño de los botones */
+  }
+
+  /* Conoce FITHUB */
+  /* Estilo de la imagen y la información */
+  .textoInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Añadimos espacio entre los elementos */
+  }
+}
