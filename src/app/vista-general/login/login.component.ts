@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     if (this.formulario.valid) {
       this.usuarios.forEach(usuario => {
         if (usuario.nombre == this.formulario.get("nombre")?.value && usuario.contrasenha == this.formulario.get("contrasenha")?.value) {
-            this.servicioUsuario.setSesion(usuario);
             this.errorSesion = false;
             this.router.navigate(['/']);
           }

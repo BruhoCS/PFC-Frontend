@@ -9,28 +9,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsuariosService {
-  //Definimos los usuarios que al acenará a los usuarios del JSON
-  usuarios:Usuario[];
-  //Definimos el subject que emitirá el array a todos los subscriptores
-  usuarios$:BehaviorSubject<Usuario[]>;
-  //
+  //Variables para almacenar al usuario que se encuentra en la sesión
   usuarioActual:Usuario;
   usuarioActual$:BehaviorSubject<Usuario>;
 
   constructor(private router:Router , private http:HttpClient) {
-    this.usuarios = (Usuarios as any).default;//Iniciamos con los usuarios del JSON
-    this.usuarios$ = new BehaviorSubject(this.usuarios);//Inicialmente no hay subscriptores
 
     }
 
    //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
    crearUsuario(nuevoUsuario:Usuario){
     //Reconvertir para hacer POST a la API de Laravel
-   }
-
-   //Metodo que permitirá subscribirse al array
-   subscribirseUsuarios$():Observable<Usuario[]>{
-    return this.usuarios$.asObservable();
    }
 
    // Método para iniciar sesión con un email y contraseña
