@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import * as Usuarios from "../../../public/data/usuarios.json";
 import { Usuario } from '../vista-general/modelo/usuario';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,15 +10,30 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class UsuariosService {
   //Variables para almacenar al usuario que se encuentra en la sesión
   usuarioActual:Usuario;
-  usuarioActual$:BehaviorSubject<Usuario>;
+  usuarioActual$:BehaviorSubject<Usuario>;//Empieza sin subscripción
 
+  // Variable para almacenar todos los usuarios
+  usuarios = "";
+  usuarios$:BehaviorSubject<Usuario[]>;// Empieza sin subscriptores
+  
   constructor(private router:Router , private http:HttpClient) {
 
     }
 
    //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
    crearUsuario(nuevoUsuario:Usuario){
-    //Reconvertir para hacer POST a la API de Laravel
+    //Hacemos el post
+    
+   }
+
+   //Modificar usuario
+   modificarUsuario(email: string, password: string){
+
+   }
+
+   //Eliminar usuario
+   eliminarUsuario(email: string, password: string){
+
    }
 
    // Método para iniciar sesión con un email y contraseña
