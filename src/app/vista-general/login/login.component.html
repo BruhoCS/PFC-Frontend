@@ -20,7 +20,7 @@
             <!--CAMPO DE CONTRASEÑA-->
             <label for="contrasenha">Contraseña:</label>
             <!--Mensja de validación para el campo contraseña-->
-            <div *ngIf="campoContrasenha.errors && campoContrasenha.touched">
+            <div *ngIf="campoPassword.errors && campoPassword.touched">
                 <p class="errores">El campo contraseña es obligatorio</p>
             </div>
             <input type="password" formControlName="contrasenha">

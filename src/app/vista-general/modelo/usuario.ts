@@ -3,5 +3,5 @@ export interface Usuario {
     id_plan:number;
     nombre:string;
     rol:string;
-    contrasenha:string;
+    password:string;
 }

@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.formulario = this.elaborador.group({
       //Definimos los arrays para cada control del formulario
       nombre: ["", [Validators.required]],
-      contrasenha: ["", [Validators.required]]
+      password: ["", [Validators.required]]
     });
     // Definimos el comportamento de nuestro formulario cada vez que sufra un cambio, en este caso, se reinicia el error de sesion
     this.formulario.valueChanges
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     // Comprobamos se o formulario cumpre todas as súas validacións
     if (this.formulario.valid) {
       this.usuarios.forEach(usuario => {
-        if (usuario.nombre == this.formulario.get("nombre")?.value && usuario.contrasenha == this.formulario.get("contrasenha")?.value) {
+        if (usuario.nombre == this.formulario.get("nombre")?.value && usuario.password == this.formulario.get("password")?.value) {
             this.errorSesion = false;
             this.router.navigate(['/']);
           }
@@ -63,8 +63,8 @@ export class LoginComponent implements OnInit {
     return this.formulario.get('rol');
   }
 
-  get campoContrasenha() {
-    return this.formulario.get('contrasenha');
+  get campoPassword() {
+    return this.formulario.get('password');
   }
 
   //Funcion para subscribirse al servicio y obtener a los usuarios
