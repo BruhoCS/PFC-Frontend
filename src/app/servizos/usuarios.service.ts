@@ -13,11 +13,39 @@ export class UsuariosService {
   usuarioActual$:BehaviorSubject<Usuario>;//Empieza sin subscripción
 
   // Variable para almacenar todos los usuarios
-  usuarios = "";
-  usuarios$:BehaviorSubject<Usuario[]>;// Empieza sin subscriptores
+  usuarios:Usuario[]=[];
+
+  // Flujo reactivo para emitir la lista de usuarios a quien se suscriba.
+  // Debe inicializarse, p. ej. con [] para evitar null/undefined al hacer next.
+  usuarios$:BehaviorSubject<Usuario[]>;
   
   constructor(private router:Router , private http:HttpClient) {
-
+    
+    }
+  // Método que hace una petición HTTP GET al backend para obtener los perfiles
+  // y actualiza tanto el array local como el BehaviorSubject.
+    mostrarPerfiles(){
+      // Realiza una petición GET.
+      this.http.get<Usuario[]>('http://127.0.0.1:8000/api/perfiles')
+      // Nos suscribimos al Observable para ejecutar la petición y manejar la respuesta.
+      .subscribe({
+        // next se ejecuta cuando llega la respuesta correcta del servidor.
+        next:(perfiles)=>{
+          // Guardamos los perfiles en la variable local 
+          this.usuarios = perfiles;
+          // Emitimos los perfiles a todos los suscriptores del BehaviorSubject.
+          this.usuarios$.next(perfiles);
+        },
+        // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
+        error: (err)=>{
+          // Registramos el error en consola 
+          console.log("Error al cargar usuarios");
+          // Dejamos el estado local vacio
+          this.usuarios = [];
+          // Emitimos lista vacía para que la UI reaccione
+          this.usuarios$.next([]);
+        }
+      });
     }
 
    //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
@@ -65,7 +93,7 @@ export class UsuariosService {
           this.usuarioActual = usuario;
           this.usuarioActual$.next(usuario);
 
-          // Guardamos usuario en localStorage y sessionStorage
+          // Guardamos usuario en sessionStorage
           sessionStorage.setItem('usuarioActual', JSON.stringify(usuario));
 
           // Redirigimos al inicio de la web
