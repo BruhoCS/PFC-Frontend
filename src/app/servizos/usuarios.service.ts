@@ -66,26 +66,41 @@ export class UsuariosService {
 
    // Método para iniciar sesión con un email y contraseña
   iniciarsesion(email: string, password: string): Promise<boolean> {
+
+    // Crea el objeto con las credenciales que se enviarán al backend
     const loginData = { email, password };
+
+     // Muestra en consola el payload que se va a enviar (útil para depurar)
     console.log('Enviando credenciales:', loginData);
 
+// Devuelve una nueva Promesa; llamará a resolve(true) si todo va bien o reject(false) si falla
     return new Promise((resolve, reject) => {
+      // Lanza una petición HTTP POST al endpoint de login enviando loginData en el cuerpo
       this.http.post<any>('http://127.0.0.1:8000/api/loginAPI', loginData, {
+        // Configura cabeceras HTTP para la petición
         headers: new HttpHeaders({
+          // Indica que el cuerpo de la petición es JSON
           'Content-Type': 'application/json',
+          // Indica que se espera una respuesta en JSON
           'Accept': 'application/json',
         }),
+        // Se suscribe al Observable para ejecutar la petición y gestionar la respuesta
       }).subscribe({
+        // Callback que se ejecuta cuando la respuesta llega correctamente (status 2xx)
         next: (response) => {
           console.log("Respuesta del login:", response);
 
           // Guardar token
           const token = response.accessToken;
+           // Comprueba que realmente exista un token
           if (!token) {
             console.error("No se recibió ningún token en la respuesta del login");
+            // Rechaza la Promesa indicando que el login ha fallado
             reject(false);
+             // Sale de la función para no continuar con el flujo
             return;
           }
+          // Guarda el token en localStorage (persistente entre sesiones del navegador)
           localStorage.setItem('token', token);
 
           // Guardar usuario
@@ -100,9 +115,12 @@ export class UsuariosService {
           this.router.navigate(['/']);
           resolve(true);
         },
+        // Callback que se ejecuta si la petición falla (errores 4xx/5xx o de red)
         error: (error) => {
           console.error('Error de login:', error);
+          // Emite undefined para indicar que no hay usuario autenticado
           this.usuarioActual$.next(undefined);
+           // Rechaza la Promesa con false indicando fallo
           reject(false);
         }
       });
