@@ -18,12 +18,13 @@ import { debounceTime } from 'rxjs';
 export class LoginComponent implements OnInit {
   formulario: FormGroup;//Definimos el formulario que irá asociado al formulario
   usuarios: Usuario[];//Array que gardará os usuarios almacenados na sessionStorage
+  usuario:Usuario;// Array que gardará o usuario da sesión
   errorSesion: boolean = false;//Variable que nos permitirá mostrar un mensaje de error en caso de que la sesión no sea válida
   //Declaremos la propiedad FormBuilder que agilizará la creación del formulario
   constructor(private elaborador: FormBuilder, private router: Router, private servicioUsuario: UsuariosService) {
     this.formulario = this.elaborador.group({
       //Definimos los arrays para cada control del formulario
-      nombre: ["", [Validators.required]],
+      email: ["", [Validators.required]],
       password: ["", [Validators.required]]
     });
     // Definimos el comportamento de nuestro formulario cada vez que sufra un cambio, en este caso, se reinicia el error de sesion
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
     // Comprobamos se o formulario cumpre todas as súas validacións
     if (this.formulario.valid) {
       this.usuarios.forEach(usuario => {
-        if (usuario.nombre == this.formulario.get("nombre")?.value && usuario.password == this.formulario.get("password")?.value) {
+        if (usuario.name == this.formulario.get("name")?.value && usuario.password == this.formulario.get("password")?.value) {
             this.errorSesion = false;
             this.router.navigate(['/']);
           }
@@ -55,12 +56,8 @@ export class LoginComponent implements OnInit {
   }
 
   //GETTERS para facilitar el trabajo con los campos del formulario
-  get campoNombre() {
-    return this.formulario.get('nombre');
-  }
-
-  get campoRol() {
-    return this.formulario.get('rol');
+  get campoEmail() {
+    return this.formulario.get('email');
   }
 
   get campoPassword() {
@@ -69,8 +66,8 @@ export class LoginComponent implements OnInit {
 
   //Funcion para subscribirse al servicio y obtener a los usuarios
   ngOnInit(): void {
-    this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios) => {
-      this.usuarios = usuarios;
+    this.servicioUsuario.usuarioActual$.subscribe((usuarios) => {
+      this.usuario = usuarios;
     })
   }
 }

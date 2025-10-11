@@ -9,9 +9,9 @@
         <form [formGroup]="formulario">
 
             <!--CAMPO DE NOMBRE DEL USUARIO-->
-            <label for="nombre">Nombre:</label>
-            <input type="text" formControlName="nombre">
-            <div *ngIf="campoNombre.errors && campoNombre.touched">
+            <label for="name">Nombre:</label>
+            <input type="text" formControlName="name">
+            <div *ngIf="campoName.errors && campoName.touched">
                 <p class="errores">El campo Nombre es obligatorio</p>
             </div>
 
@@ -31,7 +31,7 @@
             <!--CAMPO DE CONTRASEÑA-->
             <label for="contrasenha">Contraseña:</label>
             <!--Mensja de validación para el campo contraseña-->
-            <div *ngIf="campoContrasenha.errors && campoContrasenha.touched">
+            <div *ngIf="campoPassword.errors && campoPassword.touched">
                 <p class="errores">El campo contraseña es obligatorio</p>
             </div>
             <input type="password" formControlName="contrasenha">
@@ -48,7 +48,7 @@
     <h2>Usuarios</h2>
     <div class="usuarios">
         <div class="tarjeta" *ngFor="let usuario of usuarios">
-            <p>Nombre: {{usuario.nombre}}</p>
+            <p>Nombre: {{usuario.name}}</p>
             <p>Rol: {{usuario.rol}}</p>
             <a (click)="borrarUsuario(usuario)" class="button">Borrar Usuario</a>
         </div>

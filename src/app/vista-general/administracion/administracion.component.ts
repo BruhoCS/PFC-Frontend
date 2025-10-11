@@ -20,19 +20,19 @@ export class AdministracionComponent implements OnInit {
   constructor(private elaborador: FormBuilder, private router: Router, private servicioUsuario: UsuariosService) {
     this.formulario = this.elaborador.group({
       //Definimos los arrays para cada control del formulario
-      nombre: ["", [Validators.required]],
+      name: ["", [Validators.required]],
       rol: ["", [Validators.required]],
-      contrasenha: ["", [Validators.required]]
+      password: ["", [Validators.required]]
     });
   }
 
   //Funcion para guardar el usuario nuevo
   crearUsuario(evento: Event) {
     evento.preventDefault();//Evitamos el comportamiento por defecto del navegador
-    //Buscamos el nombre
-    let buscarUsuario = this.usuarios.find(usuario => usuario.nombre === this.formulario.value.nombre);
+    //Buscamos el name
+    let buscarUsuario = this.usuarios.find(usuario => usuario.name === this.formulario.value.name);
     //Si el formulario cumple con todas las validaciones y no esta registrado
-    if (this.formulario.value.nombre && this.formulario.value.contrasenha && this.formulario.value.rol && buscarUsuario == undefined) {
+    if (this.formulario.value.name && this.formulario.value.password && this.formulario.value.rol && buscarUsuario == undefined) {
       //Añadimos el nuevo usuario al array de usuarios
       this.usuarios.push(this.formulario.value);
       //Añadimos el usuario al sessionStorage
@@ -42,17 +42,17 @@ export class AdministracionComponent implements OnInit {
     }
   }
 
-  // Funcion para modificar el usuario usando el nombre como si fuera una id
+  // Funcion para modificar el usuario usando el name como si fuera una id
   modificarUsuario(evento: Event) {
     evento.preventDefault();// Evitamos el comportamiento por defecto del navegador
     //Comprobamos que el formulario cumple con las validaciones
-    if (this.formulario.value.nombre && this.formulario.value.contrasenha && this.formulario.value.rol) {
-      //Buscamos el nombre
-      let buscarUsuario = this.usuarios.find(usuario => usuario.nombre === this.formulario.value.nombre);
+    if (this.formulario.value.name && this.formulario.value.password && this.formulario.value.rol) {
+      //Buscamos el name
+      let buscarUsuario = this.usuarios.find(usuario => usuario.name === this.formulario.value.name);
       //Si existe
-      if (this.formulario.value.nombre = buscarUsuario) {
+      if (this.formulario.value.name = buscarUsuario) {
         //Modificamos el usuario
-        buscarUsuario.contrasenha = this.formulario.value.contrasenha;
+        buscarUsuario.password = this.formulario.value.password;
         buscarUsuario.rol = this.formulario.value.rol;
         //Actualizamos
           // "spread operator" crea un nuevo array en memoria con los mismos elementos,lo que hace que Angular detecte el cambio y actualice la interfaz
@@ -64,29 +64,29 @@ export class AdministracionComponent implements OnInit {
 
   //Funcion para borrar el usuario
   borrarUsuario(usuario: Usuario) {
-    const indice = this.usuarios.findIndex(u => u.nombre === usuario.nombre);
+    const indice = this.usuarios.findIndex(u => u.name === usuario.name);
     if (indice !== -1) {
       this.usuarios.splice(indice, 1); // Elimina el usuario en la posición encontrada
     }
   }
 
   //GETTERS para facilitar el trabajo con los campos del formulario
-  get campoNombre() {
-    return this.formulario.get('nombre');
+  get campoName() {
+    return this.formulario.get('name');
   }
 
   get campoRol() {
     return this.formulario.get('rol');
   }
 
-  get campoContrasenha() {
-    return this.formulario.get('contrasenha');
+  get campoPassword() {
+    return this.formulario.get('password');
   }
 
   //Funcion para subscribirse al servicio y obtener a los usuarios
   ngOnInit(): void {
-    this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios) => {
+    /*this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios) => {
       this.usuarios = usuarios;
-    })
+    })*/
   }
 }

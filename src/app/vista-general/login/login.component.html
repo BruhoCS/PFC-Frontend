@@ -11,14 +11,14 @@
         <form [formGroup]="formulario" (ngSubmit)="onSubmit($event)">
 
             <!--CAMPO DE NOMBRE DEL USUARIO-->
-            <label for="nombre">Nombre:</label>
-            <input type="text" formControlName="nombre">
-            <div *ngIf="campoNombre.errors && campoNombre.touched">
+            <label for="email">Nombre:</label>
+            <input type="text" formControlName="email">
+            <div *ngIf="campoEmail.errors && campoEmail.touched">
                 <p class="errores">El campo Nombre es obligatorio</p>
             </div>
 
             <!--CAMPO DE CONTRASEÑA-->
-            <label for="contrasenha">Contraseña:</label>
+            <label for="password">Contraseña:</label>
             <!--Mensja de validación para el campo contraseña-->
             <div *ngIf="campoPassword.errors && campoPassword.touched">
                 <p class="errores">El campo contraseña es obligatorio</p>

@@ -1,7 +1,8 @@
 export interface Usuario {
     id:number;
     id_plan:number;
-    nombre:string;
+    name:string;
+    email:string;
     rol:string;
     password:string;
 }
