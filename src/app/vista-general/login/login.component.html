@@ -23,7 +23,7 @@
             <div *ngIf="campoPassword.errors && campoPassword.touched">
                 <p class="errores">El campo contraseña es obligatorio</p>
             </div>
-            <input type="password" formControlName="contrasenha">
+            <input type="password" formControlName="password">
 
             <button type="submit">Iniciar Sesion</button>
             <button [routerLink]="['/inicio']" routerLinkActive="router-link-active">Cancelar</button>
