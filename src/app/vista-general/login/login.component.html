@@ -11,7 +11,7 @@
         <form [formGroup]="formulario" (ngSubmit)="onSubmit($event)">
 
             <!--CAMPO DE NOMBRE DEL USUARIO-->
-            <label for="email">Nombre:</label>
+            <label for="email">Email:</label>
             <input type="text" formControlName="email">
             <div *ngIf="campoEmail.errors && campoEmail.touched">
                 <p class="errores">El campo Nombre es obligatorio</p>

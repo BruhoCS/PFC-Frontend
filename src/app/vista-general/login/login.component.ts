@@ -17,7 +17,6 @@ import { debounceTime } from 'rxjs';
 
 export class LoginComponent implements OnInit {
   formulario: FormGroup;//Definimos el formulario que irá asociado al formulario
-  usuarios: Usuario[];//Array que gardará os usuarios almacenados na sessionStorage
   usuario:Usuario;// Array que gardará o usuario da sesión
   errorSesion: boolean = false;//Variable que nos permitirá mostrar un mensaje de error en caso de que la sesión no sea válida
   //Declaremos la propiedad FormBuilder que agilizará la creación del formulario
@@ -36,23 +35,36 @@ export class LoginComponent implements OnInit {
   }
 
   //Funcion para guardar la sesión
-  onSubmit(evento: Event) {
+   async onSubmit(evento: Event) {
     evento.preventDefault(); // Evitamos o comportamento por defecto do navegador que borraría o formulario ao lanzar un "submit"
+    // Marca todos los controles como "tocados" para mostrar validaciones
+    this.formulario.markAllAsTouched();      
+    // Si el formulario no cumple las validaciones...                      
+      if (this.formulario.invalid) {    
+        // ...activa el indicador de error de sesión en la UI                             
+        this.errorSesion = true;               
+        // ...y sale sin intentar loguear                      
+        return;                                                      
+      }
 
-    // Comprobamos se o formulario cumpre todas as súas validacións
-    if (this.formulario.valid) {
-      this.usuarios.forEach(usuario => {
-        if (usuario.name == this.formulario.get("name")?.value && usuario.password == this.formulario.get("password")?.value) {
-            this.errorSesion = false;
-            this.router.navigate(['/']);
-          }
-      
-      });
-      this.errorSesion = true;
-    } else {
-      this.errorSesion = true;
-      this.formulario.markAllAsTouched(); // No caso de que o formulario sexa inválido, marcamos todos os campos como tocados para que se vexan as mensaxes de validación
-    }
+      // Extrae los valores actuales de email y password del formulario
+      const { email, password } = this.formulario.value;
+      // Inicia bloque de manejo de errores para operaciones asíncronas
+      try {   
+        // Espera a que el servicio haga el login contra el backend                                                       
+        const correcto = await this.servicioUsuario.iniciarsesion(email,password);
+        // Si el servicio indica que el login no fue correcto...
+        if (!correcto) {                
+           // ...muestra error en la UI                                   
+          this.errorSesion = true;    
+           // ...y termina el flujo                              
+          return;                                                   
+        }
+         // Si ocurre una excepción (error de red, 4xx/5xx, etc.)
+      } catch {     
+         // ...activa el error de sesión para informar en la UI                                                
+        this.errorSesion = true;                                    
+      }
   }
 
   //GETTERS para facilitar el trabajo con los campos del formulario
@@ -68,6 +80,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.servicioUsuario.usuarioActual$.subscribe((usuarios) => {
       this.usuario = usuarios;
+      console.log(this.usuario);
     })
   }
 }
