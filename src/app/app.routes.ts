@@ -14,7 +14,7 @@ export const routes: Routes = [
     //Ruta carrito de la tienda
     {path:"carrito",title:"Carrito",component:CarritoComponent},
     //Ruta tarifa
-    {path:"tarifa",title:"Tarifa",component:TarifaComponent},
+    {path:"tarifa",title:"Tarifas",component:TarifaComponent},
     //Ruta Entreno
     {path:"entreno",title:"Entreno",component:EntrenosComponent,canActivate:[paginasRestringidasGuard]},
     //Ruta administracion
