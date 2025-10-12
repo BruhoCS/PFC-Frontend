@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.servicioUsuario.usuarioActual$.subscribe((usuarios) => {
       this.usuario = usuarios;
-      console.log(this.usuario);
+
     })
   }
 }

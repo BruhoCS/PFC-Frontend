@@ -20,7 +20,6 @@ export class UsuariosService {
   usuarios$:BehaviorSubject<Usuario[]>;
   
   constructor(private router:Router , private http:HttpClient) {
-    
     this.usuarioActual$ = new BehaviorSubject(this.usuarioActual);
     
     }
@@ -75,7 +74,7 @@ export class UsuariosService {
      // Muestra en consola el payload que se va a enviar (útil para depurar)
     console.log('Enviando credenciales:', loginData);
 
-// Devuelve una nueva Promesa; llamará a resolve(true) si todo va bien o reject(false) si falla
+    // Devuelve una nueva Promesa; llamará a resolve(true) si todo va bien o reject(false) si falla
     return new Promise((resolve, reject) => {
       // Lanza una petición HTTP POST al endpoint de login enviando loginData en el cuerpo
       this.http.post<any>('http://127.0.0.1:8000/api/loginAPI', loginData, {
@@ -109,10 +108,9 @@ export class UsuariosService {
           const usuario: Usuario = response.user;
           this.usuarioActual = usuario;
           this.usuarioActual$.next(usuario);
-
+          
           // Guardamos usuario en sessionStorage
           sessionStorage.setItem('usuarioActual', JSON.stringify(usuario));
-
           // Redirigimos al inicio de la web
           this.router.navigate(['/']);
           resolve(true);

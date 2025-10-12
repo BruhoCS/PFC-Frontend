@@ -8,7 +8,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   const usuario1 = JSON.parse(usuario);// Lo convertivos de JSON a string
 
   //Si el rol es administrador permitimos entrar
-  if (usuario1.rol == "Administrador") {
+  if (usuario1.rol == "admin") {
     return true;
   } else {// si no lo és devolvemos al login
     router.navigate(['/login']);
