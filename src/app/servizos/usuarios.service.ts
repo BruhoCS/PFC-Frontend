@@ -105,12 +105,12 @@ export class UsuariosService {
           localStorage.setItem('token', token);
 
           // Guardar usuario
-          const usuario: Usuario = response.user;
-          this.usuarioActual = usuario;
-          this.usuarioActual$.next(usuario);
+          const user: Usuario = response.user;
+          this.usuarioActual = user;
+          this.usuarioActual$.next(user);
           
           // Guardamos usuario en sessionStorage
-          sessionStorage.setItem('usuarioActual', JSON.stringify(usuario));
+          sessionStorage.setItem('usuarioActual', JSON.stringify(user));
           // Redirigimos al inicio de la web
           this.router.navigate(['/']);
           resolve(true);
