@@ -1,0 +1,13 @@
+/* Estilos principales para el contenido */
+.contenido {
+    display: flex;
+    flex-direction: column;
+    background-color: #260202;
+    box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+    margin: 10px;
+    margin-top: 145px;
+    height: auto;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}

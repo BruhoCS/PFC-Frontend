@@ -7,6 +7,7 @@ import { paginasRestringidasGuard } from './vista-general/guards/paginas-restrin
 import { CarritoComponent } from './vista-general/carrito/carrito.component';
 import { AdministracionComponent } from './vista-general/administracion/administracion.component';
 import { adminGuard } from './vista-general/guards/admin.guard';
+import { PerfilComponent } from './vista-general/perfil/perfil.component';
 
 export const routes: Routes = [
     {path:"",title:"Inicio",component:InicioComponent},
@@ -18,6 +19,8 @@ export const routes: Routes = [
     {path:"entreno",title:"Entreno",component:EntrenosComponent,canActivate:[paginasRestringidasGuard]},
     //Ruta administracion
     {path:"administracion",title:"Administracion",component:AdministracionComponent,canActivate:[paginasRestringidasGuard,adminGuard]},
+    //Ruta de perfil
+    {path:"perfil",title:"Perfil",component:PerfilComponent,canActivate:[paginasRestringidasGuard]},
     //Ruta de login
     {path:"login",title:"Login",component:LoginComponent}
 ];
