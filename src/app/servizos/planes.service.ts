@@ -11,7 +11,9 @@ export class PlanesService {
   planes:Plan[];// Variable para almacenar los planes
   planes$:BehaviorSubject<Plan[]>;// Empieza sin subscripcións
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient) { 
+    this.planes$ = new BehaviorSubject(this.planes);
+  }
 
   //Método para mostrar los planes disponibles en el gimnasio
   mostrarPlanes(){
