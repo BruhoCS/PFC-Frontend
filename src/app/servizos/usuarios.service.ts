@@ -21,6 +21,8 @@ export class UsuariosService {
   
   constructor(private router:Router , private http:HttpClient) {
     
+    this.usuarioActual$ = new BehaviorSubject(this.usuarioActual);
+    
     }
   // Método que hace una petición HTTP GET al backend para obtener los perfiles
   // y actualiza tanto el array local como el BehaviorSubject.
