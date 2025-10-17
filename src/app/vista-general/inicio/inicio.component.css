@@ -1,44 +1,17 @@
 /*Contenido*/
 .contenido {
-  background-color: #260202;
   margin: 20px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
-  /* Gran desenfoque */
-  margin-top: 100px;
 }
 
 
-h2{
-  font-size: 45px;
-}
-
-/*Tarjetas*/
-.tarjetas {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
-  align-items: center;
-  margin: 80px;
-
-}
-
-.textoTarjeta {
-  color: aliceblue;
-}
-
-h2.textoTarjeta {
-  color: white;
-  font-size: 2em;
-  font-weight: bold;
-}
 
 button {
   background-color: rgb(0, 0, 0);
   width: 350px;
   height: 50px;
   border-color: rgb(0, 0, 0);
-  border-style: groove;
+  border-radius: 40px;
   color: white;
   font-size: 20px;
 }
@@ -49,53 +22,10 @@ button:hover {
   transition: 1s;
 }
 
-.mapa,
-.tarjeta {
+.mapa{
   border: solid 8px rgba(56, 2, 2, 0.823);
   background-color: rgba(0, 0, 0, 0.49);
 }
-
-/*Estilos comunes de las tarjetas*/
-.tarjeta {
-  border-radius: 20%;
-  width: 450px;
-  height: 400px;
-  /* Luz Interna */
-  box-shadow: inset 0 0 15px rgba(246, 1, 1, 0.5);
-  padding: 2vh;
-  
-}
-.tarjeta>*{
-  margin-bottom: 2rem;
-}
-
-.tarjeta:hover {
-  box-shadow: 0 0 30px rgba(235, 2, 2, 0.7);
-  /* Gran desenfoque */
-  -webkit-transform: scale(1.5);
-  transform: scale(1.2);
-  transition: 1.2s;
-}
-
-/*Estilos individuales*/
-.tarjetaComunidad {
-  grid-area: 1 / 1 / 6 / 2;
-}
-
-.tarjetaNoticias {
-  grid-area: 1 / 2 / 6 / 3;
-}
-
-.tarjetaProductos {
-  grid-area: 1 / 3 / 6 / 4;
-}
-
-/*Imagen de las targetas*/
-.imagenTarjeta {
-  width: 200px;
-  border-radius: 10px;
-}
-
 
 
 /*Estilo de la caja de ubicación del gimnasio*/
@@ -108,6 +38,7 @@ button:hover {
   /* Gran desenfoque */
   padding: 20px;
   margin: 20px;
+  
 }
 
 .mapa {
@@ -128,17 +59,13 @@ iframe#mapa {
   margin-top: 30px;
 }
 
-.mapa>h1 {
-  font-size: 50px;
-  margin: 20px;
-}
 
 .iframe-container {
   width: 500px;
   height: 300px;
   overflow: hidden;
   background: #000;
-  margin: 0 auto; /* centrar horizontalmente */
+  margin: 4em auto; /* centrar horizontalmente */
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(249, 0, 0, 0.7);
 }
@@ -161,11 +88,13 @@ iframe#mapa {
   /* Gran desenfoque */
   padding: 20px;
   margin: 20px;
+  margin-top: 100px;
 }
 
 .contendoresDeportes >*{
-  margin-bottom: 2rem;
+  margin: 2rem;
 }
+
 .contendoresDeportes {
   display: flex;
   flex-wrap: wrap; /* Permite que bajen si no caben */
@@ -189,6 +118,26 @@ iframe#mapa {
   box-sizing: border-box; /* Evita que padding y borde agranden el ancho */
 }
 
+.tarjetaDeporte:hover{
+          /* agrandar un poco: 1.02–1.04 es sutil */
+      transform: scale(1.03);
+      /*Tiempo de la transición*/
+      transition: 1s;
+      /* borde rojo brillante */
+      border-color: #810101fa;
+
+      /* glow rojo hacia afuera */
+      box-shadow: 
+        0 0 0 2px rgba(255, 45, 45, 0.6),
+        0 0 18px 4px rgba(255, 45, 45, 0.45);
+
+      /* que no quede oculto detrás de hermanos */
+      z-index: 1;
+  }
+
+.tarjetaDeporte>h3{
+  margin-bottom: 15px;
+}
 
 .tarjetaDeporte > img {
   border-radius: 10px;
@@ -386,6 +335,7 @@ iframe#mapa {
     margin: 25px;
     color: aliceblue;
   }
+
 
   /* Botones de los deportes a los que apuntarse */
   .contendoresDeportes > button {

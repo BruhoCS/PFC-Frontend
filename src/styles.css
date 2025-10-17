@@ -1,6 +1,6 @@
 /*Estilo del cuerpo*/
 body {
-  background-color: rgb(26, 25, 25);
+  background-color: black;
   font-family: 'Poppins', sans-serif;
   color: aliceblue;
 
@@ -11,14 +11,27 @@ h2 {
 }
 
 p {
-  font-size: 15px;
+  font-size: 18px;
 }
 
 /* Refuerzo en títulos por si acaso */
-h1,
-h2,
-h3,
+h1{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 56px;
+  color: aliceblue;
+}
+
+h2{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 200;
+  font-size: 46px;
+  color: aliceblue;
+}
+
 button {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+  font-size: 46px;
+  color: aliceblue;
 }
