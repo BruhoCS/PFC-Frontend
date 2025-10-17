@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Plan } from '../vista-general/modelo/plan';
 import { BehaviorSubject } from 'rxjs';
 import { rejects } from 'assert';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,13 @@ export class PlanesService {
 
   //Método para mostrar los planes disponibles en el gimnasio
   mostrarPlanes(){
+     const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+     const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+  });
       // Lanza una petición HTTP GET al endpoint de planes
-      this.http.get<Plan[]>('http://127.0.0.1:8000/api/planes')
+      this.http.get<Plan[]>('http://127.0.0.1:8000/api/planes',{headers})
       .subscribe({//Nos subscribimos
         //En caso de que haya datos y este todo correcto rellenamos las variables
         next: (listaPlanes) =>{
