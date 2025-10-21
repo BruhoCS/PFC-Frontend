@@ -9,8 +9,8 @@ h1 {
 /*Posición de tabla y fomrulario*/
 #entrenoManual {
   display: flex;
-  flex-direction: row;
-  margin: 10vh;
+  flex-direction: column;
+  gap: 3em;
 }
 
 /*Estilo rectangulo que contiene la tabla donde se mostrará el entreno*/
@@ -67,8 +67,6 @@ button:hover {
   background-color: rgb(61, 2, 2);
 }
 
-
-
 /*Tabla de ejercicios*/
 table {
   border-collapse: separate;
@@ -92,11 +90,9 @@ th {
   background: linear-gradient(135deg, #111, #1c1c1c);
   border: 2px solid #8b0000;
   /* Rojo oscuro para destacar */
-  border-radius: 15px;
-  padding: 15px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 600px;
+  border-radius: 20px;
+  padding: 2.8em;
+  margin: 2em;
   color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

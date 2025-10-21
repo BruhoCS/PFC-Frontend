@@ -8,25 +8,9 @@ import { Ejercicio } from '../ejercicio';
 })
 export class EntrenosIaService {
 
-  ejercicios: string = "https://67ec05b2aa794fb3222c8e69.mockapi.io/ejercicios/ejercicios";
-
   constructor(private cliente: HttpClient) {
 
   }
 
-  // CRUD
 
-  //Obtener todos los ejercicios
-  obtenerEjercicio():Observable<Ejercicio[]> {
-    return this.cliente.get<Ejercicio[]>(this.ejercicios);
-  }
-  // Añadir un ejercicio
-  anhadirEjercicio(nombre: string) {
-    return this.cliente.post<Ejercicio>(this.ejercicios, { nombre })
-  }
-
-  // Eliminar un ejercicio
-  eliminarEjercicio(id: string) {
-    return this.cliente.delete<void>(this.ejercicios + '/' + id);
-  }
 }

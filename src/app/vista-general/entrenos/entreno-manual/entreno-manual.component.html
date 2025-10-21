@@ -73,49 +73,18 @@
       <!--BOTONES-->
       <div class="botonesEntreno">
         <!--botón para mostrar por pantalla el entreno-->
-        <button id="enviar" (click)="cargarEntreno()">Enviar</button>
+        <button id="enviar" (click)="cargarEntreno()">Guardar</button>
         <!--botón para descargar el entreno-->
-        <button id="guardar" (click)="descargarEntreno()">Guardar</button>
+        <button id="guardar" (click)="descargarEntreno()">Descargar</button>
         <!--Eliminar el entreno escrito-->
-        <button id="eliminar" (click)="eliminarEntreno()">Eliminar</button>
+        <button id="eliminar" (click)="eliminarEntreno()">Cancelar</button>
       </div>
     </form>
 
   </div>
 
-
-  <!--Area donde el usuario escribira su entreno-->
-  <div id="entrenoPersona">
-    <div id="nota">
-      <table>
-        <tr>
-          <th>Dia</th>
-          <th>Grupo Muscular</th>
-          <th>Ejercicio</th>
-          <th>Repeticiones</th>
-          <th>Duracion</th>
-          <th>Tipo</th>
-          <th>Descanso</th>
-        </tr>
-        <tbody *ngFor="let entreno of listaEntrenos">
-          <tr>
-            <td>{{ entreno.dia }}</td>
-            <td>{{ entreno.grupo_muscular }}</td>
-            <td>{{ entreno.ejercicio }}</td>
-            <td>{{ entreno.repeticiones }}</td>
-            <td>{{ entreno.duracion}}</td>
-            <td>{{ entreno.tipo }}</td>
-            <td>{{ entreno.descanso }}</td>
-          </tr>
-        </tbody>
-
-      </table>
-    </div>
-  </div>
-</div>
-
 <!--Mostrar el entreno por dias-->
-<h1>Ejercicios por días de la semana</h1>
+<h2>Ejercicios guardados</h2>
 <div class="listaDias">
   <!--LUNES-->
   <div class="dia">

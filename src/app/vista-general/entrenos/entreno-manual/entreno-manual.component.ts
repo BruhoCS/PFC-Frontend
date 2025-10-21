@@ -23,11 +23,10 @@ export class EntrenoManualComponent {
       dia: new FormControl(),
       grupo_muscular: new FormControl(),
       ejercicio: new FormControl(),
-      repeticiones: new FormControl(),
-      duracion: new FormControl(),
-      tipo: new FormControl(),
-      descanso: new FormControl(),
-
+      repeticiones:new FormControl(),
+      tipo:new FormControl(),
+      duracion:new FormControl(),
+      descanso:new FormControl()
     });
   }
 

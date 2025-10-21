@@ -1,73 +1,9 @@
 <!--Contenido del entreno-->
 <section class="contenido">
-  <h1>Entrenos</h1>
+  <h1>¡Crea tu entreno!</h1>
   <div class="entreno">
     <app-entreno-manual></app-entreno-manual>
   </div>
-  <!-- Ejercicios de la API -->
-  <section class="seccion-ejercicios">
-    <h1>Ejercicios propuestos</h1>
-
-    <!--Formulario para añadir ejemplos de ejercicios-->
-    <h2>Añade tu sugerencia!</h2>
-    <p>¡Desde este formulario podrás añadir,modificar y eliminar sugerencias!</p>
-    <form [formGroup]="formulario">
-      <!--Id oculto para el usuario por seguridad-->
-      <input type="text" formControlName="id" class="oculto">
-
-      <!--Campos visibiles para poder modificar el objeto-->
-      <label for="">Nombre</label>
-      <input type="text" formControlName="nombre">
-
-      <label for="">Tipo</label>
-      <select formControlName="tipo">
-        <option value=""></option>
-        <option value="Pecho">Pecho</option>
-        <option value="Pierna">Pierna</option>
-        <option value="Core">Core</option>
-      </select>
-
-      <button (click)="anhadir()">Añadir</button>
-      <button (click)="modificar($event)">Modificar</button>
-      <button (click)="cancelar()">Cancelar</button>
-    </form>
-    <!--Mostrar ejercicios según el tipo-->
-    <div class="ejercicios">
-      <div class="grupo-ejercicios">
-        <h2>Pecho</h2>
-        <ng-container *ngFor="let ejercicio of ejercicios">
-          <div class="ejercicio" *ngIf="ejercicio.tipo == 'Pecho'">
-            <p><strong>Nombre:</strong> {{ ejercicio.nombre }}</p>
-            <p><strong>Tipo:</strong> {{ ejercicio.tipo }}</p>
-            <button (click)="enviarForm(ejercicio)">Modificar</button>
-            <button (click)="eliminar(ejercicio)">Eliminar</button>
-          </div>
-        </ng-container>
-      </div>
-      <div class="grupo-ejercicios">
-        <h2>Pierna</h2>
-        <ng-container *ngFor="let ejercicio of ejercicios">
-          <div class="ejercicio" *ngIf="ejercicio.tipo == 'Pierna'">
-            <p><strong>Nombre:</strong> {{ ejercicio.nombre }}</p>
-            <p><strong>Tipo:</strong> {{ ejercicio.tipo }}</p>
-            <button (click)="enviarForm(ejercicio)">Modificar</button>
-            <button (click)="eliminar(ejercicio)">Eliminar</button>
-          </div>
-        </ng-container>
-      </div>
-      <div class="grupo-ejercicios">
-        <h2>Core</h2>
-        <ng-container *ngFor="let ejercicio of ejercicios">
-          <div class="ejercicio" *ngIf="ejercicio.tipo == 'Core'">
-            <p><strong>Nombre:</strong> {{ ejercicio.nombre }}</p>
-            <p><strong>Tipo:</strong> {{ ejercicio.tipo }}</p>
-            <button (click)="enviarForm(ejercicio)">Modificar</button>
-            <button (click)="eliminar(ejercicio)">Eliminar</button>
-          </div>
-        </ng-container>
-      </div>
-    </div>
-  </section>
   <!--Apartados de los videos estilo hecho con bootstrap-->
   <div class="videos">
     <h1>Tutoriales</h1>
