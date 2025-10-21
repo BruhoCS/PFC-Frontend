@@ -1,13 +1,13 @@
  <!--Contenido de tarifas-->
   <section class="planesFithub">
-    <div class="tarjetasTarifas" *ngFor="let plan of planes">
-      <div class="tarjeta">
+    <div class="tarjetasTarifas">
+      <div class="tarjeta" *ngFor="let plan of planes">
         <h2>{{ plan.nombre }}</h2>
         <p>Ventaja:</p>
         <ol>
           <li>{{ plan.ventaja }}</li>
         </ol>
-        <p>{{ plan.precio }}</p>
+        <p>{{ plan.precio }}€</p>
         <button>Apuntarse</button>
       </div>
     </div>
