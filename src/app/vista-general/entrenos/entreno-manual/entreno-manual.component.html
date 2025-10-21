@@ -8,22 +8,22 @@
       <label for="diaSemana">Dia de la semana</label>
       <select name="diaSemana" id="escribirDia" formControlName="dia">
         <option value="">Selecciona el dia de la semana</option>
-        <option value="lunes">Lunes</option>
-        <option value="martes">Martes</option>
-        <option value="miercoles">Miercoles</option>
-        <option value="jueves">Jueves</option>
-        <option value="viernes">Viernes</option>
-        <option value="sabado">Sabado</option>
-        <option value="domingo">Domingo</option>
+        <option value="Lunes">Lunes</option>
+        <option value="Martes">Martes</option>
+        <option value="Miércoles">Miércoles</option>
+        <option value="Jueves">Jueves</option>
+        <option value="Viernes">Viernes</option>
+        <option value="Sábado">Sábado</option>
+        <option value="Domingo">Domingo</option>
       </select>
 
       <!--INDICAR EL GRUPO MUSCULAR-->
       <label for="grupo_muscular">Grupo muscular</label>
       <select name="grupo_muscular" id="grupo_muscular" formControlName="grupo_muscular">
         <option value="">Indica el grupo muscular</option>
-        <option value="tren_superior">Tren superior</option>
-        <option value="tren_inferio">Tren inferior</option>
-        <option value="core">Core</option>
+        <option value="Tren superior">Tren superior</option>
+        <option value="Tren inferior">Tren inferior</option>
+        <option value="Core">Core</option>
       </select>
 
       <!--INDICAR EJERCICIO-->
@@ -90,7 +90,7 @@
   <div class="dia">
     <h2>Lunes</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'lunes'">
+      <ul *ngIf="entreno.dia">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -102,7 +102,7 @@
   <div class="dia">
     <h2>Martes</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'martes'">
+      <ul *ngIf="entreno.dia == 'Martes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -114,7 +114,7 @@
   <div class="dia">
     <h2>Miércoles</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'miercoles'">
+      <ul *ngIf="entreno.dia == 'Miércoles'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -126,7 +126,7 @@
   <div class="dia">
     <h2>Jueves</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'jueves'">
+      <ul *ngIf="entreno.dia == 'Jueves'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -138,7 +138,7 @@
   <div class="dia">
     <h2>Viernes</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'viernes'">
+      <ul *ngIf="entreno.dia == 'Viernes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -150,7 +150,7 @@
   <div class="dia">
     <h2>Sábado</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'sabado'">
+      <ul *ngIf="entreno.dia == 'Sábado'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
@@ -162,7 +162,7 @@
   <div class="dia">
     <h2>Domingo</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia == 'domingo'">
+      <ul *ngIf="entreno.dia == 'Domingo'">
         <li><strong>Ejercicio:</strong> {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>
