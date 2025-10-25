@@ -54,17 +54,23 @@ export class EntrenosIaService {
   }
 
   // Añadir ejercicio
-  anhadirEjercicio(ejercicio: Entreno) {
+  anhadirEjercicio(nuevoEjercicio: Entreno) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token ?? ''}`,
       Accept: 'application/json'
     });
     //Lanza una peticion POST para añadir el nuevo ejercicio
-    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos', { headers }).subscribe({
+    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos',nuevoEjercicio, { headers }).subscribe({
       // En caso de que tengamos los datos y este todo correcto enviamos los datos a la bd
-      next:(ejercicio)=>{
-        
+      next:(nuevaLista)=>{
+        // Actualizo el behaviorSubject
+        this.ejercicios = nuevaLista;
+        this.ejercicios$.next(nuevaLista);
+      },
+      //En caso de que haya algun error:
+      error:(err)=>{
+        console.log("Error al guardar el ejercicio",err);
       }
     })
   }

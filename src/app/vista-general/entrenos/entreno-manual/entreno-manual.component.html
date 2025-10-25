@@ -3,7 +3,6 @@
   <div id="formularioEntreno">
 
     <form [formGroup]="formulario" id="formulario">
-
       <!--INDICAR DIA DE LA SEMANA-->
       <label for="diaSemana">Dia de la semana</label>
       <select name="diaSemana" id="escribirDia" formControlName="dia">
@@ -21,8 +20,8 @@
       <label for="grupo_muscular">Grupo muscular</label>
       <select name="grupo_muscular" id="grupo_muscular" formControlName="grupo_muscular">
         <option value="">Indica el grupo muscular</option>
-        <option value="Tren superior">Tren superior</option>
-        <option value="Tren inferior">Tren inferior</option>
+        <option value="Tren Superior">Tren superior</option>
+        <option value="Tren Inferior">Tren inferior</option>
         <option value="Core">Core</option>
       </select>
 
@@ -52,28 +51,27 @@
       <label for="tipo">Tipo de entreno</label>
       <select name="tipo" id="tipo" formControlName="tipo">
         <option value="">Indica que tipo de entreno vas a hacer</option>
-        <option value="fuerza">Fuerza</option>
-        <option value="resistencia">Resistencia</option>
-        <option value="velocidad">Velocidad</option>
-        <option value="potencia">Potencia</option>
-        <option value="cardiovascular">Cardiovascular</option>
+        <option value="Fuerza">Fuerza</option>
+        <option value="Resitencia">Resistencia</option>
+        <option value="Velocidad">Velocidad</option>
+        <option value="Potencia">Potencia</option>
       </select>
 
       <!--INDICA EL TIEMPO DE DESCANSO-->
       <label for="descanso">Descanso</label>
       <select name="descanso" id="descanso" formControlName="descanso">
         <option value=""></option>
-        <option value="uno">1 min</option>
-        <option value="dos">2 min</option>
-        <option value="tres">3 min</option>
-        <option value="cuatro">4 min</option>
-        <option value="cinco">5 min</option>
+        <option value="1 min">1 min</option>
+        <option value="2 min">2 min</option>
+        <option value="3 min">3 min</option>
+        <option value="4 min">4 min</option>
+        <option value="5 min">5 min</option>
       </select>
 
       <!--BOTONES-->
       <div class="botonesEntreno">
         <!--botón para mostrar por pantalla el entreno-->
-        <button id="enviar" (click)="cargarEntreno()">Guardar</button>
+        <button id="enviar" type="button" [disabled]="formulario.invalid" (click)="cargarEntreno(formulario.value)">Guardar</button>
         <!--botón para descargar el entreno-->
         <button id="guardar" (click)="descargarEntreno()">Descargar</button>
         <!--Eliminar el entreno escrito-->

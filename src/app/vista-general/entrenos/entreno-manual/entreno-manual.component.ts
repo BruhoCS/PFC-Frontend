@@ -31,8 +31,17 @@ export class EntrenoManualComponent implements OnInit {
     });
   }
 
-  cargarEntreno() {
-
+  // Método para guardar el nuevo ejercicio añadido por el usuario
+  cargarEntreno(nuevoEjercicio: Entreno) {
+    //Validamos todo el formulario
+    if (this.formulario.invalid) {
+      // SI esta mas se marcaran todas las requeridas o incorrectas
+      this.formulario.markAllAsTouched();
+      return;
+    }
+    //Si no esta mal enviaremos los datos y limpiaremos el formulario
+    this.servicio.anhadirEjercicio(nuevoEjercicio);
+    this.formulario.reset();
   }
 
   eliminarEntreno() {
