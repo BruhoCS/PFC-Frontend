@@ -90,7 +90,7 @@
   <div class="dia">
     <h2>Lunes</h2>
     <ng-container *ngFor="let entreno of listaEntrenos">
-      <ul *ngIf="entreno.dia">
+      <ul *ngIf="entreno.dia == 'Lunes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
         <li>Descanso entre series:{{ entreno.descanso }} </li>

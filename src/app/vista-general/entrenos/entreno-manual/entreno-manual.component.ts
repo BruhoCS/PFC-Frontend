@@ -89,8 +89,8 @@ export class EntrenoManualComponent implements OnInit {
     // Ejecuto el método para obtener los ejercicios del back
     this.servicio.mostrarEjercicios();
     // Relleno la variable del TS con los datos para poder mostrarlos
-    this.servicio.ejercicios$.subscribe((ejercicios) => {
+    this.servicio.subscribirseEntrenos$().subscribe((ejercicios) => {
       this.listaEntrenos = ejercicios;
-    })
+    });
   }
 }
