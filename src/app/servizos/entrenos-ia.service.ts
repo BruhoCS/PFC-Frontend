@@ -83,12 +83,12 @@ export class EntrenosIaService {
       Accept: 'application/json'
     });
     //Lanzamos la petición para eliminar el ejercicio
-    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos', id, { headers }).subscribe({
+    this.servidor.delete<any>('http://127.0.0.1:8000/api/entrenos/'+id, { headers }).subscribe({
       // En caso de que tengamos los datos y este todo correcto enviamos los datos a la bd
-      next: (listaEjercicios) => {
-        // Actualizo el behaviorSubject
-        this.ejercicios = listaEjercicios;
-        this.ejercicios$.next(listaEjercicios);
+      next: () => {
+        // Actualizamos el estado local
+        this.ejercicios = (this.ejercicios ?? []).filter(e => e.id !== id);
+        this.ejercicios$.next(this.ejercicios);
       },
       //En caso de que haya algun error:
       error: (err) => {
