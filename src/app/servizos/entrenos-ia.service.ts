@@ -61,12 +61,12 @@ export class EntrenosIaService {
       Accept: 'application/json'
     });
     //Lanza una peticion POST para añadir el nuevo ejercicio
-    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos', nuevoEjercicio, { headers }).subscribe({
+    this.servidor.post<Entreno>('http://127.0.0.1:8000/api/entrenos', nuevoEjercicio, { headers }).subscribe({
       // En caso de que tengamos los datos y este todo correcto enviamos los datos a la bd
-      next: (listaEjercicios) => {
+      next: (nuevo) => {
         // Actualizo el behaviorSubject
-        this.ejercicios = listaEjercicios;
-        this.ejercicios$.next(listaEjercicios);
+         this.ejercicios = [nuevo, ...(this.ejercicios ?? [])];
+        this.ejercicios$.next(this.ejercicios);
       },
       //En caso de que haya algun error:
       error: (err) => {
