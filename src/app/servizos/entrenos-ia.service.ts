@@ -35,7 +35,7 @@ export class EntrenosIaService {
       Accept: 'application/json'
     });
     // Lanza una petición HTTP GET al endpoint de planes
-    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos/getEntreno',idUser.id, { headers })
+    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos/getEntreno', idUser.id, { headers })
       .subscribe({//Nos subscribimos
         //En caso de que haya datos y este todo correcto rellenamos las variables
         next: (listaEjercicios) => {
@@ -61,17 +61,39 @@ export class EntrenosIaService {
       Accept: 'application/json'
     });
     //Lanza una peticion POST para añadir el nuevo ejercicio
-    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos',nuevoEjercicio, { headers }).subscribe({
+    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos', nuevoEjercicio, { headers }).subscribe({
       // En caso de que tengamos los datos y este todo correcto enviamos los datos a la bd
-      next:(nuevaLista)=>{
+      next: (listaEjercicios) => {
         // Actualizo el behaviorSubject
-        this.ejercicios = nuevaLista;
-        this.ejercicios$.next(nuevaLista);
+        this.ejercicios = listaEjercicios;
+        this.ejercicios$.next(listaEjercicios);
       },
       //En caso de que haya algun error:
-      error:(err)=>{
-        console.log("Error al guardar el ejercicio",err);
+      error: (err) => {
+        console.log("Error al guardar el ejercicio", err);
       }
     })
+  }
+
+  // Método para eliminar el ejercicio
+  eliminarEjercicio(id: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+    //Lanzamos la petición para eliminar el ejercicio
+    this.servidor.post<Entreno[]>('http://127.0.0.1:8000/api/entrenos', id, { headers }).subscribe({
+      // En caso de que tengamos los datos y este todo correcto enviamos los datos a la bd
+      next: (listaEjercicios) => {
+        // Actualizo el behaviorSubject
+        this.ejercicios = listaEjercicios;
+        this.ejercicios$.next(listaEjercicios);
+      },
+      //En caso de que haya algun error:
+      error: (err) => {
+        console.log("Error al guardar el ejercicio", err);
+      }
+    });
   }
 }

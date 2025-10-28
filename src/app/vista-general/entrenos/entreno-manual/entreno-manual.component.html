@@ -75,10 +75,9 @@
         <!--botón para descargar el entreno-->
         <button id="guardar" (click)="descargarEntreno()">Descargar</button>
         <!--Eliminar el entreno escrito-->
-        <button id="eliminar" (click)="eliminarEntreno()">Cancelar</button>
+        <button id="eliminar">Cancelar</button>
       </div>
     </form>
-
   </div>
 
 <!--Mostrar el entreno por dias-->
@@ -91,7 +90,8 @@
       <ul *ngIf="entreno.dia == 'Lunes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -103,7 +103,8 @@
       <ul *ngIf="entreno.dia == 'Martes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -115,7 +116,8 @@
       <ul *ngIf="entreno.dia == 'Miércoles'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -127,7 +129,8 @@
       <ul *ngIf="entreno.dia == 'Jueves'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -139,7 +142,8 @@
       <ul *ngIf="entreno.dia == 'Viernes'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -151,7 +155,8 @@
       <ul *ngIf="entreno.dia == 'Sábado'">
         <li><strong>Ejercicio:</strong>  {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>
@@ -163,7 +168,8 @@
       <ul *ngIf="entreno.dia == 'Domingo'">
         <li><strong>Ejercicio:</strong> {{entreno.ejercicio}} </li>
         <li>Repeticiones: {{ entreno.repeticiones }}</li>
-        <li>Descanso entre series:{{ entreno.descanso }} </li>
+        <li>Descanso entre series: {{ entreno.descanso }} </li>
+        <li><img src="/imagenes/imagenesEntreno/BasuraIcono.png" alt="Basura" width="44" height="44" (click)="eliminarEntreno(entreno.id)"></li>
       </ul>
     </ng-container>
   </div>

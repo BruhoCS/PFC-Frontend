@@ -44,8 +44,8 @@ export class EntrenoManualComponent implements OnInit {
     this.formulario.reset();
   }
 
-  eliminarEntreno() {
-    this.listaEntrenos = [];
+  eliminarEntreno(id:string) {
+    this.servicio.eliminarEjercicio(id);
   }
 
   descargarEntreno() {
