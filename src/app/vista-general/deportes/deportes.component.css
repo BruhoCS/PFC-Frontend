@@ -1,4 +1,4 @@
-/*Fondo del carrusel*/
+/* Fondo del carrusel principal */
 .galleryDeport {
     display: flex;
     flex-direction: column;
@@ -8,151 +8,171 @@
     margin-top: 100px;
     align-items: center;
     text-align: center;
-    padding: 20px;
+    padding: 100px; /* 🔹 reducido para centrar mejor el carrusel en pantalla */
     gap: 10px;
 }
 
 /* Carrusel principal: lo dejo en posición relativa para poder
    ubicar las flechas de navegación en absoluto dentro. Mantengo
-   el tema oscuro con degradado y el borde rojo de mi web. */
+   el tema oscuro con degradado y el borde rojo de mi web.
+   🔹 Aumento tamaño y ancho general del carrusel */
 .gdep-carousel {
     position: relative;
     background: linear-gradient(135deg, #111, #1c1c1c);
-    border: 2px solid #8b0000;     /* rojo corporativo */
-    border-radius: 18px;            /* esquinas suaves */
-    padding: 1.5rem 3.5rem;         /* doy aire y reservo espacio lateral para flechas */
+    border: 3px solid #8b0000;     /* rojo corporativo un poco más grueso */
+    border-radius: 20px;           /* esquinas más marcadas */
+    padding: 4rem 5rem;            /* 🔹 aumento del tamaño interno */
+    width: 80%;                    /* 🔹 más ancho dentro del contenedor */
+    max-width: 900px;              /* 🔹 tamaño máximo para pantallas grandes */
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .6); /* profundidad sutil */
-}
-
-/* Cada slide lo compongo en grid: imagen a la izquierda y
-   la información a la derecha, alineadas verticalmente. */
-.gdep-slide {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr; /* proporción (img | info) */
-    gap: 2rem;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .7); /* sombra más pronunciada */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-/* La imagen ocupa su columna completa, recortada sin deformar,
-   con bordes redondeados y sombra para destacar. */
+/* Cada slide ahora centrado visualmente (no uso grid porque
+   solo tengo texto e imagen pequeña opcional) */
+.gdep-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* 🔹 centro el texto */
+    gap: 1.5rem;
+}
+
+/* Imagen centrada y un poco más grande si existiera */
 .gdep-slide img {
     width: 100%;
-    max-height: 420px;
+    max-width: 500px; /* 🔹 aumento tamaño máximo */
+    height: auto;
     object-fit: cover;
     border-radius: 14px;
     box-shadow: 0 8px 18px rgba(0, 0, 0, .5);
 }
 
-/* El título del deporte: margen controlado, tamaño grande
-   y un acento en rojo claro para mantener el branding. */
+/* El título del deporte: margen controlado, tamaño más grande
+   y color rojo suave para mantener coherencia */
 .gdep-info h3 {
     margin: 0 0 .5rem 0;
-    font-size: 1.8rem;
-    color: #ff6b6b;                 /* acento dentro del tema */
+    font-size: 2.2rem; /* 🔹 más grande para destacar el deporte */
+    color: #ff6b6b;
     letter-spacing: .5px;
 }
 
-/* El texto descriptivo con buena legibilidad. */
+/* Texto descriptivo más grande y centrado */
 .gdep-info p {
-    margin: .25rem 0 1rem 0;
-    line-height: 1.5;
+    margin: .5rem 0 1.5rem 0;
+    line-height: 1.6;
+    font-size: 1.1rem;
 }
 
-/* Llamada a la acción: botón oscuro con borde rojo.
-   Mantengo esquinas redondeadas y sin subrayado. */
+/* Llamada a la acción: botón oscuro con borde rojo
+   y un poco más grande para dar protagonismo */
 .gdep-cta {
     display: inline-block;
     background: #000;
     color: #fff;
     border: 2px solid #8b0000;
     border-radius: 10px;
-    padding: .6rem 1rem;
+    padding: .8rem 1.4rem; /* 🔹 más grande */
+    font-size: 1rem;
     text-decoration: none;
 }
 
-/* Hover del CTA: oscurezco a rojo para feedback visual. */
+/* Hover del CTA: oscurezco a rojo para feedback visual */
 .gdep-cta:hover {
     background: #3d0202;
 }
 
-/* Flechas de navegación: las posiciono en el centro vertical,
-   con forma circular y el mismo código de color de la web. */
+/* Flechas de navegación: centradas verticalmente,
+   más grandes para el nuevo tamaño del carrusel */
 .gdep-arrow {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%); /* centro vertical exacto */
-    width: 46px;
-    height: 46px;
+    transform: translateY(-50%);
+    width: 60px;   /* 🔹 tamaño aumentado */
+    height: 60px;
     border-radius: 50%;
     border: 2px solid #8b0000;
     background: #000;
     color: #fff;
-    font-size: 1.4rem;
+    font-size: 1.8rem; /* 🔹 icono más grande */
     line-height: 1;
     cursor: pointer;
     display: grid;
-    place-items: center;           /* centra el símbolo dentro */
+    place-items: center;
     transition: transform .12s ease, background .12s ease, box-shadow .12s;
 }
 
-/* Coloco la flecha izquierda pegada al margen interior. */
-.gdep-left { left: .8rem; }
+/* Coloco las flechas a los lados exteriores */
+.gdep-left { left: 1.5rem; }
+.gdep-right { right: 1.5rem; }
 
-/* Y la derecha al otro lado. */
-.gdep-right { right: .8rem; }
-
-/* Efecto hover: un pelín más grande y fondo rojo oscuro. */
+/* Efecto hover: un pelín más grande y fondo rojo oscuro */
 .gdep-arrow:hover {
     background: #3d0202;
     transform: translateY(-50%) scale(1.05);
 }
 
-/* Indicadores (puntos) bajo el carrusel: centrados y con espacio. */
+/* Indicadores (puntos) bajo el carrusel: centrados y con más separación */
 .gdep-dots {
     display: flex;
-    gap: .4rem;
+    gap: .6rem;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
-/* Cada dot es un círculo con borde rojizo y estado clickable. */
+/* Cada dot es un círculo con borde rojizo y estado clickable */
 .gdep-dots span {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: rgba(255, 255, 255, .25);
     border: 1px solid rgba(139, 0, 0, .65);
     cursor: pointer;
 }
 
-/* Dot activo en rojo corporativo para indicar la posición. */
+/* Dot activo en rojo corporativo para indicar la posición */
 .gdep-dots span.active {
     background: #8b0000;
 }
 
-/* Responsivo: en tablet/portátil estrecho apilo la imagen y el texto,
-   ajusto paddings y reduzco ligeramente el título. */
+/* Responsivo: reduzco proporciones para pantallas medianas */
 @media (max-width: 900px) {
-    .gdep-slide {
-        grid-template-columns: 1fr; /* una sola columna */
-    }
     .gdep-carousel {
-        padding: 1rem 2.8rem;
+        width: 90%;
+        padding: 2.5rem 3rem;
     }
+
     .gdep-info h3 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    .gdep-arrow {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
     }
 }
 
 /* En móviles pequeños, compacto el padding del carrusel
-   y reduzco el tamaño de las flechas. */
+   y reduzco el tamaño general para mantener proporción */
 @media (max-width: 520px) {
     .gdep-carousel {
-        padding: .8rem 2.2rem;
+        width: 95%;
+        padding: 1.8rem 2rem;
     }
+
+    .gdep-info h3 {
+        font-size: 1.4rem;
+    }
+
     .gdep-arrow {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.2rem;
     }
 }

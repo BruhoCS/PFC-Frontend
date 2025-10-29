@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-deportes',
   standalone: true,
-  imports: [RouterLink,CommonModule],
+  imports: [CommonModule],
   templateUrl: './deportes.component.html',
   styleUrl: './deportes.component.css'
 })

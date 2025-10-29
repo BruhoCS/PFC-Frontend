@@ -6,8 +6,11 @@
             <div class="gdep-slide">
                 <div class="gdep-info">
                     <h3>{{ deportes[actual].nombre }}</h3>
+                    <h4>Nivel {{ deportes[actual].nivel }}</h4>
                     <p>{{ deportes[actual].descripcion }}</p>
-                    <a class="gdep-cta" [routerLink]="['/entreno']">Ver entrenos</a>
+                    <p>{{ deportes[actual].precio}}€</p>
+                    <p>Dia de la semana: {{ deportes[actual].dia}}</p>
+                    <a class="gdep-cta">Probar ahora</a>
                 </div>
             </div>
 
