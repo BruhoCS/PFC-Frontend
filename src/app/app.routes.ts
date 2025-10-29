@@ -8,19 +8,22 @@ import { CarritoComponent } from './vista-general/carrito/carrito.component';
 import { AdministracionComponent } from './vista-general/administracion/administracion.component';
 import { adminGuard } from './vista-general/guards/admin.guard';
 import { PerfilComponent } from './vista-general/perfil/perfil.component';
+import { DeportesComponent } from './vista-general/deportes/deportes.component';
 
 export const routes: Routes = [
-    {path:"",title:"Inicio",component:InicioComponent},
+    { path: "", title: "Inicio", component: InicioComponent },
     //Ruta carrito de la tienda
-    {path:"carrito",title:"Carrito",component:CarritoComponent},
+    { path: "carrito", title: "Carrito", component: CarritoComponent },
     //Ruta tarifa
-    {path:"tarifa",title:"Tarifas",component:TarifaComponent},
+    { path: "tarifa", title: "Tarifas", component: TarifaComponent },
     //Ruta Entreno
-    {path:"entreno",title:"Entreno",component:EntrenosComponent,canActivate:[paginasRestringidasGuard]},
+    { path: "entreno", title: "Entreno", component: EntrenosComponent, canActivate: [paginasRestringidasGuard] },
+    //Ruta Deportes
+    { path: "deporte", title: "Deporte", component: DeportesComponent, canActivate: [paginasRestringidasGuard] },
     //Ruta administracion
-    {path:"administracion",title:"Administracion",component:AdministracionComponent,canActivate:[paginasRestringidasGuard,adminGuard]},
+    { path: "administracion", title: "Administracion", component: AdministracionComponent, canActivate: [paginasRestringidasGuard, adminGuard] },
     //Ruta de perfil
-    {path:"perfil",title:"Perfil",component:PerfilComponent,canActivate:[paginasRestringidasGuard]},
+    { path: "perfil", title: "Perfil", component: PerfilComponent, canActivate: [paginasRestringidasGuard] },
     //Ruta de login
-    {path:"login",title:"Login",component:LoginComponent}
+    { path: "login", title: "Login", component: LoginComponent }
 ];

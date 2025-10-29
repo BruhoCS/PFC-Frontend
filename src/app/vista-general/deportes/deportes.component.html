@@ -1,0 +1,22 @@
+<div class="contenido">
+    <div class="galleryDeport">
+        <div class="gdep-carousel" (keydown)="onKey($event)" tabindex="0" *ngIf="deportes?.length">
+            <button class="gdep-arrow gdep-left" (click)="prev()" aria-label="Anterior">‹</button>
+
+            <div class="gdep-slide">
+                <div class="gdep-info">
+                    <h3>{{ deportes[actual].nombre }}</h3>
+                    <p>{{ deportes[actual].descripcion }}</p>
+                    <a class="gdep-cta" [routerLink]="['/entreno']">Ver entrenos</a>
+                </div>
+            </div>
+
+            <button class="gdep-arrow gdep-right" (click)="next()" aria-label="Siguiente">›</button>
+
+            <div class="gdep-dots">
+                <span *ngFor="let d of deportes; let i = index" (click)="go(i)" [class.active]="i === actual"
+                    [attr.aria-label]="'Ir a ' + d.nombre"></span>
+            </div>
+        </div>
+    </div>
+</div>

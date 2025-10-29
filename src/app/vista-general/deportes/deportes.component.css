@@ -1,0 +1,158 @@
+/*Fondo del carrusel*/
+.galleryDeport {
+    display: flex;
+    flex-direction: column;
+    background-color: #260202;
+    box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
+    margin: 70px;
+    margin-top: 100px;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    gap: 10px;
+}
+
+/* Carrusel principal: lo dejo en posición relativa para poder
+   ubicar las flechas de navegación en absoluto dentro. Mantengo
+   el tema oscuro con degradado y el borde rojo de mi web. */
+.gdep-carousel {
+    position: relative;
+    background: linear-gradient(135deg, #111, #1c1c1c);
+    border: 2px solid #8b0000;     /* rojo corporativo */
+    border-radius: 18px;            /* esquinas suaves */
+    padding: 1.5rem 3.5rem;         /* doy aire y reservo espacio lateral para flechas */
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .6); /* profundidad sutil */
+}
+
+/* Cada slide lo compongo en grid: imagen a la izquierda y
+   la información a la derecha, alineadas verticalmente. */
+.gdep-slide {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* proporción (img | info) */
+    gap: 2rem;
+    align-items: center;
+}
+
+/* La imagen ocupa su columna completa, recortada sin deformar,
+   con bordes redondeados y sombra para destacar. */
+.gdep-slide img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .5);
+}
+
+/* El título del deporte: margen controlado, tamaño grande
+   y un acento en rojo claro para mantener el branding. */
+.gdep-info h3 {
+    margin: 0 0 .5rem 0;
+    font-size: 1.8rem;
+    color: #ff6b6b;                 /* acento dentro del tema */
+    letter-spacing: .5px;
+}
+
+/* El texto descriptivo con buena legibilidad. */
+.gdep-info p {
+    margin: .25rem 0 1rem 0;
+    line-height: 1.5;
+}
+
+/* Llamada a la acción: botón oscuro con borde rojo.
+   Mantengo esquinas redondeadas y sin subrayado. */
+.gdep-cta {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border: 2px solid #8b0000;
+    border-radius: 10px;
+    padding: .6rem 1rem;
+    text-decoration: none;
+}
+
+/* Hover del CTA: oscurezco a rojo para feedback visual. */
+.gdep-cta:hover {
+    background: #3d0202;
+}
+
+/* Flechas de navegación: las posiciono en el centro vertical,
+   con forma circular y el mismo código de color de la web. */
+.gdep-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* centro vertical exacto */
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid #8b0000;
+    background: #000;
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;           /* centra el símbolo dentro */
+    transition: transform .12s ease, background .12s ease, box-shadow .12s;
+}
+
+/* Coloco la flecha izquierda pegada al margen interior. */
+.gdep-left { left: .8rem; }
+
+/* Y la derecha al otro lado. */
+.gdep-right { right: .8rem; }
+
+/* Efecto hover: un pelín más grande y fondo rojo oscuro. */
+.gdep-arrow:hover {
+    background: #3d0202;
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Indicadores (puntos) bajo el carrusel: centrados y con espacio. */
+.gdep-dots {
+    display: flex;
+    gap: .4rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Cada dot es un círculo con borde rojizo y estado clickable. */
+.gdep-dots span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .25);
+    border: 1px solid rgba(139, 0, 0, .65);
+    cursor: pointer;
+}
+
+/* Dot activo en rojo corporativo para indicar la posición. */
+.gdep-dots span.active {
+    background: #8b0000;
+}
+
+/* Responsivo: en tablet/portátil estrecho apilo la imagen y el texto,
+   ajusto paddings y reduzco ligeramente el título. */
+@media (max-width: 900px) {
+    .gdep-slide {
+        grid-template-columns: 1fr; /* una sola columna */
+    }
+    .gdep-carousel {
+        padding: 1rem 2.8rem;
+    }
+    .gdep-info h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* En móviles pequeños, compacto el padding del carrusel
+   y reduzco el tamaño de las flechas. */
+@media (max-width: 520px) {
+    .gdep-carousel {
+        padding: .8rem 2.2rem;
+    }
+    .gdep-arrow {
+        width: 40px;
+        height: 40px;
+    }
+}

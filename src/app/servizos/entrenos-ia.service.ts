@@ -19,7 +19,7 @@ export class EntrenosIaService {
     this.ejercicios$ = new BehaviorSubject(this.ejercicios);
   }
 
-  // Este método permite subscribirse aos cambios do array productos
+  // Este método permite subscribirse aos cambios do array entrenos
   subscribirseEntrenos$(): Observable<Entreno[]> {
     return this.ejercicios$.asObservable();
   }
