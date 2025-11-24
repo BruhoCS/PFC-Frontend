@@ -48,6 +48,12 @@ export class DeportesComponent implements OnInit {
     }
   }
 
+
+  //Apuntarse a un deporte
+  apuntarseDeporte(){
+    
+  }
+
   ngOnInit(): void {
     // Ejecuto el método para obtener los ejercicios del back
     this.servicio.mostrarDeportes();
