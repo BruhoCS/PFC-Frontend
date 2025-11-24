@@ -50,8 +50,9 @@ export class DeportesComponent implements OnInit {
 
 
   //Apuntarse a un deporte
-  apuntarseDeporte(){
-    
+  apuntarseDeporte(deporte:Deporte){
+    //Llamamos a la funcion del servicio pasandole el deporte
+    this.servicio.apuntarseDeporte(deporte);
   }
 
   ngOnInit(): void {
