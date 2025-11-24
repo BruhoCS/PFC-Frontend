@@ -63,8 +63,11 @@ export class DeportesService {
       Authorization: `Bearer ${token ?? ''}`,
       Accept: 'application/json'
     });
+
+    const url = `http://127.0.0.1:8000/api/deportes/${deporte.id}/apuntarse`;
+
     // Lanza una petición HTTP GET al endpoint de planes
-    this.http.post<Deporte>('http://127.0.0.1:8000/api//deportes/{deporte}/apuntarse', deporte, { headers })
+    this.http.post<Deporte>(url,{}, { headers })
       .subscribe({//Nos subscribimos
         //En caso de que haya datos y este todo correcto rellenamos las variables
         next: () => {
@@ -73,8 +76,6 @@ export class DeportesService {
         //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
         error: (err) => {
           console.error("Error al cargar los planes" + err);
-          this.deportes = [];
-          this.deportes$.next([]);
         }
       });
   }
