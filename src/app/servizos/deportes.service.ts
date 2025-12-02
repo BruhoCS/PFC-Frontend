@@ -54,10 +54,6 @@ export class DeportesService {
   apuntarseDeporte(deporte :Deporte) {
     //Obtenemos el token
     const token = localStorage.getItem('token');
-    //Recuperamos el usuario
-    const usuarioActual = sessionStorage.getItem('usuarioActual');
-    //Obtenemos su id
-    const idUser = usuarioActual ? (JSON.parse(usuarioActual) as Usuario) : null;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token ?? ''}`,

@@ -3,6 +3,7 @@ import { Plan } from '../vista-general/modelo/plan';
 import { BehaviorSubject } from 'rxjs';
 import { rejects } from 'assert';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Usuario } from '../vista-general/modelo/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,30 @@ export class PlanesService {
       });
 
 
+  }
+
+  //Método para que el usuario se apunte al plan
+  apuntarsePlan(plan: Plan) {
+    //Obtenemos el token
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    const url = `http://127.0.0.1:8000/api/usuario/${plan.id}/apuntarsePlan`;
+
+    // Lanza una petición HTTP GET al endpoint de planes
+    this.http.post<Plan>(url, {}, { headers })
+      .subscribe({//Nos subscribimos
+        //En caso de que haya datos y este todo correcto rellenamos las variables
+        next: () => {
+          console.log("Se inscribió correctamente");
+        },
+        //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
+        error: (err) => {
+          console.error("Error al apuntarse al plan" + err);
+        }
+      });
   }
 }

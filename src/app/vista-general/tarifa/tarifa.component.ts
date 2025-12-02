@@ -18,6 +18,12 @@ export class TarifaComponent implements OnInit {
 
   }
 
+  //Metodo para apuntarse al nuevo plan
+  apuntarsePlan(plan:Plan){
+    //Llamamos a la funcion del servicio y le pasamos el plan
+    this.servicioPlan.apuntarsePlan(plan);
+  }
+
   //Con el uso de ngOninit nos subcribimos a planes$ del servicio
   ngOnInit(): void {
     //Hacemos el get 
