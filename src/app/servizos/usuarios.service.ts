@@ -3,42 +3,84 @@ import { Usuario } from '../vista-general/modelo/usuario';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Perfil } from '../vista-general/modelo/perfil';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuariosService {
   //Variables para almacenar al usuario que se encuentra en la sesión
-  usuarioActual:Usuario;
-  usuarioActual$:BehaviorSubject<Usuario>;//Empieza sin subscripción
+  usuarioActual: Usuario;
+  usuarioActual$: BehaviorSubject<Usuario>;//Empieza sin subscripción
+  //Variable para guardar el perfil
+  perfilUser: Perfil;
+  perfilUser$: BehaviorSubject<Perfil>;
 
   // Variable para almacenar todos los usuarios
-  usuarios:Usuario[]=[];
-
+  usuarios: Usuario[] = [];
   // Flujo reactivo para emitir la lista de usuarios a quien se suscriba.
-  // Debe inicializarse, p. ej. con [] para evitar null/undefined al hacer next.
-  usuarios$:BehaviorSubject<Usuario[]>;
-  
-  constructor(private router:Router , private http:HttpClient) {
+  usuarios$: BehaviorSubject<Usuario[]>;
+
+  constructor(private router: Router, private http: HttpClient) {
     this.usuarioActual$ = new BehaviorSubject(this.usuarioActual);
-    
+    this.perfilUser$ = new BehaviorSubject(this.perfilUser);
+  }
+
+  //Mostrar perfil del usuario de la sesión
+  mostrarPerfil() {
+    //Obtener el token y la autorización para hacer la petición
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+    //Obtener el id del usuario actual
+   const usuarioActual = JSON.parse(sessionStorage.getItem("usuarioActual"));
+
+    // Realiza una petición GET.
+    this.http.get<Perfil>('http://127.0.0.1:8000/api/perfil/'+usuarioActual.id, { headers })
+      .subscribe({
+        // next se ejecuta si llega la respuesta correcta del servidor
+        next: (perfilUser) => {
+          //Guardamos el perfil en la variable local
+          this.perfilUser = perfilUser;
+          //Emitimos el perfil a los subscriptores del behaviorSubject
+          this.perfilUser$.next(perfilUser)
+        },
+        // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
+        error: (err) => {
+          // Registramos el error en consola 
+          console.log("Error al cargar el perfil");
+        }
+      })
+  }
+
+  // Este método permite subscribirse aos cambios do perfil
+    subscribirsePerfil$(): Observable<Perfil> {
+      return this.perfilUser$.asObservable();
     }
+
   // Método que hace una petición HTTP GET al backend para obtener los perfiles
   // y actualiza tanto el array local como el BehaviorSubject.
-    mostrarPerfiles(){
-      // Realiza una petición GET.
-      this.http.get<Usuario[]>('http://127.0.0.1:8000/api/perfiles')
+  mostrarPerfiles() {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+    // Realiza una petición GET.
+    this.http.get<Usuario[]>('http://127.0.0.1:8000/api/perfiles', { headers })
       // Nos suscribimos al Observable para ejecutar la petición y manejar la respuesta.
       .subscribe({
         // next se ejecuta cuando llega la respuesta correcta del servidor.
-        next:(perfiles)=>{
+        next: (perfiles) => {
           // Guardamos los perfiles en la variable local 
           this.usuarios = perfiles;
           // Emitimos los perfiles a todos los suscriptores del BehaviorSubject.
           this.usuarios$.next(perfiles);
         },
         // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
-        error: (err)=>{
+        error: (err) => {
           // Registramos el error en consola 
           console.log("Error al cargar usuarios");
           // Dejamos el estado local vacio
@@ -47,31 +89,31 @@ export class UsuariosService {
           this.usuarios$.next([]);
         }
       });
-    }
+  }
 
-   //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
-   crearUsuario(nuevoUsuario:Usuario){
+  //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
+  crearUsuario(nuevoUsuario: Usuario) {
     //Hacemos el post
-    
-   }
 
-   //Modificar usuario
-   modificarUsuario(email: string, password: string){
+  }
 
-   }
+  //Modificar usuario
+  modificarUsuario(email: string, password: string) {
 
-   //Eliminar usuario
-   eliminarUsuario(email: string, password: string){
+  }
 
-   }
+  //Eliminar usuario
+  eliminarUsuario(email: string, password: string) {
 
-   // Método para iniciar sesión con un email y contraseña
+  }
+
+  // Método para iniciar sesión con un email y contraseña
   iniciarsesion(email: string, password: string): Promise<boolean> {
 
     // Crea el objeto con las credenciales que se enviarán al backend
     const loginData = { email, password };
 
-     // Muestra en consola el payload que se va a enviar (útil para depurar)
+    // Muestra en consola el payload que se va a enviar (útil para depurar)
     console.log('Enviando credenciales:', loginData);
 
     // Devuelve una nueva Promesa; llamará a resolve(true) si todo va bien o reject(false) si falla
@@ -93,12 +135,12 @@ export class UsuariosService {
 
           // Guardar token
           const token = response.accessToken;
-           // Comprueba que realmente exista un token
+          // Comprueba que realmente exista un token
           if (!token) {
             console.error("No se recibió ningún token en la respuesta del login");
             // Rechaza la Promesa indicando que el login ha fallado
             reject(false);
-             // Sale de la función para no continuar con el flujo
+            // Sale de la función para no continuar con el flujo
             return;
           }
           // Guarda el token en localStorage (persistente entre sesiones del navegador)
@@ -108,7 +150,7 @@ export class UsuariosService {
           const user: Usuario = response.user;
           this.usuarioActual = user;
           this.usuarioActual$.next(user);
-          
+
           // Guardamos usuario en sessionStorage
           sessionStorage.setItem('usuarioActual', JSON.stringify(user));
           // Redirigimos al inicio de la web
@@ -120,7 +162,7 @@ export class UsuariosService {
           console.error('Error de login:', error);
           // Emite undefined para indicar que no hay usuario autenticado
           this.usuarioActual$.next(undefined);
-           // Rechaza la Promesa con false indicando fallo
+          // Rechaza la Promesa con false indicando fallo
           reject(false);
         }
       });
