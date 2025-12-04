@@ -44,7 +44,7 @@ export class PerfilComponent implements OnInit{
     //Función para cargar los deportes 
     this.servicioDeporte.cargarMisDeportes();
     //Rellenamos el array de misDeportes con los datos recibidos por el servicio
-    this.servicioDeporte.subscribirseDeportes$().subscribe((misDeportes)=>{
+    this.servicioDeporte.obtenerMisDeportes$().subscribe((misDeportes)=>{
       this.misDeportes = misDeportes;
     })
   }

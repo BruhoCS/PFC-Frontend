@@ -9,6 +9,7 @@ import { AdministracionComponent } from './vista-general/administracion/administ
 import { adminGuard } from './vista-general/guards/admin.guard';
 import { PerfilComponent } from './vista-general/perfil/perfil.component';
 import { DeportesComponent } from './vista-general/deportes/deportes.component';
+import { RegistrarseComponent } from './vista-general/registrarse/registrarse.component';
 
 export const routes: Routes = [
     { path: "", title: "Inicio", component: InicioComponent },
@@ -25,5 +26,7 @@ export const routes: Routes = [
     //Ruta de perfil
     { path: "perfil", title: "Perfil", component: PerfilComponent, canActivate: [paginasRestringidasGuard] },
     //Ruta de login
-    { path: "login", title: "Login", component: LoginComponent }
+    { path: "login", title: "Login", component: LoginComponent },
+    //Ruta para registrarse como nuevo user
+    { path: "registrar", title: "Registrar", component: RegistrarseComponent }
 ];
