@@ -11,3 +11,138 @@
     text-align: center;
     padding: 20px;
 }
+
+/* Contenedor general del perfil */
+.perfil-container {
+    background: linear-gradient(135deg, #111, #1c1c1c);
+    border: 2px solid #8b0000;
+    border-radius: 18px;
+    padding: 2.2rem;
+    margin: 40px auto;
+    max-width: 900px;
+
+    color: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,.7);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título principal */
+.perfil-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.4rem;
+    color: #ff6b6b;
+    letter-spacing: .8px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: .6rem;
+}
+
+/* Lista de información del usuario */
+.perfil-container ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.perfil-container li {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(139,0,0,0.35);
+    border-left: 4px solid #8b0000;
+    border-radius: 12px;
+
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1rem;
+
+    font-size: 1.15rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,.45);
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+/* Hover sobre cada ítem */
+.perfil-container li:hover {
+    transform: translateY(-3px);
+    border-left-color: #b30000;
+    box-shadow: 0 8px 18px rgba(0,0,0,.55);
+}
+
+/* Etiquetas destacadas dentro del texto si quieres agregar <strong> */
+.perfil-container li strong {
+    color: #ff6b6b;
+}
+
+
+/* Contenedor general de los deportes */
+.deportes-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* exactamente 3 columnas */
+    gap: 1.6rem;
+    width: 100%;
+    max-width: 1100px;                     /*  ancho mayor para permitir columnas */
+}
+
+/* Tarjeta de cada deporte */
+.deportes-container li {
+    background: linear-gradient(135deg, #111, #1c1c1c);
+    border: 2px solid #8b0000;
+    border-radius: 14px;
+
+    padding: 1.4rem 1rem;
+    text-align: center;
+    color: #fff;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.6);
+    transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+/* Hover elegante */
+.deportes-container li:hover {
+    transform: translateY(-4px);
+    border-color: #b30000;
+    box-shadow: 0 8px 20px rgba(0,0,0,.75);
+}
+
+/* Nombre del deporte */
+.nombre-deporte {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+/* Botón de desapuntarse */
+.btn-desapuntarse {
+    background-color: #000;
+    border: 2px solid #8b0000;
+    color: #fff;
+    border-radius: 10px;
+
+    padding: .55rem 1rem;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: background .15s ease, transform .15s ease;
+}
+
+.btn-desapuntarse:hover {
+    background-color: #3d0202;
+    transform: scale(1.03);
+}
+
+/* Responsive para tablets */
+@media (max-width: 900px) {
+    .deportes-container ul {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+/* 📱 Responsive para móviles */
+@media (max-width: 600px) {
+    .deportes-container ul {
+        grid-template-columns: repeat(1, 1fr); /* 1 columna */
+    }
+}
+

@@ -14,9 +14,14 @@ export class DeportesService {
   deportes: Deporte[];
   deportes$: BehaviorSubject<Deporte[]>;
 
+  //Variable para almacenar los deportes del usuario de la sesión
+  misDeportes: Deporte[];
+  misDeportes$: BehaviorSubject<Deporte[]>;
+
   //Constructor
   constructor(private http: HttpClient) {
     this.deportes$ = new BehaviorSubject(this.deportes);
+    this.misDeportes$ = new BehaviorSubject(this.misDeportes);
   }
 
   // Este método permite subscribirse aos cambios do array deportes
@@ -51,7 +56,7 @@ export class DeportesService {
   }
 
   //Función para que el usuario se apunte al deporte
-  apuntarseDeporte(deporte :Deporte) {
+  apuntarseDeporte(deporte: Deporte) {
     //Obtenemos el token
     const token = localStorage.getItem('token');
 
@@ -63,7 +68,7 @@ export class DeportesService {
     const url = `http://127.0.0.1:8000/api/deportes/${deporte.id}/apuntarse`;
 
     // Lanza una petición HTTP GET al endpoint de planes
-    this.http.post<Deporte>(url,{}, { headers })
+    this.http.post<Deporte>(url, {}, { headers })
       .subscribe({//Nos subscribimos
         //En caso de que haya datos y este todo correcto rellenamos las variables
         next: () => {
@@ -72,6 +77,61 @@ export class DeportesService {
         //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
         error: (err) => {
           console.error("Error al cargar los planes" + err);
+        }
+      });
+  }
+
+  //Función para que el usuario vea a los deportes que se encuentra apuntado
+  cargarMisDeportes(): void {
+    const token = localStorage.getItem('token') ?? '';
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'
+    });
+
+    this.http.get<Deporte[]>('http://127.0.0.1:8000/api/perfil/deportes', { headers })
+      .subscribe({
+        next: (deportes) => {
+          this.misDeportes = deportes;
+          this.misDeportes$.next(deportes);
+        },
+        error: (err) => {
+          console.error('Error al cargar los deportes del perfil', err);
+          this.misDeportes = [];
+          this.misDeportes$.next([]);
+        }
+      });
+  }
+
+  // Método para que el componente se suscriba de forma tipada
+  obtenerMisDeportes$(): Observable<Deporte[]> {
+    return this.misDeportes$.asObservable();
+  }
+
+  //Funcion para llamar a la api y desapuntarse del deporte
+  desapuntarseDeporte(depId: string) {
+    //Obtenermos el oken y el permiso
+    const token = localStorage.getItem('token') ?? '';
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'
+    });
+
+    //Enviamos el deporte
+    this.http.delete<any>(`http://127.0.0.1:8000/api/deportes/${depId}/borrarse`, { headers })
+      .subscribe({
+        //Si la API responde la lista de deportes apuntados se actualiza
+        next: (deportes) => {
+          this.misDeportes = deportes;
+          this.misDeportes$.next(deportes);
+        },
+        //Si no nos salta el error
+        error: (err) => {
+          console.error('Error al desapuntarse del deporte', err);
+          this.misDeportes = [];
+          this.misDeportes$.next([]);
         }
       });
   }

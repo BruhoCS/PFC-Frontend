@@ -1,12 +1,34 @@
 <div class="contenido">
-    <h1>Bienvenido a tu perfil {{ usuarioActual.name }}</h1>
+    <div class="perfil-container">
+        <h1>Bienvenido a tu perfil {{ usuarioActual.name }}</h1>
 
-    <div>
+        <div>
+            <ul>
+                <li>Email de la cuenta: {{ usuarioActual.email }}</li>
+                <li>Apellido: {{ perfilUser?.apellido }}</li>
+                <li>Teléfono: {{ perfilUser?.telefono }}</li>
+                <li>Hobby: {{ perfilUser?.hobby }}</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="deportes-container" *ngIf="misDeportes?.length > 0; else sinDeportes">
+        <h2>Deportes</h2>
         <ul>
-            <li>Email de la cuenta: {{ usuarioActual.email }}</li>
-            <li>{{ perfilUser.apellido }}</li>
-            <li>{{ perfilUser.telefono }}</li>
-            <li>{{ perfilUser.hobby }}</li>
+            <li *ngFor="let dep of misDeportes">
+                <span class="nombre-deporte">{{ dep.nombre }}</span>
+
+                <button class="btn-desapuntarse" (click)="desapuntarse(dep.id)">
+                    Desapuntarse
+                </button>
+            </li>
         </ul>
     </div>
+
+    <ng-template #sinDeportes>
+        <p class="sin-deportes">No estás apuntado a ningún deporte actualmente.</p>
+    </ng-template>
+
+
 </div>
