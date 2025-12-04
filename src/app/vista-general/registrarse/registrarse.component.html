@@ -1,33 +1,76 @@
 <div class="contenido">
-    <h1>BIENVENIDO A FITHUB</h1>
-    <h3>Inicia sesión para poder acceder a las ventajas como miembro</h3>
+    <h1>CREA TU CUENTA EN FITHUB</h1>
+    <h3>Regístrate para acceder a todas las ventajas como miembro</h3>
+
     <div class="formulario">
         <div id="imagenLogin">
-            <img src="/imagenes/imagenesAcceder/loginFithub.png" alt="Imagen de login">
+            <img src="/imagenes/imagenesAcceder/loginFithub.png" alt="Imagen de registro">
         </div>
+
+        <!-- Mensaje de error -->
         <div *ngIf="errorSesion" class="errores">
-            <p>El usuario o la contraseña no son válidos</p>
+            <p>Debes completar correctamente todos los campos del formulario</p>
         </div>
+
         <form [formGroup]="formulario" (ngSubmit)="onSubmit($event)">
 
-            <!--CAMPO DE NOMBRE DEL USUARIO-->
-            <label for="email">Email:</label>
-            <input type="text" formControlName="email">
-            <div *ngIf="campoEmail.errors && campoEmail.touched">
-                <p class="errores">El campo Nombre es obligatorio</p>
+            <!-- NOMBRE -->
+            <div class="campo">
+                <label>Nombre:</label>
+                <input type="text" formControlName="name">
+            </div>
+            <div *ngIf="campoName?.touched && campoName?.invalid" class="errores">
+                <p>El nombre es obligatorio.</p>
             </div>
 
-            <!--CAMPO DE CONTRASEÑA-->
-            <label for="password">Contraseña:</label>
-            <!--Mensja de validación para el campo contraseña-->
-            <div *ngIf="campoPassword.errors && campoPassword.touched">
-                <p class="errores">El campo contraseña es obligatorio</p>
+            <!-- EMAIL -->
+            <div class="campo">
+                <label>Email:</label>
+                <input type="email" formControlName="email">
             </div>
-            <input type="password" formControlName="password">
+            <div *ngIf="campoEmail?.touched && campoEmail?.invalid" class="errores">
+                <p>Debe introducir un email válido.</p>
+            </div>
 
-            <button type="submit">Iniciar Sesion</button>
-            <button [routerLink]="['/registrar']" routerLinkActive="router-link-active">Registrarse</button>
-            <button [routerLink]="['/inicio']" routerLinkActive="router-link-active">Cancelar</button>
+            <!-- CONTRASEÑA -->
+            <div class="campo">
+                <label>Contraseña:</label>
+                <input type="password" formControlName="password">
+            </div>
+            <div *ngIf="campoPassword?.touched && campoPassword?.invalid" class="errores">
+                <p>La contraseña es obligatoria y debe tener mínimo 6 caracteres.</p>
+            </div>
+
+            <!-- APELLIDO -->
+            <div class="campo">
+                <label>Apellido:</label>
+                <input type="text" formControlName="apellido">
+            </div>
+
+            <!-- TELEFONO -->
+            <div class="campo">
+                <label>Teléfono:</label>
+                <input type="text" formControlName="telefono">
+            </div>
+
+            <!-- DIRECCIÓN -->
+            <div class="campo">
+                <label>Dirección:</label>
+                <input type="text" formControlName="direccion">
+            </div>
+
+            <!-- HOBBY -->
+            <div class="campo">
+                <label>Hobby:</label>
+                <input type="text" formControlName="hobby">
+            </div>
+
+            <!-- Botones -->
+            <button type="submit">Registrarse</button>
+            <button [routerLink]="['/login']">Iniciar sesión</button>
+            <button [routerLink]="['/inicio']">Cancelar</button>
+
         </form>
+
     </div>
 </div>

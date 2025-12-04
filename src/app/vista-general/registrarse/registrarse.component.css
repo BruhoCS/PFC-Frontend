@@ -102,6 +102,30 @@ button:hover {
     box-shadow: 0 0 10px rgba(75, 1, 1, 0.7);
 }
 
+/* Línea del formulario */
+.campo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    /* Opcional para espaciar cada fila */
+    margin: 8px 0;
+}
+
+/* Estilo de los labels */
+.campo label {
+    color: white;
+    font-size: 18px;
+    width: 40%;        /* ancho controlado del label */
+    text-align: left;  /* alineación del texto */
+}
+
+/* Inputs alineados */
+.campo input {
+    width: 55%;
+}
+
+
 /* Responsividad para pantallas pequeñas (móviles) */
 @media screen and (max-width: 1040px) {
     h1 {
