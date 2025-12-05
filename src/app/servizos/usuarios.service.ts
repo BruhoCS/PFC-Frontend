@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Perfil } from '../vista-general/modelo/perfil';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,10 +36,10 @@ export class UsuariosService {
       Accept: 'application/json'
     });
     //Obtener el id del usuario actual
-   const usuarioActual = JSON.parse(sessionStorage.getItem("usuarioActual"));
+    const usuarioActual = JSON.parse(sessionStorage.getItem("usuarioActual"));
 
     // Realiza una petición GET.
-    this.http.get<Perfil>('http://127.0.0.1:8000/api/perfil/'+usuarioActual.id, { headers })
+    this.http.get<Perfil>('http://127.0.0.1:8000/api/perfil/' + usuarioActual.id, { headers })
       .subscribe({
         // next se ejecuta si llega la respuesta correcta del servidor
         next: (perfilUser) => {
@@ -56,9 +57,9 @@ export class UsuariosService {
   }
 
   // Este método permite subscribirse aos cambios do perfil
-    subscribirsePerfil$(): Observable<Perfil> {
-      return this.perfilUser$.asObservable();
-    }
+  subscribirsePerfil$(): Observable<Perfil> {
+    return this.perfilUser$.asObservable();
+  }
 
   // Método que hace una petición HTTP GET al backend para obtener los perfiles
   // y actualiza tanto el array local como el BehaviorSubject.
@@ -92,9 +93,25 @@ export class UsuariosService {
   }
 
   //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
-  crearUsuario(nuevoUsuario: Usuario) {
-    //Hacemos el post
-
+  crearUsuario(nuevoUsuario: String[]) {
+    //Hacemos el post para enviar la información al servidor
+    this.http.post('http://127.0.0.1:8000/api/register', nuevoUsuario, {
+      headers: new HttpHeaders({
+        'Accept': 'application/json'
+      })
+    })
+      // Nos suscribimos al Observable para ejecutar la petición y manejar la respuesta.
+      .subscribe({
+        // next se ejecuta cuando llega la respuesta correcta del servidor.
+        next: () => {
+          console.log("Se ha registrado correctamente");
+        },
+        // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
+        error: (err) => {
+          // Registramos el error en consola 
+          console.log("Error al registrarse", err);
+        }
+      });
   }
 
   //Modificar usuario

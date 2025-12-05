@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { UsuariosService } from '../../servizos/usuarios.service';
 import { Usuario } from '../modelo/usuario';
-import { debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
+import { Plan } from '../modelo/plan';
+import { PlanesService } from '../../servizos/planes.service';
 
 
 @Component({
@@ -18,8 +20,11 @@ export class RegistrarseComponent {
   formulario: FormGroup;//Definimos el formulario que irá asociado al formulario
   usuario: Usuario;// Array que gardará o usuario da sesión
   errorSesion: boolean = false;//Variable que nos permitirá mostrar un mensaje de error en caso de que la sesión no sea válida
+  //variable para almacenar los planes y que el usuario elija el suyo
+  planes: Plan[];
+
   //Declaremos la propiedad FormBuilder que agilizará la creación del formulario
-  constructor(private elaborador: FormBuilder, private router: Router, private servicioUsuario: UsuariosService) {
+  constructor(private elaborador: FormBuilder, private servicioUsuario: UsuariosService, private servicioPlanes: PlanesService) {
     this.formulario = this.elaborador.group({
 
       //Campos para tabla user 
@@ -27,7 +32,7 @@ export class RegistrarseComponent {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       rol: ["user"], // por defecto usuario normal
-      id_plan: [null], // normalmente null al registrarse
+      id_plan: [Validators.required], // normalmente null al registrarse
 
       //Campos para tabla perfil
       apellido: ["", [Validators.required]],
@@ -45,41 +50,27 @@ export class RegistrarseComponent {
       });
   }
 
-  //Funcion para guardar la sesión
+  //Funcion para registrarse
+  registrarUser(nuevoUsuario: String[]) {
+    this.servicioUsuario.crearUsuario(nuevoUsuario);
+  }
+
   async onSubmit(evento: Event) {
-    evento.preventDefault(); // Evitamos o comportamento por defecto do navegador que borraría o formulario ao lanzar un "submit"
-    // Marca todos los controles como "tocados" para mostrar validaciones
+    //Prevenir errores del navegador
+    evento.preventDefault();
+
+    //Validación del formulario
     this.formulario.markAllAsTouched();
-    // Si el formulario no cumple las validaciones...                      
     if (this.formulario.invalid) {
-      // ...activa el indicador de error de sesión en la UI                             
       this.errorSesion = true;
-      // ...y sale sin intentar loguear                      
       return;
     }
+    //Usamos la función para enviar los datos al backend y registrar asi el usuario
+    this.registrarUser(this.formulario.value);
 
-    // Extrae los valores actuales de email y password del formulario
-    const { email, password } = this.formulario.value;
-    // Inicia bloque de manejo de errores para operaciones asíncronas
-    try {
-      // Espera a que el servicio haga el login contra el backend                                                       
-      const correcto = await this.servicioUsuario.iniciarsesion(email, password);
-      // Si el servicio indica que el login no fue correcto...
-      if (!correcto) {
-        // ...muestra error en la UI                                   
-        this.errorSesion = true;
-        // ...y termina el flujo                              
-        return;
-      }
-      // Si ocurre una excepción (error de red, 4xx/5xx, etc.)
-    } catch {
-      // ...activa el error de sesión para informar en la UI                                                
-      this.errorSesion = true;
-    }
   }
 
   //GETTERS para facilitar el trabajo con los campos del formulario
-  // ---- GETTERS PARA USER ----
   get campoName() {
     return this.formulario.get('name');
   }
@@ -100,7 +91,7 @@ export class RegistrarseComponent {
     return this.formulario.get('id_plan');
   }
 
-  // ---- GETTERS PARA PERFIL ----
+  // ---- Getter para perfil ----
   get campoApellido() {
     return this.formulario.get('apellido');
   }
@@ -118,11 +109,18 @@ export class RegistrarseComponent {
   }
 
 
-  //Funcion para subscribirse al servicio y obtener a los usuarios
+  
   ngOnInit(): void {
+    //Funcion para subscribirse al servicio y obtener a los usuarios
     this.servicioUsuario.usuarioActual$.subscribe((usuarios) => {
       this.usuario = usuarios;
 
+    });
+
+    //Cargamos los pplanes y subscribimos nuestra variable para poder mostrarlos y que el usuario elija 1 
+    this.servicioPlanes.mostrarPlanes();
+    this.servicioPlanes.subscribirsePlanes$().subscribe((planes) => {
+      this.planes = planes;
     })
   }
 }

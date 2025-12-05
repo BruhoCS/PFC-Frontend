@@ -23,6 +23,12 @@
                 <p>El nombre es obligatorio.</p>
             </div>
 
+            <!-- APELLIDO -->
+            <div class="campo">
+                <label>Apellido:</label>
+                <input type="text" formControlName="apellido">
+            </div>
+
             <!-- EMAIL -->
             <div class="campo">
                 <label>Email:</label>
@@ -41,10 +47,19 @@
                 <p>La contraseña es obligatoria y debe tener mínimo 6 caracteres.</p>
             </div>
 
-            <!-- APELLIDO -->
+            <!-- PLANES DEL GYM -->
             <div class="campo">
-                <label>Apellido:</label>
-                <input type="text" formControlName="apellido">
+                <label>Plan del gimnasio:</label>
+                <select formControlName="id_plan">
+                    <option value="">Selecciona un plan</option>
+                    <option *ngFor="let plan of planes" [value]="plan.id">
+                        {{ plan.nombre }}
+                    </option>
+                </select>
+            </div>
+
+            <div *ngIf="campoIdPlan?.touched && campoIdPlan?.invalid" class="errores">
+                <p>Debe seleccionar un plan.</p>
             </div>
 
             <!-- TELEFONO -->

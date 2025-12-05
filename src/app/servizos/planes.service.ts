@@ -16,6 +16,10 @@ export class PlanesService {
     this.planes$ = new BehaviorSubject(this.planes);
   }
 
+  subscribirsePlanes$(){
+    return this.planes$.asObservable();
+  }
+
   //Método para mostrar los planes disponibles en el gimnasio
   mostrarPlanes() {
     const token = localStorage.getItem('token');
