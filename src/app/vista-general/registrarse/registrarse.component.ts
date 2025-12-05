@@ -32,7 +32,7 @@ export class RegistrarseComponent {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
       rol: ["user"], // por defecto usuario normal
-      id_plan: [Validators.required], // normalmente null al registrarse
+      id_plan: [Validators.required], 
 
       //Campos para tabla perfil
       apellido: ["", [Validators.required]],
@@ -121,6 +121,6 @@ export class RegistrarseComponent {
     this.servicioPlanes.mostrarPlanes();
     this.servicioPlanes.subscribirsePlanes$().subscribe((planes) => {
       this.planes = planes;
-    })
+    });
   }
 }

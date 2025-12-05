@@ -12,16 +12,40 @@
                     <label>Nombre:</label>
                     <input type="text" formControlName="name">
                 </div>
+                <div *ngIf="campoName?.touched && campoName?.invalid" class="errores">
+                    <p>Debe introducir un nombre válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Email:</label>
                     <input type="email" formControlName="email">
+                </div>
+                <div *ngIf="campoEmail?.touched && campoEmail?.invalid" class="errores">
+                    <p>Debe introducir un email válido.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Contraseña:</label>
                     <input type="password" formControlName="password">
                 </div>
+                <div *ngIf="campoPassword?.touched && campoPassword?.invalid" class="errores">
+                    <p>Debe introducir una contraseña válida.</p>
+                </div>
+
+                <div class="form-row">
+                    <label>Plan:</label>
+                    <select formControlName="id_plan">
+                        <option value="">Selecciona un plan</option>
+                        <option *ngFor="let plan of planes" [value]="plan.id">
+                            {{ plan.nombre }}
+                        </option>
+                    </select>
+                </div>
+
+                <div *ngIf="campoIdPlan?.touched && campoIdPlan?.invalid" class="errores">
+                    <p>Debe seleccionar un plan.</p>
+                </div>
+
 
                 <div class="form-row">
                     <label>Rol:</label>
@@ -30,25 +54,40 @@
                         <option value="admin">Administrador</option>
                     </select>
                 </div>
+                <div *ngIf="campoRol?.touched && campoRol?.invalid" class="errores">
+                    <p>Debe seleccionar un rol.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Apellido:</label>
                     <input type="text" formControlName="apellido">
+                </div>
+                <div *ngIf="campoApellido?.touched && campoApellido?.invalid" class="errores">
+                    <p>Debe introducir un apellido válido.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Teléfono:</label>
                     <input type="text" formControlName="telefono">
                 </div>
+                <div *ngIf="campoTelefono?.touched && campoTelefono?.invalid" class="errores">
+                    <p>Debe introducir un teléfono válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Dirección:</label>
                     <input type="text" formControlName="direccion">
                 </div>
+                <div *ngIf="campoDireccion?.touched && campoDireccion?.invalid" class="errores">
+                    <p>Debe introducir una dirección válida.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Hobby:</label>
                     <input type="text" formControlName="hobby">
+                </div>
+                <div *ngIf="campoHobby?.touched && campoHobby?.invalid" class="errores">
+                    <p>Debe introducir un hobby válido.</p>
                 </div>
 
                 <div class="botones">
@@ -56,6 +95,7 @@
                     <button (click)="modificarUsuario()">Modificar usuario</button>
                 </div>
             </form>
+
 
             <!-- LISTA DE USUARIOS -->
             <div class="lista">
@@ -74,6 +114,7 @@
         <h2>Gestión de Deportes</h2>
 
         <div class="fila">
+
             <!-- FORMULARIO DEPORTES -->
             <form [formGroup]="formDeportes" class="formulario">
 
@@ -81,35 +122,56 @@
                     <label>Nombre:</label>
                     <input type="text" formControlName="nombre">
                 </div>
+                <div *ngIf="campoNombreDep?.touched && campoNombreDep?.invalid" class="errores">
+                    <p>Debe introducir un nombre válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Día:</label>
                     <input type="text" formControlName="dia">
+                </div>
+                <div *ngIf="campoDia?.touched && campoDia?.invalid" class="errores">
+                    <p>Debe introducir un día válido.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Precio:</label>
                     <input type="number" formControlName="precio">
                 </div>
+                <div *ngIf="campoPrecio?.touched && campoPrecio?.invalid" class="errores">
+                    <p>Debe introducir un precio válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Descripción:</label>
                     <textarea rows="2" formControlName="descripcion"></textarea>
+                </div>
+                <div *ngIf="campoDescripcion?.touched && campoDescripcion?.invalid" class="errores">
+                    <p>Debe introducir una descripción válida.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Nivel:</label>
                     <input type="text" formControlName="nivel">
                 </div>
+                <div *ngIf="campoNivel?.touched && campoNivel?.invalid" class="errores">
+                    <p>Debe introducir un nivel válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Duración:</label>
                     <input type="text" formControlName="duracion">
                 </div>
+                <div *ngIf="campoDuracion?.touched && campoDuracion?.invalid" class="errores">
+                    <p>Debe introducir una duración válida.</p>
+                </div>
 
                 <div class="form-row">
                     <label>ID Entrenador:</label>
                     <input type="number" formControlName="id_entrenador">
+                </div>
+                <div *ngIf="campoIdEntrenador?.touched && campoIdEntrenador?.invalid" class="errores">
+                    <p>Debe seleccionar un entrenador válido.</p>
                 </div>
 
                 <div class="botones">
@@ -117,6 +179,7 @@
                     <button (click)="modificarDeporte()">Modificar deporte</button>
                 </div>
             </form>
+
 
             <!-- LISTA DE DEPORTES -->
             <div class="lista">
@@ -134,39 +197,56 @@
         <h2>Gestión de Entrenadores</h2>
 
         <div class="fila">
-            <!-- FORMULARIO ENTRENADORES -->
+
             <form [formGroup]="formEntrenadores" class="formulario">
 
                 <div class="form-row">
                     <label>Email:</label>
                     <input type="email" formControlName="email">
                 </div>
+                <div *ngIf="campoEmailEnt?.touched && campoEmailEnt?.invalid" class="errores">
+                    <p>Debe introducir un email válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Nombre:</label>
                     <input type="text" formControlName="nombre">
+                </div>
+                <div *ngIf="campoNombreEnt?.touched && campoNombreEnt?.invalid" class="errores">
+                    <p>Debe introducir un nombre válido.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Apellido:</label>
                     <input type="text" formControlName="apellido">
                 </div>
+                <div *ngIf="campoApellidoEnt?.touched && campoApellidoEnt?.invalid" class="errores">
+                    <p>Debe introducir un apellido válido.</p>
+                </div>
 
                 <div class="form-row">
                     <label>Dirección:</label>
                     <input type="text" formControlName="direccion">
+                </div>
+                <div *ngIf="campoDireccionEnt?.touched && campoDireccionEnt?.invalid" class="errores">
+                    <p>Debe introducir una dirección válida.</p>
                 </div>
 
                 <div class="form-row">
                     <label>Teléfono:</label>
                     <input type="text" formControlName="telefono">
                 </div>
+                <div *ngIf="campoTelefonoEnt?.touched && campoTelefonoEnt?.invalid" class="errores">
+                    <p>Debe introducir un teléfono válido.</p>
+                </div>
 
                 <div class="botones">
                     <button (click)="crearEntrenador()">Crear entrenador</button>
                     <button (click)="modificarEntrenador()">Modificar entrenador</button>
                 </div>
+
             </form>
+
 
             <!-- LISTA ENTRENADORES -->
             <div class="lista">

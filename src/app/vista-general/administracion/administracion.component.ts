@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Usuario } from '../modelo/usuario';
+import { Deporte } from '../modelo/deporte';
+import { Entrenador } from '../modelo/entrenador';
+import { UsuariosService } from '../../servizos/usuarios.service';
+import { PlanesService } from '../../servizos/planes.service';
+import { Plan } from '../modelo/plan';
 
 @Component({
   selector: 'app-administracion',
@@ -17,30 +23,29 @@ export class AdministracionComponent implements OnInit {
   formEntrenadores: FormGroup;
 
   // Listas de elementos
-  usuarios: any[] = [];
-  deportes: any[] = [];
-  entrenadores: any[] = [];
+  usuarios: Usuario[];
+  deportes: Deporte[];
+  entrenadores: Entrenador[];
+  planes:Plan[];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private servicioUsuario:UsuariosService,private servicioPlanes:PlanesService) {
 
-    /* ============================
-       FORMULARIO USUARIOS
-    ============================ */
+    //Formulario usuarios
     this.formUsuarios = this.fb.group({
+      //tabla user
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       rol: ['user', Validators.required],
-
+      id_plan: [Validators.required], 
+      //Tabla perfil
       apellido: ['', Validators.required],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required],
       hobby: ['', Validators.required]
     });
 
-    /* ============================
-       FORMULARIO DEPORTES
-    ============================ */
+    //Formulario deportes
     this.formDeportes = this.fb.group({
       id_entrenador: ['', Validators.required],
       nombre: ['', Validators.required],
@@ -51,9 +56,7 @@ export class AdministracionComponent implements OnInit {
       duracion: ['', Validators.required]
     });
 
-    /* ============================
-       FORMULARIO ENTRENADORES
-    ============================ */
+    //Formulario entrenadores
     this.formEntrenadores = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       nombre: ['', Validators.required],
@@ -64,46 +67,8 @@ export class AdministracionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Aquí cargarías usuarios, deportes y entrenadores desde el servicio
+    
   }
-
-  /* ============================
-        GETTERS USUARIOS
-  ============================ */
-  get campoName() { return this.formUsuarios.get('name'); }
-  get campoEmail() { return this.formUsuarios.get('email'); }
-  get campoPassword() { return this.formUsuarios.get('password'); }
-  get campoRol() { return this.formUsuarios.get('rol'); }
-
-  get campoApellido() { return this.formUsuarios.get('apellido'); }
-  get campoDireccion() { return this.formUsuarios.get('direccion'); }
-  get campoTelefono() { return this.formUsuarios.get('telefono'); }
-  get campoHobby() { return this.formUsuarios.get('hobby'); }
-
-  /* ============================
-        GETTERS DEPORTES
-  ============================ */
-  get campoIdEntrenador() { return this.formDeportes.get('id_entrenador'); }
-  get campoNombreDep() { return this.formDeportes.get('nombre'); }
-  get campoDia() { return this.formDeportes.get('dia'); }
-  get campoPrecio() { return this.formDeportes.get('precio'); }
-  get campoDescripcion() { return this.formDeportes.get('descripcion'); }
-  get campoNivel() { return this.formDeportes.get('nivel'); }
-  get campoDuracion() { return this.formDeportes.get('duracion'); }
-
-  /* ============================
-      GETTERS ENTRENADORES
-  ============================ */
-  get campoEmailEnt() { return this.formEntrenadores.get('email'); }
-  get campoNombreEnt() { return this.formEntrenadores.get('nombre'); }
-  get campoApellidoEnt() { return this.formEntrenadores.get('apellido'); }
-  get campoDireccionEnt() { return this.formEntrenadores.get('direccion'); }
-  get campoTelefonoEnt() { return this.formEntrenadores.get('telefono'); }
-
-
-  /* ============================
-      FUNCIONES VACÍAS
-  ============================ */
 
   // Usuarios
   crearUsuario() { }
@@ -120,4 +85,33 @@ export class AdministracionComponent implements OnInit {
   modificarEntrenador() { }
   borrarEntrenador(ent: any) { }
 
+
+   //GETTERS USUARIOS
+
+  get campoName() { return this.formUsuarios.get('name'); }
+  get campoEmail() { return this.formUsuarios.get('email'); }
+  get campoPassword() { return this.formUsuarios.get('password'); }
+  get campoRol() { return this.formUsuarios.get('rol'); }
+  get campoIdPlan() { return this.formUsuarios.get('id_plan'); }
+
+  get campoApellido() { return this.formUsuarios.get('apellido'); }
+  get campoDireccion() { return this.formUsuarios.get('direccion'); }
+  get campoTelefono() { return this.formUsuarios.get('telefono'); }
+  get campoHobby() { return this.formUsuarios.get('hobby'); }
+
+  //GETTERS DEPORTES
+  get campoIdEntrenador() { return this.formDeportes.get('id_entrenador'); }
+  get campoNombreDep() { return this.formDeportes.get('nombre'); }
+  get campoDia() { return this.formDeportes.get('dia'); }
+  get campoPrecio() { return this.formDeportes.get('precio'); }
+  get campoDescripcion() { return this.formDeportes.get('descripcion'); }
+  get campoNivel() { return this.formDeportes.get('nivel'); }
+  get campoDuracion() { return this.formDeportes.get('duracion'); }
+
+  //GETTERS ENTRENADORES
+  get campoEmailEnt() { return this.formEntrenadores.get('email'); }
+  get campoNombreEnt() { return this.formEntrenadores.get('nombre'); }
+  get campoApellidoEnt() { return this.formEntrenadores.get('apellido'); }
+  get campoDireccionEnt() { return this.formEntrenadores.get('direccion'); }
+  get campoTelefonoEnt() { return this.formEntrenadores.get('telefono'); }
 }
