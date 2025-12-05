@@ -7,6 +7,8 @@ import { Entrenador } from '../modelo/entrenador';
 import { UsuariosService } from '../../servizos/usuarios.service';
 import { PlanesService } from '../../servizos/planes.service';
 import { Plan } from '../modelo/plan';
+import { DeportesService } from '../../servizos/deportes.service';
+import { EntrenadorServiceService } from '../../servizos/entrenador.service.service';
 
 @Component({
   selector: 'app-administracion',
@@ -26,9 +28,11 @@ export class AdministracionComponent implements OnInit {
   usuarios: Usuario[];
   deportes: Deporte[];
   entrenadores: Entrenador[];
-  planes:Plan[];
+  planes: Plan[];
 
-  constructor(private fb: FormBuilder,private servicioUsuario:UsuariosService,private servicioPlanes:PlanesService) {
+  constructor(private fb: FormBuilder, private servicioUsuario: UsuariosService, 
+    private servicioPlanes: PlanesService,private servicioDeportes:DeportesService,
+    private servicioEntrenadores:EntrenadorServiceService) {
 
     //Formulario usuarios
     this.formUsuarios = this.fb.group({
@@ -37,7 +41,7 @@ export class AdministracionComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       rol: ['user', Validators.required],
-      id_plan: [Validators.required], 
+      id_plan: [Validators.required],
       //Tabla perfil
       apellido: ['', Validators.required],
       direccion: ['', Validators.required],
@@ -67,7 +71,37 @@ export class AdministracionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    /* PLANES */
+    //Cargamos los planes
+    this.servicioPlanes.mostrarPlanes();
+    //Y rellenamos nuestra variable local para poder mostrarlos y que el admin elija
+    this.servicioPlanes.subscribirsePlanes$().subscribe((planes)=>{
+      this.planes = planes;
+    });
+
+    /* DEPORTES */
+    //Cargamos los deportes
+    this.servicioDeportes.mostrarDeportes();
+    //Rellenamos la variable local con los deportes
+    this.servicioDeportes.subscribirseDeportes$().subscribe((deportes)=>{
+      this.deportes = deportes
+    });
+
+    /* USUARIOS */
+    //Cargamos los usuarios
+    this.servicioUsuario.mostrarUsuarios();
+    //Subscribimos nuestra variable local para obtenerlos
+    this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios)=>{
+      this.usuarios = usuarios;
+    });
+
+    /* ENTRENADORES */
+    //Cargamos los entrenadores
+    this.servicioEntrenadores.mostrarEntrenadores();
+    //Subscribimos la variable local para obtenerlos
+    this.servicioEntrenadores.subscribirseEntrenadores$().subscribe((entrenadores)=>{
+      this.entrenadores = entrenadores;
+    })
   }
 
   // Usuarios
@@ -86,7 +120,7 @@ export class AdministracionComponent implements OnInit {
   borrarEntrenador(ent: any) { }
 
 
-   //GETTERS USUARIOS
+  //GETTERS USUARIOS
 
   get campoName() { return this.formUsuarios.get('name'); }
   get campoEmail() { return this.formUsuarios.get('email'); }

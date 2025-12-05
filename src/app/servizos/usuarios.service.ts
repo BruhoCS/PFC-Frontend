@@ -23,8 +23,44 @@ export class UsuariosService {
   usuarios$: BehaviorSubject<Usuario[]>;
 
   constructor(private router: Router, private http: HttpClient) {
+    //Usuario actual
     this.usuarioActual$ = new BehaviorSubject(this.usuarioActual);
+    //Perfil del usuario actual
     this.perfilUser$ = new BehaviorSubject(this.perfilUser);
+    //Todos los usuarios
+    this.usuarios$ = new BehaviorSubject(this.usuarios);
+  }
+
+  //Mostrar Usuarios
+  mostrarUsuarios() {
+    //Obtener el token y la autorización para hacer la petición
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+    // Petición a la API (ajusta la URL si tu ruta es distinta)
+    this.http.get<Usuario[]>('http://127.0.0.1:8000/api/usuarios', { headers })
+      .subscribe({
+        next: (listaUsuarios) => {
+          // Guardamos los usuarios en la variable local
+          this.usuarios = listaUsuarios;
+          // Emitimos la lista a los suscriptores del BehaviorSubject
+          this.usuarios$.next(listaUsuarios);
+        },
+        error: (err) => {
+          console.error("Error al cargar los usuarios:", err);
+          // Si falla, limpiamos los datos
+          this.usuarios = [];
+          this.usuarios$.next([]);
+        }
+      });
+
+  }
+
+  //Hacer usuarios un observable
+  subscribirseUsuarios$(){
+   return this.usuarios$.asObservable();
   }
 
   //Mostrar perfil del usuario de la sesión
