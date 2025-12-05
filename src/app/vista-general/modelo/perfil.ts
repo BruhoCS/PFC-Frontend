@@ -1,6 +1,6 @@
 export interface Perfil {
-    id_user:string;
-    id:string;
+    id_user:number;
+    id:number;
     apellido:string;
     telefono:string;
     direccion:string;

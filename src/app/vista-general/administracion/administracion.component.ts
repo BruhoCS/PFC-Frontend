@@ -9,6 +9,7 @@ import { PlanesService } from '../../servizos/planes.service';
 import { Plan } from '../modelo/plan';
 import { DeportesService } from '../../servizos/deportes.service';
 import { EntrenadorServiceService } from '../../servizos/entrenador.service.service';
+import { Perfil } from '../modelo/perfil';
 
 @Component({
   selector: 'app-administracion',
@@ -26,13 +27,14 @@ export class AdministracionComponent implements OnInit {
 
   // Listas de elementos
   usuarios: Usuario[];
+  perfiles: Perfil[];
   deportes: Deporte[];
   entrenadores: Entrenador[];
   planes: Plan[];
 
-  constructor(private fb: FormBuilder, private servicioUsuario: UsuariosService, 
-    private servicioPlanes: PlanesService,private servicioDeportes:DeportesService,
-    private servicioEntrenadores:EntrenadorServiceService) {
+  constructor(private fb: FormBuilder, private servicioUsuario: UsuariosService,
+    private servicioPlanes: PlanesService, private servicioDeportes: DeportesService,
+    private servicioEntrenadores: EntrenadorServiceService) {
 
     //Formulario usuarios
     this.formUsuarios = this.fb.group({
@@ -75,7 +77,7 @@ export class AdministracionComponent implements OnInit {
     //Cargamos los planes
     this.servicioPlanes.mostrarPlanes();
     //Y rellenamos nuestra variable local para poder mostrarlos y que el admin elija
-    this.servicioPlanes.subscribirsePlanes$().subscribe((planes)=>{
+    this.servicioPlanes.subscribirsePlanes$().subscribe((planes) => {
       this.planes = planes;
     });
 
@@ -83,7 +85,7 @@ export class AdministracionComponent implements OnInit {
     //Cargamos los deportes
     this.servicioDeportes.mostrarDeportes();
     //Rellenamos la variable local con los deportes
-    this.servicioDeportes.subscribirseDeportes$().subscribe((deportes)=>{
+    this.servicioDeportes.subscribirseDeportes$().subscribe((deportes) => {
       this.deportes = deportes
     });
 
@@ -91,21 +93,41 @@ export class AdministracionComponent implements OnInit {
     //Cargamos los usuarios
     this.servicioUsuario.mostrarUsuarios();
     //Subscribimos nuestra variable local para obtenerlos
-    this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios)=>{
+    this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios) => {
       this.usuarios = usuarios;
+    });
+    //Tambien cargaremos sus perfiles
+    this.servicioUsuario.mostrarPerfiles();
+    // Y subscribiremos nuestra variable local
+    this.servicioUsuario.subscribirsePerfiles$().subscribe((perfiles) => {
+      this.perfiles = perfiles;
     });
 
     /* ENTRENADORES */
     //Cargamos los entrenadores
     this.servicioEntrenadores.mostrarEntrenadores();
     //Subscribimos la variable local para obtenerlos
-    this.servicioEntrenadores.subscribirseEntrenadores$().subscribe((entrenadores)=>{
+    this.servicioEntrenadores.subscribirseEntrenadores$().subscribe((entrenadores) => {
       this.entrenadores = entrenadores;
     })
   }
 
   // Usuarios
-  crearUsuario() { }
+  //Función para obtener el usuario y enviarlo al formulario para modificarlo
+  obtenerUser(usuario: Usuario ){
+    this.formUsuarios.patchValue({
+      name: usuario.name,
+      email: usuario.email,
+      password: usuario.password,
+      rol: usuario.rol,
+      id_plan: usuario.id_plan
+    });
+  }
+
+  // Función para crear usuario nuevo
+  crearUsuario(usuario: string[]) {
+    this.servicioUsuario.crearUsuario(usuario);
+  }
   modificarUsuario() { }
   borrarUsuario(user: any) { }
 

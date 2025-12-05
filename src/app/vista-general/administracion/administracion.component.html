@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="botones">
-                    <button (click)="crearUsuario()">Crear usuario</button>
+                    <button (click)="crearUsuario(this.formUsuarios.value)">Crear usuario</button>
                     <button (click)="modificarUsuario()">Modificar usuario</button>
                 </div>
             </form>
@@ -100,12 +100,15 @@
             <!-- LISTA DE USUARIOS -->
             <div class="lista">
                 <div class="tarjeta" *ngFor="let u of usuarios">
-                    <p><strong>{{ u.name }}</strong></p>
-                    <p>{{ u.email }}</p>
-                    <p>Rol: {{ u.rol }}</p>
-                    <a (click)="borrarUsuario(u)">Eliminar</a>
+                            <p><strong>{{ u.name }}</strong></p>
+                            <p>{{ u.email }}</p>
+                            <p>Rol: {{ u.rol }}</p>
+
+                            <a (click)="obtenerUser(u)">Modificar</a>
+                            <a (click)="borrarUsuario(u)">Eliminar</a>
                 </div>
             </div>
+
         </div>
     </div>
 

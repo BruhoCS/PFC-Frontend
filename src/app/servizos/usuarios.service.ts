@@ -10,17 +10,21 @@ import { Perfil } from '../vista-general/modelo/perfil';
   providedIn: 'root'
 })
 export class UsuariosService {
+   // Variable para almacenar todos los usuarios
+  usuarios: Usuario[] = [];
+  // Flujo reactivo para emitir la lista de usuarios a quien se suscriba.
+  usuarios$: BehaviorSubject<Usuario[]>;
   //Variables para almacenar al usuario que se encuentra en la sesión
   usuarioActual: Usuario;
   usuarioActual$: BehaviorSubject<Usuario>;//Empieza sin subscripción
+  //Variables para guardar los perfiles de los usuarios
+  perfiles:Perfil[];
+  perfiles$:BehaviorSubject<Perfil[]>;
   //Variable para guardar el perfil
   perfilUser: Perfil;
   perfilUser$: BehaviorSubject<Perfil>;
 
-  // Variable para almacenar todos los usuarios
-  usuarios: Usuario[] = [];
-  // Flujo reactivo para emitir la lista de usuarios a quien se suscriba.
-  usuarios$: BehaviorSubject<Usuario[]>;
+ 
 
   constructor(private router: Router, private http: HttpClient) {
     //Usuario actual
@@ -29,6 +33,8 @@ export class UsuariosService {
     this.perfilUser$ = new BehaviorSubject(this.perfilUser);
     //Todos los usuarios
     this.usuarios$ = new BehaviorSubject(this.usuarios);
+    //Todos los perfiles
+    this.perfiles$ = new BehaviorSubject(this.perfiles);
   }
 
   //Mostrar Usuarios
@@ -59,8 +65,8 @@ export class UsuariosService {
   }
 
   //Hacer usuarios un observable
-  subscribirseUsuarios$(){
-   return this.usuarios$.asObservable();
+  subscribirseUsuarios$() {
+    return this.usuarios$.asObservable();
   }
 
   //Mostrar perfil del usuario de la sesión
@@ -106,26 +112,30 @@ export class UsuariosService {
       Accept: 'application/json'
     });
     // Realiza una petición GET.
-    this.http.get<Usuario[]>('http://127.0.0.1:8000/api/perfiles', { headers })
+    this.http.get<Perfil[]>('http://127.0.0.1:8000/api/perfiles', { headers })
       // Nos suscribimos al Observable para ejecutar la petición y manejar la respuesta.
       .subscribe({
         // next se ejecuta cuando llega la respuesta correcta del servidor.
         next: (perfiles) => {
           // Guardamos los perfiles en la variable local 
-          this.usuarios = perfiles;
+          this.perfiles = perfiles;
           // Emitimos los perfiles a todos los suscriptores del BehaviorSubject.
-          this.usuarios$.next(perfiles);
+          this.perfiles$.next(perfiles);
         },
         // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
         error: (err) => {
           // Registramos el error en consola 
-          console.log("Error al cargar usuarios");
+          console.log("Error al cargar usuarios",err);
           // Dejamos el estado local vacio
           this.usuarios = [];
           // Emitimos lista vacía para que la UI reaccione
           this.usuarios$.next([]);
         }
       });
+  }
+  // Este método permite subscribirse aos cambios do perfil
+  subscribirsePerfiles$(): Observable<Perfil[]> {
+    return this.perfiles$.asObservable();
   }
 
   //Metodo que permite añadir un nuevo usuario al tiempo que informa a los subscriptores
