@@ -1,92 +1,123 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { UsuariosService } from '../../servizos/usuarios.service';
-import { Usuario } from '../modelo/usuario';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-administracion',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './administracion.component.html',
   styleUrl: './administracion.component.css'
 })
-
 export class AdministracionComponent implements OnInit {
-  formulario: FormGroup;//Definimos el formulario que irá asociado al formulario
-  usuarios: Usuario[];//Array que gardará os usuarios almacenados na sessionStorage
-  //Declaremos la propiedad FormBuilder que agilizará la creación del formulario
-  constructor(private elaborador: FormBuilder, private router: Router, private servicioUsuario: UsuariosService) {
-    this.formulario = this.elaborador.group({
-      //Definimos los arrays para cada control del formulario
-      name: ["", [Validators.required]],
-      rol: ["", [Validators.required]],
-      password: ["", [Validators.required]]
+
+  // Formularios
+  formUsuarios: FormGroup;
+  formDeportes: FormGroup;
+  formEntrenadores: FormGroup;
+
+  // Listas de elementos
+  usuarios: any[] = [];
+  deportes: any[] = [];
+  entrenadores: any[] = [];
+
+  constructor(private fb: FormBuilder) {
+
+    /* ============================
+       FORMULARIO USUARIOS
+    ============================ */
+    this.formUsuarios = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      rol: ['user', Validators.required],
+
+      apellido: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required],
+      hobby: ['', Validators.required]
+    });
+
+    /* ============================
+       FORMULARIO DEPORTES
+    ============================ */
+    this.formDeportes = this.fb.group({
+      id_entrenador: ['', Validators.required],
+      nombre: ['', Validators.required],
+      dia: ['', Validators.required],
+      precio: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      nivel: ['', Validators.required],
+      duracion: ['', Validators.required]
+    });
+
+    /* ============================
+       FORMULARIO ENTRENADORES
+    ============================ */
+    this.formEntrenadores = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      direccion: ['', Validators.required],
+      telefono: ['', Validators.required]
     });
   }
 
-  //Funcion para guardar el usuario nuevo
-  crearUsuario(evento: Event) {
-    evento.preventDefault();//Evitamos el comportamiento por defecto del navegador
-    //Buscamos el name
-    let buscarUsuario = this.usuarios.find(usuario => usuario.name === this.formulario.value.name);
-    //Si el formulario cumple con todas las validaciones y no esta registrado
-    if (this.formulario.value.name && this.formulario.value.password && this.formulario.value.rol && buscarUsuario == undefined) {
-      //Añadimos el nuevo usuario al array de usuarios
-      this.usuarios.push(this.formulario.value);
-      //Añadimos el usuario al sessionStorage
-      sessionStorage.setItem("usuarios", JSON.stringify(this.usuarios));
-      //Limpiamos el formulario
-      this.formulario.reset();
-    }
-  }
-
-  // Funcion para modificar el usuario usando el name como si fuera una id
-  modificarUsuario(evento: Event) {
-    evento.preventDefault();// Evitamos el comportamiento por defecto del navegador
-    //Comprobamos que el formulario cumple con las validaciones
-    if (this.formulario.value.name && this.formulario.value.password && this.formulario.value.rol) {
-      //Buscamos el name
-      let buscarUsuario = this.usuarios.find(usuario => usuario.name === this.formulario.value.name);
-      //Si existe
-      if (this.formulario.value.name = buscarUsuario) {
-        //Modificamos el usuario
-        buscarUsuario.password = this.formulario.value.password;
-        buscarUsuario.rol = this.formulario.value.rol;
-        //Actualizamos
-          // "spread operator" crea un nuevo array en memoria con los mismos elementos,lo que hace que Angular detecte el cambio y actualice la interfaz
-        this.usuarios = [...this.usuarios];
-        this.formulario.reset();
-      }
-    }
-  }
-
-  //Funcion para borrar el usuario
-  borrarUsuario(usuario: Usuario) {
-    const indice = this.usuarios.findIndex(u => u.name === usuario.name);
-    if (indice !== -1) {
-      this.usuarios.splice(indice, 1); // Elimina el usuario en la posición encontrada
-    }
-  }
-
-  //GETTERS para facilitar el trabajo con los campos del formulario
-  get campoName() {
-    return this.formulario.get('name');
-  }
-
-  get campoRol() {
-    return this.formulario.get('rol');
-  }
-
-  get campoPassword() {
-    return this.formulario.get('password');
-  }
-
-  //Funcion para subscribirse al servicio y obtener a los usuarios
   ngOnInit(): void {
-    /*this.servicioUsuario.subscribirseUsuarios$().subscribe((usuarios) => {
-      this.usuarios = usuarios;
-    })*/
+    // Aquí cargarías usuarios, deportes y entrenadores desde el servicio
   }
+
+  /* ============================
+        GETTERS USUARIOS
+  ============================ */
+  get campoName() { return this.formUsuarios.get('name'); }
+  get campoEmail() { return this.formUsuarios.get('email'); }
+  get campoPassword() { return this.formUsuarios.get('password'); }
+  get campoRol() { return this.formUsuarios.get('rol'); }
+
+  get campoApellido() { return this.formUsuarios.get('apellido'); }
+  get campoDireccion() { return this.formUsuarios.get('direccion'); }
+  get campoTelefono() { return this.formUsuarios.get('telefono'); }
+  get campoHobby() { return this.formUsuarios.get('hobby'); }
+
+  /* ============================
+        GETTERS DEPORTES
+  ============================ */
+  get campoIdEntrenador() { return this.formDeportes.get('id_entrenador'); }
+  get campoNombreDep() { return this.formDeportes.get('nombre'); }
+  get campoDia() { return this.formDeportes.get('dia'); }
+  get campoPrecio() { return this.formDeportes.get('precio'); }
+  get campoDescripcion() { return this.formDeportes.get('descripcion'); }
+  get campoNivel() { return this.formDeportes.get('nivel'); }
+  get campoDuracion() { return this.formDeportes.get('duracion'); }
+
+  /* ============================
+      GETTERS ENTRENADORES
+  ============================ */
+  get campoEmailEnt() { return this.formEntrenadores.get('email'); }
+  get campoNombreEnt() { return this.formEntrenadores.get('nombre'); }
+  get campoApellidoEnt() { return this.formEntrenadores.get('apellido'); }
+  get campoDireccionEnt() { return this.formEntrenadores.get('direccion'); }
+  get campoTelefonoEnt() { return this.formEntrenadores.get('telefono'); }
+
+
+  /* ============================
+      FUNCIONES VACÍAS
+  ============================ */
+
+  // Usuarios
+  crearUsuario() { }
+  modificarUsuario() { }
+  borrarUsuario(user: any) { }
+
+  // Deportes
+  crearDeporte() { }
+  modificarDeporte() { }
+  borrarDeporte(dep: any) { }
+
+  // Entrenadores
+  crearEntrenador() { }
+  modificarEntrenador() { }
+  borrarEntrenador(ent: any) { }
+
 }

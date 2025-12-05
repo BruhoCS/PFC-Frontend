@@ -1,56 +1,182 @@
-<div class="contenido">
-    <h1>Añadir un usuario nuevo</h1>
-    <div class="formulario">
-        <div id="imagenLogin">
-            <img src="/imagenes/imagenesAcceder/loginFithub.png" alt="Imagen de login">
+<div class="admin-container">
+
+    <!-- SECCIÓN USUARIOS -->
+    <div class="seccion">
+        <h2>Gestión de Usuarios</h2>
+
+        <div class="fila">
+            <!-- FORMULARIO USUARIOS -->
+            <form [formGroup]="formUsuarios" class="formulario">
+
+                <div class="form-row">
+                    <label>Nombre:</label>
+                    <input type="text" formControlName="name">
+                </div>
+
+                <div class="form-row">
+                    <label>Email:</label>
+                    <input type="email" formControlName="email">
+                </div>
+
+                <div class="form-row">
+                    <label>Contraseña:</label>
+                    <input type="password" formControlName="password">
+                </div>
+
+                <div class="form-row">
+                    <label>Rol:</label>
+                    <select formControlName="rol">
+                        <option value="user">Usuario</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>Apellido:</label>
+                    <input type="text" formControlName="apellido">
+                </div>
+
+                <div class="form-row">
+                    <label>Teléfono:</label>
+                    <input type="text" formControlName="telefono">
+                </div>
+
+                <div class="form-row">
+                    <label>Dirección:</label>
+                    <input type="text" formControlName="direccion">
+                </div>
+
+                <div class="form-row">
+                    <label>Hobby:</label>
+                    <input type="text" formControlName="hobby">
+                </div>
+
+                <div class="botones">
+                    <button (click)="crearUsuario()">Crear usuario</button>
+                    <button (click)="modificarUsuario()">Modificar usuario</button>
+                </div>
+            </form>
+
+            <!-- LISTA DE USUARIOS -->
+            <div class="lista">
+                <div class="tarjeta" *ngFor="let u of usuarios">
+                    <p><strong>{{ u.name }}</strong></p>
+                    <p>{{ u.email }}</p>
+                    <p>Rol: {{ u.rol }}</p>
+                    <a (click)="borrarUsuario(u)">Eliminar</a>
+                </div>
+            </div>
         </div>
-
-        <!--Formulario que nos permitirá añadir y modificar usuarios-->
-        <form [formGroup]="formulario">
-
-            <!--CAMPO DE NOMBRE DEL USUARIO-->
-            <label for="name">Nombre:</label>
-            <input type="text" formControlName="name">
-            <div *ngIf="campoName.errors && campoName.touched">
-                <p class="errores">El campo Nombre es obligatorio</p>
-            </div>
-
-
-            <!--CAMPO DE ROL DEL USUARIO-->
-            <label for="rol">Rol</label>
-            <select formControlName="rol">
-                <option value=""></option>
-                <option value="Usuario">Usuario</option>
-                <option value="Administrador">Administrador</option>
-            </select>
-            <div *ngIf="campoRol.errors && campoRol.touched">
-                <p class="errores">El campo contraseña es obligatorio</p>
-            </div>
-
-
-            <!--CAMPO DE CONTRASEÑA-->
-            <label for="contrasenha">Contraseña:</label>
-            <!--Mensja de validación para el campo contraseña-->
-            <div *ngIf="campoPassword.errors && campoPassword.touched">
-                <p class="errores">El campo contraseña es obligatorio</p>
-            </div>
-            <input type="password" formControlName="contrasenha">
-            <!--Botones para crear o modificar-->
-            <button (click)="crearUsuario($event)">Crear</button>
-            <button (click)="modificarUsuario($event)">Modificar Usuario</button>
-            <button>Cancelar</button>
-        </form>
     </div>
-</div>
 
-<!--Div donde mostraremos a todos los usuarios registrados con la opción de borrado-->
-<div class="mostrarUsuarios">
-    <h2>Usuarios</h2>
-    <div class="usuarios">
-        <div class="tarjeta" *ngFor="let usuario of usuarios">
-            <p>Nombre: {{usuario.name}}</p>
-            <p>Rol: {{usuario.rol}}</p>
-            <a (click)="borrarUsuario(usuario)" class="button">Borrar Usuario</a>
+    <!-- SECCIÓN DEPORTES -->
+    <div class="seccion">
+        <h2>Gestión de Deportes</h2>
+
+        <div class="fila">
+            <!-- FORMULARIO DEPORTES -->
+            <form [formGroup]="formDeportes" class="formulario">
+
+                <div class="form-row">
+                    <label>Nombre:</label>
+                    <input type="text" formControlName="nombre">
+                </div>
+
+                <div class="form-row">
+                    <label>Día:</label>
+                    <input type="text" formControlName="dia">
+                </div>
+
+                <div class="form-row">
+                    <label>Precio:</label>
+                    <input type="number" formControlName="precio">
+                </div>
+
+                <div class="form-row">
+                    <label>Descripción:</label>
+                    <textarea rows="2" formControlName="descripcion"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <label>Nivel:</label>
+                    <input type="text" formControlName="nivel">
+                </div>
+
+                <div class="form-row">
+                    <label>Duración:</label>
+                    <input type="text" formControlName="duracion">
+                </div>
+
+                <div class="form-row">
+                    <label>ID Entrenador:</label>
+                    <input type="number" formControlName="id_entrenador">
+                </div>
+
+                <div class="botones">
+                    <button (click)="crearDeporte()">Crear deporte</button>
+                    <button (click)="modificarDeporte()">Modificar deporte</button>
+                </div>
+            </form>
+
+            <!-- LISTA DE DEPORTES -->
+            <div class="lista">
+                <div class="tarjeta" *ngFor="let d of deportes">
+                    <p><strong>{{ d.nombre }}</strong></p>
+                    <p>{{ d.dia }} — {{ d.precio }} €</p>
+                    <a (click)="borrarDeporte(d)">Eliminar</a>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- SECCIÓN ENTRENADORES -->
+    <div class="seccion">
+        <h2>Gestión de Entrenadores</h2>
+
+        <div class="fila">
+            <!-- FORMULARIO ENTRENADORES -->
+            <form [formGroup]="formEntrenadores" class="formulario">
+
+                <div class="form-row">
+                    <label>Email:</label>
+                    <input type="email" formControlName="email">
+                </div>
+
+                <div class="form-row">
+                    <label>Nombre:</label>
+                    <input type="text" formControlName="nombre">
+                </div>
+
+                <div class="form-row">
+                    <label>Apellido:</label>
+                    <input type="text" formControlName="apellido">
+                </div>
+
+                <div class="form-row">
+                    <label>Dirección:</label>
+                    <input type="text" formControlName="direccion">
+                </div>
+
+                <div class="form-row">
+                    <label>Teléfono:</label>
+                    <input type="text" formControlName="telefono">
+                </div>
+
+                <div class="botones">
+                    <button (click)="crearEntrenador()">Crear entrenador</button>
+                    <button (click)="modificarEntrenador()">Modificar entrenador</button>
+                </div>
+            </form>
+
+            <!-- LISTA ENTRENADORES -->
+            <div class="lista">
+                <div class="tarjeta" *ngFor="let e of entrenadores">
+                    <p><strong>{{ e.nombre }} {{ e.apellido }}</strong></p>
+                    <p>{{ e.email }}</p>
+                    <a (click)="borrarEntrenador(e)">Eliminar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

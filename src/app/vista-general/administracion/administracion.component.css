@@ -1,129 +1,147 @@
-h1{
-    font-size: 45px;
-    margin-bottom: 1rem;
-    border-bottom: 5px solid black;
-
-}
-.contenido {
+/* CONTENEDOR GENERAL */
+.admin-container {
     display: flex;
     flex-direction: column;
-    /*cores*/
+    gap: 2.5rem;
+    padding: 2rem;
     background-color: #260202;
-    /* Gran desenfoque */
-    box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
-    /*Medidas*/
-    margin: 10px;
-    margin-top: 120px;
-    /*Posicion dos elementos*/
-    align-items: center;
+    margin: 120px 20px 40px 20px;
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.35);
+}
+
+/* CADA SECCIÓN */
+.seccion {
+    background: #1a0000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(255, 0, 0, 0.35);
+}
+
+/* TITULOS */
+.seccion h2 {
     text-align: center;
-    padding: 20px;
-
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: 0.5rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
 }
 
+/* CONTENEDOR FORM + LISTA */
+.fila {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* FORMULARIOS */
 .formulario {
-    background-color: #260202;
-    box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
-    width: 100%;
-    /*Ancho máximo*/
-    max-width: 400px;
-    padding: 20px;
+    background: #0f0000;
+    padding: 1rem 1.5rem;
     border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.35);
 }
 
-form {
+/* FILA DE FORMULARIO */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .85rem;
+}
+
+/* ETIQUETAS */
+.form-row label {
+    width: 40%;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+/* INPUTS */
+.form-row input,
+.form-row select,
+.form-row textarea {
+    width: 55%;
+    padding: 6px 8px;
+    background: #1c1c1c;
+    border: 2px solid #8b0000;
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* BOTONES DEL FORMULARIO */
+.botones {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    font-size: 20px;
+    gap: .6rem;
+    margin-top: 1rem;
 }
 
-#imagenLogin {
-    padding: 10px;
-    border-bottom: 2px solid black;
-    background-color: #140101;
-    display: flex;
-    justify-content: center;
-}
-
-
-form input,
-form select {
-    padding: 8px;
-    border: 2px solid rgba(107, 1, 1, 0.644);
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-button {
-    background-color: rgb(0, 0, 0);
-    border-radius: 10px;
-    border-color: rgba(202, 4, 4, 0.644);
+.botones button {
+    background: #000;
+    border-radius: 8px;
+    border: 2px solid #8b0000;
+    padding: .55rem;
     color: white;
-    font-size: 18px;
-    padding: 10px;
-    width: 100%;
-}
-
-button:hover {
-    transition: 0.4s;
-    background-color: rgba(133, 2, 2, 0.644);
-    border-color: rgb(184, 181, 181);
+    font-size: 0.95rem;
     cursor: pointer;
 }
 
-.errores {
-    color: #ff6666;
-    font-size: 14px;
+.botones button:hover {
+    background: #5c0000;
 }
 
-.mostrarUsuarios {
-    /*cores*/
-    background-color: #260202;
-    /* Gran desenfoque */
-    box-shadow: 0 0 10px rgba(249, 0, 0, 0.7);
-    /*Medidas*/
-    margin: 20px;
-    padding: 20px;
-    /*Posicion dos elementos*/
-    align-items: center;
-    text-align: center;
-}
-
-.usuarios {
+/* LISTADO A LA DERECHA */
+.lista {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1rem;
+    flex: 1;
 }
 
+/* TARJETAS LISTA */
 .tarjeta {
-    background-color: #1b0101;
-    border-radius: 10px;
-    margin: 20px;
-    width: 80%;
-    /* Gran desenfoque */
-    box-shadow: 0 0 10px rgba(75, 1, 1, 0.7);
-    padding: 20px;
+    background: #200000;
+    border: 2px solid #8b0000;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.25);
 }
 
-.tarjeta>* {
-    margin-bottom: 1rem;
+.tarjeta p {
+    margin: .3rem 0;
 }
-/* RESPONSIVIDAD PARA TABLET Y MÓVILES */
-@media screen and (max-width: 1024px) {
-    .contenido {
-        margin-top: 50px;
+
+.tarjeta a {
+    display: block;
+    background: #300000;
+    padding: .4rem;
+    margin-top: .5rem;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #8b0000;
+    cursor: pointer;
+}
+
+.tarjeta a:hover {
+    background: #5c0000;
+}
+
+/* RESPONSIVE */
+@media (max-width: 750px) {
+    .fila {
+        flex-direction: column;
+        align-items: center;
     }
 
     .formulario {
-        width: 95%;
-    }
-
-    button {
-        font-size: 16px;
-    }
-
-    .usuarios {
-        display: flex;
-        flex-direction: column;
+        width: 100%;
+        max-width: 380px;
     }
 }
