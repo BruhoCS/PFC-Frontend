@@ -10,7 +10,7 @@ import { Perfil } from '../vista-general/modelo/perfil';
   providedIn: 'root'
 })
 export class UsuariosService {
-   // Variable para almacenar todos los usuarios
+  // Variable para almacenar todos los usuarios
   usuarios: Usuario[] = [];
   // Flujo reactivo para emitir la lista de usuarios a quien se suscriba.
   usuarios$: BehaviorSubject<Usuario[]>;
@@ -18,13 +18,13 @@ export class UsuariosService {
   usuarioActual: Usuario;
   usuarioActual$: BehaviorSubject<Usuario>;//Empieza sin subscripción
   //Variables para guardar los perfiles de los usuarios
-  perfiles:Perfil[];
-  perfiles$:BehaviorSubject<Perfil[]>;
+  perfiles: Perfil[];
+  perfiles$: BehaviorSubject<Perfil[]>;
   //Variable para guardar el perfil
   perfilUser: Perfil;
   perfilUser$: BehaviorSubject<Perfil>;
 
- 
+
 
   constructor(private router: Router, private http: HttpClient) {
     //Usuario actual
@@ -125,7 +125,7 @@ export class UsuariosService {
         // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
         error: (err) => {
           // Registramos el error en consola 
-          console.log("Error al cargar usuarios",err);
+          console.log("Error al cargar usuarios", err);
           // Dejamos el estado local vacio
           this.usuarios = [];
           // Emitimos lista vacía para que la UI reaccione
@@ -151,6 +151,7 @@ export class UsuariosService {
         // next se ejecuta cuando llega la respuesta correcta del servidor.
         next: () => {
           console.log("Se ha registrado correctamente");
+
         },
         // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
         error: (err) => {
@@ -161,14 +162,55 @@ export class UsuariosService {
   }
 
   //Modificar usuario
-  modificarUsuario(email: string, password: string) {
+  modificarUsuario(id: number, usuarioModificado: string[]) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+    //Hacemos el post para enviar la información al servidor
+    this.http.put(`http://127.0.0.1:8000/api/usuarios/${id}`, usuarioModificado, { headers })
+      // Nos suscribimos al Observable para ejecutar la petición y manejar la respuesta.
+      .subscribe({
+        // next se ejecuta cuando llega la respuesta correcta del servidor.
+        next: () => {
+          console.log("Se ha modificado el usuario correctamente");
 
+        },
+        // error se ejecuta si la petición falla (4xx/5xx, red, etc.).
+        error: (err) => {
+          // Registramos el error en consola 
+          console.log("Error al modificar", err);
+        }
+      });
   }
 
-  //Eliminar usuario
-  eliminarUsuario(email: string, password: string) {
+  // Eliminar usuario por ID
+  eliminarUsuario(id: number) {
 
+    const token = localStorage.getItem('token') ?? '';
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      Accept: 'application/json'
+    });
+
+    this.http.delete(`http://127.0.0.1:8000/api/usuarios/${id}`, { headers })
+      .subscribe({
+        next: () => {
+          console.log("Usuario eliminado correctamente");
+
+          //actualizamos la lista 
+          this.usuarios = this.usuarios.filter(u => u.id !== id);
+          this.usuarios$.next(this.usuarios);
+        },
+        error: (err) => {
+          //Si hay algun fallo mostramos el error
+          console.error("Error al eliminar el usuario:", err);
+        }
+      });
   }
+
 
   // Método para iniciar sesión con un email y contraseña
   iniciarsesion(email: string, password: string): Promise<boolean> {

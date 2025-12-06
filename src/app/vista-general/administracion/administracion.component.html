@@ -8,6 +8,8 @@
             <!-- FORMULARIO USUARIOS -->
             <form [formGroup]="formUsuarios" class="formulario">
 
+                <input type="hidden" formControlName="id">
+                
                 <div class="form-row">
                     <label>Nombre:</label>
                     <input type="text" formControlName="name">
@@ -91,8 +93,8 @@
                 </div>
 
                 <div class="botones">
-                    <button (click)="crearUsuario(this.formUsuarios.value)">Crear usuario</button>
-                    <button (click)="modificarUsuario()">Modificar usuario</button>
+                    <button type="button" (click)="crearUsuario(this.formUsuarios.value)">Crear usuario</button>
+                    <button type="button" (click)="modificarUsuario()">Modificar usuario</button>
                 </div>
             </form>
 
@@ -100,12 +102,12 @@
             <!-- LISTA DE USUARIOS -->
             <div class="lista">
                 <div class="tarjeta" *ngFor="let u of usuarios">
-                            <p><strong>{{ u.name }}</strong></p>
-                            <p>{{ u.email }}</p>
-                            <p>Rol: {{ u.rol }}</p>
+                    <p><strong>{{ u.name }}</strong></p>
+                    <p>{{ u.email }}</p>
+                    <p>Rol: {{ u.rol }}</p>
 
-                            <a (click)="obtenerUser(u)">Modificar</a>
-                            <a (click)="borrarUsuario(u)">Eliminar</a>
+                    <a (click)="obtenerUser(u)">Modificar</a>
+                    <a (click)="borrarUsuario(u.id)">Eliminar</a>
                 </div>
             </div>
 
@@ -170,11 +172,7 @@
                 </div>
 
                 <div class="form-row">
-                    <label>ID Entrenador:</label>
-                    <input type="number" formControlName="id_entrenador">
-                </div>
-                <div *ngIf="campoIdEntrenador?.touched && campoIdEntrenador?.invalid" class="errores">
-                    <p>Debe seleccionar un entrenador válido.</p>
+                    <input type="hidden" formControlName="id_entrenador">
                 </div>
 
                 <div class="botones">
@@ -189,6 +187,7 @@
                 <div class="tarjeta" *ngFor="let d of deportes">
                     <p><strong>{{ d.nombre }}</strong></p>
                     <p>{{ d.dia }} — {{ d.precio }} €</p>
+                    <a (click)="obtenerDeporte(d)">Modificar</a>
                     <a (click)="borrarDeporte(d)">Eliminar</a>
                 </div>
             </div>
@@ -256,6 +255,7 @@
                 <div class="tarjeta" *ngFor="let e of entrenadores">
                     <p><strong>{{ e.nombre }} {{ e.apellido }}</strong></p>
                     <p>{{ e.email }}</p>
+                    <a (click)="obtenerEntrenador(e)">Modificar</a>
                     <a (click)="borrarEntrenador(e)">Eliminar</a>
                 </div>
             </div>

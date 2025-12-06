@@ -38,18 +38,19 @@ export class AdministracionComponent implements OnInit {
 
     //Formulario usuarios
     this.formUsuarios = this.fb.group({
-      //tabla user
-      name: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rol: ['user', Validators.required],
-      id_plan: [Validators.required],
-      //Tabla perfil
+      //necesario para modificar
+      id: [null],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      rol: ['user'],
+      id_plan: ['', Validators.required],
       apellido: ['', Validators.required],
-      direccion: ['', Validators.required],
       telefono: ['', Validators.required],
+      direccion: ['', Validators.required],
       hobby: ['', Validators.required]
     });
+
 
     //Formulario deportes
     this.formDeportes = this.fb.group({
@@ -114,29 +115,75 @@ export class AdministracionComponent implements OnInit {
 
   // Usuarios
   //Función para obtener el usuario y enviarlo al formulario para modificarlo
-  obtenerUser(usuario: Usuario ){
+  obtenerUser(usuario: Usuario) {
     this.formUsuarios.patchValue({
+      id: usuario.id,
       name: usuario.name,
       email: usuario.email,
-      password: usuario.password,
+      password: "",
       rol: usuario.rol,
-      id_plan: usuario.id_plan
+      id_plan: usuario.id_plan,
     });
   }
 
   // Función para crear usuario nuevo
   crearUsuario(usuario: string[]) {
+    //En caso de que el formulario sea invalido no envia la información
+    if (this.formUsuarios.invalid) { return };
+    //Si no llamamos a la función para enviar los datos del ususario al backend
     this.servicioUsuario.crearUsuario(usuario);
+    //Y limpiamos el formulario
+    this.formUsuarios.reset();
   }
-  modificarUsuario() { }
-  borrarUsuario(user: any) { }
+  //Funcion para modificar usuario
+  modificarUsuario() {
+    //Obtenemos todos los datos del usuario
+    const userModificado = this.formUsuarios.value;
+    console.log("USuario modificado: "+userModificado);
+    console.log("ID DEL USUARIO MODIFICADO: "+userModificado.id)
+    //En caso de que no tenga id mostramos error
+    if (!userModificado.id) {
+      console.error("No hay id");
+      return;
+    }
+    //Enviamos al backend donde se gestionará la modificación
+    this.servicioUsuario.modificarUsuario(userModificado.id, userModificado);
+  }
+
+  // Funcion para eliminar el usuario buscando por id
+  borrarUsuario(id: number) {
+    this.servicioUsuario.eliminarUsuario(id);
+  }
 
   // Deportes
+  //Función para obtener el usuario y enviarlo al formulario para modificarlo
+  obtenerDeporte(deporte: Deporte) {
+    this.formDeportes.patchValue({
+      nombre: deporte.nombre,
+      dia: deporte.dia,
+      precio: deporte.precio,
+      descripcion: deporte.descripcion,
+      nivel: deporte.nivel,
+      duracion: deporte.duración,
+      id_entrenador: deporte.id_entrenador
+    });
+  }
   crearDeporte() { }
   modificarDeporte() { }
   borrarDeporte(dep: any) { }
 
   // Entrenadores
+  // Función para obtener un entrenador y enviar sus datos al formulario
+  obtenerEntrenador(entrenador: Entrenador) {
+    this.formEntrenadores.patchValue({
+      email: entrenador.email,
+      nombre: entrenador.nombre,
+      apellido: entrenador.apellido,
+      direccion: entrenador.direccion,
+      telefono: entrenador.telefono
+    });
+  }
+
   crearEntrenador() { }
   modificarEntrenador() { }
   borrarEntrenador(ent: any) { }
