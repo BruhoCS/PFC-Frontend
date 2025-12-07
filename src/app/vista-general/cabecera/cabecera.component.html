@@ -25,7 +25,7 @@
         </li>
 
         <!--Link que redirige a la página de administración-->
-        <li>
+        <li *ngIf="usuarioActual.rol === 'admin'">
           <button [routerLink]="['/administracion']">Administracion</button>
         </li>
       </ul>

@@ -71,7 +71,7 @@
       <!--BOTONES-->
       <div class="botonesEntreno">
         <!--botón para mostrar por pantalla el entreno-->
-        <button id="enviar" type="button" [disabled]="formulario.invalid" (click)="cargarEntreno(formulario.value)">Guardar</button>
+        <button id="enviar" type="button" [disabled]="formulario.invalid" (click)="cargarEntreno(this.formulario.value)">Guardar</button>
         <!--botón para descargar el entreno-->
         <button id="guardar" (click)="descargarEntreno()">Descargar</button>
         <!--Eliminar el entreno escrito-->
