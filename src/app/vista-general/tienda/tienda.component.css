@@ -1,0 +1,108 @@
+/* CONTENEDOR PRINCIPAL */
+.tienda-container {
+    background-color: #260202;
+    margin: 120px 20px 20px 20px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(249, 0, 0, 0.6);
+    color: #fff;
+    border-radius: 12px;
+}
+
+/* TÍTULO PRINCIPAL */
+.titulo-tienda {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: .7rem;
+}
+
+/* SECCIONES */
+.seccion {
+    margin-bottom: 2.5rem;
+    background-color: #1a0000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(249, 0, 0, 0.4);
+}
+
+.seccion h2 {
+    font-size: 1.6rem;
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: .4rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+/* GRID DE PRODUCTOS */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+}
+
+/* TARJETA PRODUCTO */
+.producto {
+    background: #0f0000;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 10px rgba(249, 0, 0, 0.4);
+    text-align: center;
+
+    /* Clave para que el botón quede abajo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 260px;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.producto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+/* NOMBRE DEL PRODUCTO */
+.producto h3 {
+    margin: 0 0 .5rem 0;
+    color: #ff6b6b;
+}
+
+/* CATEGORÍA */
+.producto .categoria {
+    font-size: 0.9rem;
+    opacity: .7;
+}
+
+/* PRECIO */
+.producto .precio {
+    margin-top: auto;      /* Empuja el precio hacia abajo */
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* BOTÓN AÑADIR — versión compacta */
+.btn-comprar {
+    margin-top: .6rem;
+    background-color: #000;
+    border: 1px solid #8b0000;
+    color: white;
+    padding: .35rem .5rem;   /* Botón más pequeño */
+    width: 100%;             /* Ocupa el ancho pero no es grande */
+    font-size: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.btn-comprar:hover {
+    background-color: #5c0000;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .productos-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

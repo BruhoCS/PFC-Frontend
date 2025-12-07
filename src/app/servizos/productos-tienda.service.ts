@@ -1,62 +1,55 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Productos } from '../../app/vista-general/modelo/productos';
-import * as comidaJson from "../../../public/data/comida.json";
-import * as accesoriosJson from "../../../public/data/accesorios.json";
-import * as suplementosJson from "../../../public/data/suplementos.json";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductosTiendaService {
-  //Definimos los array que contendrá la comida,los suplementos y los accesorios de los JSON
-  comida:Productos[];
-  suplementos:Productos[];
-  accesorios:Productos[];
 
-  //Definimos los subject que emitirá el array a todos los subscriptores
-  comida$: BehaviorSubject<Productos[]>;
-  suplementos$: BehaviorSubject<Productos[]>;
-  accesorios$: BehaviorSubject<Productos[]>;
+  productos: Productos[] = [];
 
-  constructor() { 
-    //COMIDA
-    this.comida = (comidaJson as any).default;//Iniciamos con los productos del JSON
-    this.comida$ = new BehaviorSubject(this.comida);//Inicialmente no hay subscriptores
-    //SUPLEMENTOS
-    this.suplementos = (suplementosJson as any).default;//Iniciamos con los productos del JSON
-    this.suplementos$ = new BehaviorSubject(this.suplementos);//Inicialmente no hay subscriptores
-    //ACCESORIOS
-    this.accesorios = (accesoriosJson as any).default;//Iniciamos con los productos del JSON
-    this.accesorios$ = new BehaviorSubject(this.accesorios);//Inicialmente no hay subscriptores
+  comida$: BehaviorSubject<Productos[]> = new BehaviorSubject<Productos[]>([]);
+  suplementos$: BehaviorSubject<Productos[]> = new BehaviorSubject<Productos[]>([]);
+  accesorios$: BehaviorSubject<Productos[]> = new BehaviorSubject<Productos[]>([]);
+
+  constructor(private http: HttpClient) {}
+
+  cargarProductos() {
+    this.http.get<Productos[]>('https://693596ddfa8e704dafbe48f0.mockapi.io/producto')
+      .subscribe({
+        next: (productos) => {
+          console.log("Productos obtenidos:", productos);
+          this.productos = productos;
+
+          this.comida$.next(
+            productos.filter(p => p.categoria === "comida")
+          );
+
+          this.suplementos$.next(
+            productos.filter(p => p.categoria === "suplementos")
+          );
+
+          this.accesorios$.next(
+            productos.filter(p => p.categoria === "accesorios")
+          );
+        },
+        error: (err) => {
+          console.log("Error al cargar los productos:", err);
+        }
+      });
   }
 
-  //Metodos que permiten añadir un nuevo producto al tiempo que informa a los subscritores
-  crearComida(nuevaComida:Productos):void{
-    this.comida.push(nuevaComida);//Rellenamos el array
-    this.comida$.next(this.comida);//Informamos a los subscriptores
-  }
-
-  crearSuplemento(nuevoSuplemento:Productos):void{
-    this.suplementos.push(nuevoSuplemento);//Rellenamos el array
-    this.suplementos$.next(this.suplementos);//Informamos a los subscriptores
-  }
-
-  crearAccesorio(nuevoAccesorio:Productos):void{
-    this.accesorios.push(nuevoAccesorio);//Rellenamos el array
-    this.accesorios$.next(this.accesorios);//Informamos a los subscriptores
-  }
-
-  //Métodos para permitir que se subscriban al array
-  subscribirseComida$():Observable<Productos[]>{
+  subscribirseComida$() {
     return this.comida$.asObservable();
   }
 
-  subscribirseSuplemento$():Observable<Productos[]>{
+  subscribirseSuplementos$() {
     return this.suplementos$.asObservable();
   }
 
-  subscribirseAccesorio$():Observable<Productos[]>{
+  subscribirseAccesorios$() {
     return this.accesorios$.asObservable();
   }
 }

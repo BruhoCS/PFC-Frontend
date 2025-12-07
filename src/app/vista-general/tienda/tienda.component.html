@@ -1,0 +1,51 @@
+<div class="tienda-container">
+
+    <h1 class="titulo-tienda">Tienda FitHub</h1>
+
+    <!--  COMIDA  -->
+    <section class="seccion">
+        <h2>Comida</h2>
+
+        <div class="productos-grid">
+            <div class="producto" *ngFor="let p of comida">
+                <h3>{{ p.nombre }}</h3>
+                <p class="categoria">{{ p.categoria }}</p>
+                <p class="precio">{{ p.precio }} €</p>
+               <button class="btn-comprar" disabled>Muy pronto</button>
+
+            </div>
+        </div>
+    </section>
+
+    <!--  SUPLEMENTOS  -->
+    <section class="seccion">
+        <h2>Suplementos</h2>
+
+        <div class="productos-grid">
+            <div class="producto" *ngFor="let p of suplementos">
+                <h3>{{ p.nombre }}</h3>
+                <p class="categoria">{{ p.categoria }}</p>
+                <p class="precio">{{ p.precio }} €</p>
+               <button class="btn-comprar" disabled>Muy pronto</button>
+
+            </div>
+        </div>
+    </section>
+
+    <!--  ACCESORIOS  -->
+    <section class="seccion">
+        <h2>Accesorios</h2>
+
+        <div class="productos-grid">
+            <div class="producto" *ngFor="let p of accesorios">
+                <h3>{{ p.nombre }}</h3>
+                <p class="categoria">{{ p.categoria }}</p>
+                <p class="precio">{{ p.precio }} €</p>
+               <button class="btn-comprar" disabled>Muy pronto</button>
+
+            </div>
+        </div>
+    </section>
+
+</div>
+

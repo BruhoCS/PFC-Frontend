@@ -24,6 +24,11 @@
           <button [routerLink]="['/tarifa']" class="cabeceraA">Tarifas</button>
         </li>
 
+        <!--Link que redirige a la pagina de tienda-->
+        <li class="cabeceraOpt">
+          <button [routerLink]="['/tienda']" class="cabeceraA">Tienda</button>
+        </li>
+
         <!--Link que redirige a la página de administración-->
         <li *ngIf="usuarioActual.rol === 'admin'">
           <button [routerLink]="['/administracion']">Administracion</button>
