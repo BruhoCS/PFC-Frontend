@@ -231,6 +231,8 @@
 
             <form [formGroup]="formEntrenadores" class="formulario">
 
+                <input type="hidden" formControlName="id">
+
                 <div class="form-row">
                     <label>Email:</label>
                     <input type="email" formControlName="email">
@@ -272,7 +274,7 @@
                 </div>
 
                 <div class="botones">
-                    <button (click)="crearEntrenador()">Crear entrenador</button>
+                    <button (click)="crearEntrenador(this.formEntrenadores.value)">Crear entrenador</button>
                     <button (click)="modificarEntrenador()">Modificar entrenador</button>
                 </div>
 

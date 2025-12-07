@@ -41,6 +41,72 @@ export class EntrenadorServiceService {
 
   }
 
+
+  //Funcion para crear un deporte nuevo
+  crearEnrenador(deporte: string[]) {
+
+    //Obtenemos el token y la autenticación
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    // Lanza una petición HTTP GET al endpoint de planes
+    this.http.post<Entrenador>('http://127.0.0.1:8000/api/entrenadores', deporte, { headers })
+      .subscribe({//Nos subscribimos
+        //En caso de que haya datos y este todo correcto rellenamos las variables
+        next: () => {
+          console.log("Entrenador creado con exito");
+        },
+        //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
+        error: (err) => {
+          console.error("Error al crear el Entrenador" + err);
+        }
+      });
+  }
+
+  //Función para modificar un deporte existente
+  modificarEntrenador(entrenadorModificado: string[], id: string) {
+    //Obtenemos el token
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    this.http.put<Entrenador[]>(`http://127.0.0.1:8000/api/entrenadores/${id}`, entrenadorModificado, { headers })
+      .subscribe({
+        next: (entrenadorModificado) => {
+          console.log("Entrenador modificado", entrenadorModificado);
+        },
+        error: (err) => {
+          console.error('Error al modificar el Entrenador', err);
+        }
+      });
+  }
+
+  //Fución para eliminar el deporte
+  eliminarEntrenador(entrenadorBorrado: Entrenador) {
+    //Obtenemos el token y la autorización
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    this.http.delete<Entrenador[]>(`http://127.0.0.1:8000/api/entrenadores/${entrenadorBorrado.id}`, { headers })
+      .subscribe({
+        next: (entrenadorBorrado) => {
+          console.log("Exito al eliminar el deporte: " + entrenadorBorrado);
+        },
+        error: (err) => {
+          console.error('Error al eliminar el deporte', err);
+        }
+      });
+  }
+
   //Función para poder subscribirse a entrenadores haciendolo un observable
   subscribirseEntrenadores$() {
     return this.entrenadores$.asObservable();

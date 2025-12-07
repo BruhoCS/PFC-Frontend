@@ -65,12 +65,14 @@ export class AdministracionComponent implements OnInit {
 
     //Formulario entrenadores
     this.formEntrenadores = this.fb.group({
+      id: [null],
       email: ['', [Validators.required, Validators.email]],
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       direccion: ['', Validators.required],
       telefono: ['', Validators.required]
     });
+
   }
 
   ngOnInit(): void {
@@ -169,19 +171,19 @@ export class AdministracionComponent implements OnInit {
   }
 
   crearDeporte(nuevoDeporte: string[]) {
-    console.log(nuevoDeporte);
     this.servicioDeportes.crearDeporte(nuevoDeporte);
   }
 
-  modificarDeporte() { 
+  modificarDeporte() {
     //Almacenamos primero la información del depore a modificar
     let deporteModificado = this.formDeportes.value;
     //Ahora obtenemos el id del deporte para poder buscarlo y modificarlo en el backend
     let id_deporte = deporteModificado.id;
     //Ahora llamamos al servicio para enviarlo al backend y efectuar la modificación
-    this.servicioDeportes.modificarDeporte(deporteModificado,id_deporte);
+    this.servicioDeportes.modificarDeporte(deporteModificado, id_deporte);
   }
-  borrarDeporte(deporteBorrado:Deporte) { 
+
+  borrarDeporte(deporteBorrado: Deporte) {
     //LLamamos al servicio para enviar el id y eliminar el deporte de la bd
     this.servicioDeportes.eliminarDeporte(deporteBorrado);
   }
@@ -190,6 +192,7 @@ export class AdministracionComponent implements OnInit {
   // Función para obtener un entrenador y enviar sus datos al formulario
   obtenerEntrenador(entrenador: Entrenador) {
     this.formEntrenadores.patchValue({
+      id: entrenador.id,   
       email: entrenador.email,
       nombre: entrenador.nombre,
       apellido: entrenador.apellido,
@@ -198,9 +201,26 @@ export class AdministracionComponent implements OnInit {
     });
   }
 
-  crearEntrenador() { }
-  modificarEntrenador() { }
-  borrarEntrenador(ent: any) { }
+
+  //Función para crear el entrenador nuevo
+  crearEntrenador(entrenador: string[]) {
+    //Llamamos al servicio para añadir el nuevo entrenador a la bd
+    this.servicioEntrenadores.crearEnrenador(entrenador);
+  }
+
+  modificarEntrenador() {
+    //Almacenamos primero la información del entrenador a modificar
+    let entrenadorModificado = this.formEntrenadores.value;
+    //Ahora obtenemos el id del entrenador para poder buscarlo y modificarlo en el backend
+    let id_entrenador = entrenadorModificado.id;
+    //Ahora llamamos al servicio para enviarlo al backend y efectuar la modificación
+    this.servicioEntrenadores.modificarEntrenador(entrenadorModificado, id_entrenador);
+  }
+  //Función para eliminar un entrenador concreto
+  borrarEntrenador(entrenador: Entrenador) {
+    //Llamamos al servicio para hacer la peticion al backend de borrarlo
+    this.servicioEntrenadores.eliminarEntrenador(entrenador);
+  }
 
 
   //GETTERS USUARIOS
