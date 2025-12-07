@@ -24,11 +24,6 @@ export class DeportesService {
     this.misDeportes$ = new BehaviorSubject(this.misDeportes);
   }
 
-  // Este método permite subscribirse aos cambios do array deportes
-  subscribirseDeportes$(): Observable<Deporte[]> {
-    return this.deportes$.asObservable();
-  }
-
   //Método para mostrar los planes disponibles en el gimnasio
   mostrarDeportes() {
     const token = localStorage.getItem('token');
@@ -46,13 +41,83 @@ export class DeportesService {
         },
         //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
         error: (err) => {
-          console.error("Error al cargar los planes" + err);
+          console.error("Error al cargar los deportes" + err);
           this.deportes = [];
           this.deportes$.next([]);
         }
       });
 
 
+  }
+
+  //Funcion para crear un deporte nuevo
+  crearDeporte(deporte: string[]) {
+
+    //Obtenemos el token y la autenticación
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    // Lanza una petición HTTP GET al endpoint de planes
+    this.http.post<Deporte>('http://127.0.0.1:8000/api/deportes', deporte, { headers })
+      .subscribe({//Nos subscribimos
+        //En caso de que haya datos y este todo correcto rellenamos las variables
+        next: () => {
+          console.log("Deporte creado con exito");
+        },
+        //En caso de error salta el mensaje que no es posible cargarlos dejando las variables vacias
+        error: (err) => {
+          console.error("Error al cargar los deportes" + err);
+        }
+      });
+  }
+
+  //Función para modificar un deporte existente
+  modificarDeporte(deporteModificado: string[], id: string) {
+    //Obtenemos el token
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    this.http.put<Deporte[]>(`http://127.0.0.1:8000/api/deportes/${id}`,deporteModificado, { headers })
+      .subscribe({
+        next: (deporteModificado) => {
+          console.log("Deporte modificado",deporteModificado)
+        },
+        error: (err) => {
+          console.error('Error al modificar el deporte', err);
+        }
+      });
+  }
+
+  //Fución para eliminar el deporte
+  eliminarDeporte(deporteBorrado:Deporte){
+     //Obtenemos el token
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token ?? ''}`,
+      Accept: 'application/json'
+    });
+
+    this.http.delete<Deporte[]>(`http://127.0.0.1:8000/api/deportes/${deporteBorrado.id}`, { headers })
+      .subscribe({
+        next: (deporteEliminado) => {
+          console.log("Exito al eliminar el deporte: "+deporteEliminado)
+        },
+        error: (err) => {
+          console.error('Error al eliminar el deporte', err);
+        }
+      });
+  }
+  // Este método permite subscribirse aos cambios do array deportes
+  subscribirseDeportes$(): Observable<Deporte[]> {
+    return this.deportes$.asObservable();
   }
 
   //Función para que el usuario se apunte al deporte

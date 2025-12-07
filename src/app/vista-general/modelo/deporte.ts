@@ -6,5 +6,5 @@ export interface Deporte {
     dia:string,
     descripcion:string,
     nivel:string,
-    duración:string
+    duracion:string
 }

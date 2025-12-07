@@ -113,7 +113,7 @@ export class AdministracionComponent implements OnInit {
     })
   }
 
-  // Usuarios
+  // USUARIOS
   //Función para obtener el usuario y enviarlo al formulario para modificarlo
   obtenerUser(usuario: Usuario) {
     this.formUsuarios.patchValue({
@@ -139,8 +139,6 @@ export class AdministracionComponent implements OnInit {
   modificarUsuario() {
     //Obtenemos todos los datos del usuario
     const userModificado = this.formUsuarios.value;
-    console.log("USuario modificado: "+userModificado);
-    console.log("ID DEL USUARIO MODIFICADO: "+userModificado.id)
     //En caso de que no tenga id mostramos error
     if (!userModificado.id) {
       console.error("No hay id");
@@ -155,7 +153,8 @@ export class AdministracionComponent implements OnInit {
     this.servicioUsuario.eliminarUsuario(id);
   }
 
-  // Deportes
+  // DEPORTES
+
   //Función para obtener el usuario y enviarlo al formulario para modificarlo
   obtenerDeporte(deporte: Deporte) {
     this.formDeportes.patchValue({
@@ -164,15 +163,30 @@ export class AdministracionComponent implements OnInit {
       precio: deporte.precio,
       descripcion: deporte.descripcion,
       nivel: deporte.nivel,
-      duracion: deporte.duración,
+      duracion: deporte.duracion,
       id_entrenador: deporte.id_entrenador
     });
   }
-  crearDeporte() { }
-  modificarDeporte() { }
-  borrarDeporte(dep: any) { }
 
-  // Entrenadores
+  crearDeporte(nuevoDeporte: string[]) {
+    console.log(nuevoDeporte);
+    this.servicioDeportes.crearDeporte(nuevoDeporte);
+  }
+
+  modificarDeporte() { 
+    //Almacenamos primero la información del depore a modificar
+    let deporteModificado = this.formDeportes.value;
+    //Ahora obtenemos el id del deporte para poder buscarlo y modificarlo en el backend
+    let id_deporte = deporteModificado.id;
+    //Ahora llamamos al servicio para enviarlo al backend y efectuar la modificación
+    this.servicioDeportes.modificarDeporte(deporteModificado,id_deporte);
+  }
+  borrarDeporte(deporteBorrado:Deporte) { 
+    //LLamamos al servicio para enviar el id y eliminar el deporte de la bd
+    this.servicioDeportes.eliminarDeporte(deporteBorrado);
+  }
+
+  // ENTRENADORES
   // Función para obtener un entrenador y enviar sus datos al formulario
   obtenerEntrenador(entrenador: Entrenador) {
     this.formEntrenadores.patchValue({

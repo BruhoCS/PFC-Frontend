@@ -9,7 +9,7 @@
             <form [formGroup]="formUsuarios" class="formulario">
 
                 <input type="hidden" formControlName="id">
-                
+
                 <div class="form-row">
                     <label>Nombre:</label>
                     <input type="text" formControlName="name">
@@ -133,15 +133,41 @@
 
                 <div class="form-row">
                     <label>Día:</label>
-                    <input type="text" formControlName="dia">
-                </div>
-                <div *ngIf="campoDia?.touched && campoDia?.invalid" class="errores">
-                    <p>Debe introducir un día válido.</p>
+                    <select formControlName="dia">
+                        <option value="">Seleccione un día</option>
+                        <option value="Lunes">Lunes</option>
+                        <option value="Martes">Martes</option>
+                        <option value="Miércoles">Miércoles</option>
+                        <option value="Jueves">Jueves</option>
+                        <option value="Viernes">Viernes</option>
+                        <option value="Sábado">Sábado</option>
+                        <option value="Domingo">Domingo</option>
+                    </select>
                 </div>
 
                 <div class="form-row">
+                    <label>Entrenador:</label>
+                    <select formControlName="id_entrenador">
+                        <option value="">Seleccione un entrenador</option>
+                        <option *ngFor="let ent of entrenadores" [value]="ent.id">
+                            {{ ent.nombre }} {{ ent.apellido }}
+                        </option>
+                    </select>
+                </div>
+
+                <div *ngIf="campoIdEntrenador?.touched && campoIdEntrenador?.invalid" class="errores">
+                    <p>Debe seleccionar un entrenador válido.</p>
+                </div>
+
+
+                <div *ngIf="campoDia?.touched && campoDia?.invalid" class="errores">
+                    <p>Debe seleccionar un día válido.</p>
+                </div>
+
+
+                <div class="form-row">
                     <label>Precio:</label>
-                    <input type="number" formControlName="precio">
+                    <input type="text" formControlName="precio">
                 </div>
                 <div *ngIf="campoPrecio?.touched && campoPrecio?.invalid" class="errores">
                     <p>Debe introducir un precio válido.</p>
@@ -157,11 +183,18 @@
 
                 <div class="form-row">
                     <label>Nivel:</label>
-                    <input type="text" formControlName="nivel">
+                    <select formControlName="nivel">
+                        <option value="">Seleccione un nivel</option>
+                        <option value="Novato">Novato</option>
+                        <option value="Intermedio">Intermedio</option>
+                        <option value="Experto">Experto</option>
+                    </select>
                 </div>
+
                 <div *ngIf="campoNivel?.touched && campoNivel?.invalid" class="errores">
-                    <p>Debe introducir un nivel válido.</p>
+                    <p>Debe seleccionar un nivel válido.</p>
                 </div>
+
 
                 <div class="form-row">
                     <label>Duración:</label>
@@ -171,12 +204,8 @@
                     <p>Debe introducir una duración válida.</p>
                 </div>
 
-                <div class="form-row">
-                    <input type="hidden" formControlName="id_entrenador">
-                </div>
-
                 <div class="botones">
-                    <button (click)="crearDeporte()">Crear deporte</button>
+                    <button (click)="crearDeporte(this.formDeportes.value)">Crear deporte</button>
                     <button (click)="modificarDeporte()">Modificar deporte</button>
                 </div>
             </form>
