@@ -22,4 +22,16 @@
             </div>
         </div>
     </div>
+    <!-- ENTRENADORES -->
+        <div class="entrenadores-container" *ngIf="entrenadores?.length">
+            <h2 class="titulo-entrenadores">Entrenadores disponibles</h2>
+
+            <div class="grid-entrenadores">
+                <div class="card-entrenador" *ngFor="let e of entrenadores">
+                    <h3>{{ e.nombre }} {{ e.apellido }}</h3>
+                    <p class="ent-mail">{{ e.email }}</p>
+                    <p class="ent-tel">Tel: {{ e.telefono }}</p>
+                </div>
+            </div>
+        </div>
 </div>

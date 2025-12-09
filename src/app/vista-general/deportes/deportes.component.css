@@ -8,7 +8,8 @@
     margin-top: 100px;
     align-items: center;
     text-align: center;
-    padding: 100px; /* 🔹 reducido para centrar mejor el carrusel en pantalla */
+    padding: 100px;
+    /* 🔹 reducido para centrar mejor el carrusel en pantalla */
     gap: 10px;
 }
 
@@ -19,13 +20,19 @@
 .gdep-carousel {
     position: relative;
     background: linear-gradient(135deg, #111, #1c1c1c);
-    border: 3px solid #8b0000;     /* rojo corporativo un poco más grueso */
-    border-radius: 20px;           /* esquinas más marcadas */
-    padding: 4rem 5rem;            /* 🔹 aumento del tamaño interno */
-    width: 80%;                    /* 🔹 más ancho dentro del contenedor */
-    max-width: 900px;              /* 🔹 tamaño máximo para pantallas grandes */
+    border: 3px solid #8b0000;
+    /* rojo corporativo un poco más grueso */
+    border-radius: 20px;
+    /* esquinas más marcadas */
+    padding: 4rem 5rem;
+    /* 🔹 aumento del tamaño interno */
+    width: 80%;
+    /* 🔹 más ancho dentro del contenedor */
+    max-width: 900px;
+    /* 🔹 tamaño máximo para pantallas grandes */
     color: #fff;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, .7); /* sombra más pronunciada */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, .7);
+    /* sombra más pronunciada */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,14 +46,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center; /* 🔹 centro el texto */
+    text-align: center;
+    /* 🔹 centro el texto */
     gap: 1.5rem;
 }
 
 /* Imagen centrada y un poco más grande si existiera */
 .gdep-slide img {
     width: 100%;
-    max-width: 500px; /* 🔹 aumento tamaño máximo */
+    max-width: 500px;
+    /* 🔹 aumento tamaño máximo */
     height: auto;
     object-fit: cover;
     border-radius: 14px;
@@ -57,7 +66,8 @@
    y color rojo suave para mantener coherencia */
 .gdep-info h3 {
     margin: 0 0 .5rem 0;
-    font-size: 2.2rem; /* 🔹 más grande para destacar el deporte */
+    font-size: 2.2rem;
+    /* 🔹 más grande para destacar el deporte */
     color: #ff6b6b;
     letter-spacing: .5px;
 }
@@ -77,7 +87,8 @@
     color: #fff;
     border: 2px solid #8b0000;
     border-radius: 10px;
-    padding: .8rem 1.4rem; /* 🔹 más grande */
+    padding: .8rem 1.4rem;
+    /* 🔹 más grande */
     font-size: 1rem;
     text-decoration: none;
 }
@@ -93,13 +104,15 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;   /* 🔹 tamaño aumentado */
+    width: 60px;
+    /* 🔹 tamaño aumentado */
     height: 60px;
     border-radius: 50%;
     border: 2px solid #8b0000;
     background: #000;
     color: #fff;
-    font-size: 1.8rem; /* 🔹 icono más grande */
+    font-size: 1.8rem;
+    /* 🔹 icono más grande */
     line-height: 1;
     cursor: pointer;
     display: grid;
@@ -108,8 +121,13 @@
 }
 
 /* Coloco las flechas a los lados exteriores */
-.gdep-left { left: 1.5rem; }
-.gdep-right { right: 1.5rem; }
+.gdep-left {
+    left: 1.5rem;
+}
+
+.gdep-right {
+    right: 1.5rem;
+}
 
 /* Efecto hover: un pelín más grande y fondo rojo oscuro */
 .gdep-arrow:hover {
@@ -157,6 +175,64 @@
         font-size: 1.4rem;
     }
 }
+
+/* CONTENEDOR GENERAL */
+.entrenadores-container {
+    margin-top: 2rem;
+    background: #1a0000;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+}
+
+/* TÍTULO */
+.titulo-entrenadores {
+    color: #fff;
+    text-align: center;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #8b0000;
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* GRID RESPONSIVE 4 COLUMNAS */
+.grid-entrenadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.2rem;
+}
+
+/* TARJETA */
+.card-entrenador {
+    background: #0f0000;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.card-entrenador:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+/* NOMBRE */
+.card-entrenador h3 {
+    margin: 0 0 .5rem 0;
+    color: #ff6b6b;
+}
+
+/* EMAIL Y TELÉFONO */
+.ent-mail,
+.ent-tel {
+    font-size: 0.95rem;
+    color: #ddd;
+    margin: .2rem 0;
+}
+
 
 /* En móviles pequeños, compacto el padding del carrusel
    y reduzco el tamaño general para mantener proporción */

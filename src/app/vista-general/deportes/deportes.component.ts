@@ -4,6 +4,8 @@ import { BehaviorSubject } from 'rxjs';
 import { DeportesService } from '../../servizos/deportes.service';
 import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
+import { Entrenador } from '../modelo/entrenador';
+import { EntrenadorServiceService } from '../../servizos/entrenador.service.service';
 
 @Component({
   selector: 'app-deportes',
@@ -13,12 +15,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './deportes.component.css'
 })
 export class DeportesComponent implements OnInit {
+  //Varible donde almacenamos los deportes
   deportes:Deporte[];
+  //Variable donde almacenamos los entrenadores
+  entrenadores:Entrenador[];
   // Índice actual del deporte visible
   actual = 0;
 
   // Constructor 
-  constructor(private servicio:DeportesService){
+  constructor(private servicio:DeportesService,private servicioEntrenador:EntrenadorServiceService){
 
   }
   
@@ -61,6 +66,13 @@ export class DeportesComponent implements OnInit {
      // Relleno la variable del TS con los datos para poder mostrarlos
     this.servicio.subscribirseDeportes$().subscribe((deportes) => {
       this.deportes = deportes;
+    });
+    
+    // Ejecuto el método para obtener los ejercicios del back
+    this.servicioEntrenador.mostrarEntrenadores();
+     // Relleno la variable del TS con los datos para poder mostrarlos
+    this.servicioEntrenador.subscribirseEntrenadores$().subscribe((entrenadores) => {
+      this.entrenadores = entrenadores;
     });
   }
 }
